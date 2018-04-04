@@ -1,0 +1,136 @@
+@page :left {
+  margin-left: 1cm;
+}
+@page :right {
+  margin-right: 1cm;
+}
+html, body{
+  color:#222222;
+  background-color:#f9f9f9;
+  font-family:verdana,arial;
+}
+section{
+  margin: 0 0 0 1em;
+}
+h1,h2,h3,h4,h5,h6{
+  color:#4d83ba;
+}
+h1{
+  margin: 3em 0;
+  text-align:center;
+}
+
+@media print{
+  h1{
+    margin: 65% 0 0 0;
+  }
+  .page-break{
+    page-break-after: always;
+  }
+}
+h2,h3,h4,h5,h6{
+  page-break-after: avoid;
+}
+ol {
+  counter-reset: item
+}
+ol li {
+  display: block;
+}
+.chapitre ol li,ol li ol li{
+  font-size: 75%;
+}
+ol li:before {
+  float: left;
+  content: counters(item, ".") ".";
+  counter-increment: item;
+  padding-right:10px;
+  margin-left:-20px
+}
+a{
+  color: #4d83ba;
+  font-weight:bold;
+  text-decoration:none;
+}
+a:hover{
+  text-decoration: underline;
+}
+p{
+  text-indent:1em;
+  text-align:justify;
+}
+footer, .copyright{
+  width: 100%;
+}
+/*@media print {
+  footer{
+      position: fixed;
+      bottom: 0;
+  }
+}*/
+footer p, .copyright p{
+  font-size: 75%;
+  text-align:center;
+}
+footer p a, .copyright p a{
+  color: #4d83ba;
+}
+table{
+  border-spacing:0;
+  background-color:white;
+  border-collapse:collapse;
+}
+table td, table th{
+  font-size:75%;
+  border: 1px solid #DBDBDB;
+}
+table td{
+  padding:0.5em;
+  font-size:65%;
+  font-weight:normal;
+}
+.code {
+  color:#000000;
+  font-weight:bold;
+  background-color: #FFFFFF;
+}
+span.green{
+  color:green;
+  font-weight:normal;
+}
+span.blue{
+  color:blue;
+}
+span.red{
+  color:red;
+  font-weight:normal;
+}
+span.grey{
+  color:grey;
+  font-weight:normal;
+}
+span.purple{
+  color:purple;
+}
+span.light{
+  font-weight:normal;
+}
+code.code-block{
+  padding: 1em;
+  display: inline-block;
+}
+code.terminal-style{
+  color:#FFFFFF;
+  position:relative;
+  background-color:#000000;
+}
+section.chapitre{
+  border-top: 2px solid #4d83ba;
+}
+section.chapitre{
+   page-break-after: always;
+   page-break-inside: avoid;
+}
+table, figure {
+  page-break-inside: avoid;
+}

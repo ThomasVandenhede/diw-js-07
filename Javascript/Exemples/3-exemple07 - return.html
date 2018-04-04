@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+
+        var fonctionCalcul = function() {
+            var choucroute = 2 + 3 * 5;
+            // alert(choucroute);
+            return choucroute; // renvoie la valeur, c'est-à-dire 17, à l'endroit où la fonction a été appellée
+        };
+
+        var alerteNombre = function() {
+            var resultat = fonctionCalcul(); // quand j'exécute la fonction maFonction je reçois un nombre (la valeur retournée par la fonction)
+            alert(resultat);
+        };
+
+        alerteNombre();
+    </script>
+</head>
+<body onload="alerteNombre()">
+    
+    <h1 onclick="alerteNombre()">Rappel return</h1>
+</body>
+</html>

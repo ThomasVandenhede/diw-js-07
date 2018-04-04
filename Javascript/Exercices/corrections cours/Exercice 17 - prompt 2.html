@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8"/>
+    <title>JavaScript : Exercice 17 - prompt 2</title>
+    <script type="text/javascript">
+      /*********************************
+      ************ EXERCICE ************
+      **********************************
+        Réalisez le programme (algorithme) suivant :
+        Au chargement du document, j'affiche une boîte de dialogue avec un champ de saisie à l'utilisateur.
+        - Si l'utilisateur clique sur Annuler, j'affiche un message « Vous avez annulé la saisie ».
+        - Si l'utilisateur clique OK sans rien saisir, j'affiche un message « Vous n'avez rien saisi ».
+        - Sinon (si l'utilisateur n'a pas cliqué sur Annulé ET n'a pas rien saisi), j'affiche la saisie de l'utilisateur dans une boîte de dialogue
+
+      */
+
+      var questionPrompt = function() {
+        var saisie = prompt('Veuillez saisir votre prénom');
+        if (saisie == null) {
+          // L'utilisateur a cliqué sur "Annuler", donc on a reçu la valeur null
+          alert('Vous avez annulé la saisie');
+        } else {
+          // Sinon on reçu une valeur texte (chaîne de caractère / string)
+
+          if (saisie == '') {
+            // l'utilisateur a cliqué sur OK/
+            // On a reçu une chaîne de caractères, mais cette chaîne est vide (== '')
+            alert('Vous n\'avez rien saisi');
+          } else {
+            // Sinon, la chaîne de caractères contient du texte, on peut afficher ce texte
+            alert('Votre prénom est : ' + saisie);
+          }
+
+        }
+      };
+
+    </script>
+  </head>
+  <body onload="questionPrompt()">
+    <h1>JavaScript : Exercice 17 - prompt 2</h1>
+    <p>Premier paragraphe</p>
+    <p>Deuxième paragraphe</p>
+    <noscript>
+      <p>Veuillez activer JavaScript</p>
+    </noscript>
+  </body>
+</html>

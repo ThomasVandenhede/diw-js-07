@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+  <meteo-paris></meteo-paris>
+
+  <script src="./lib/angular.min.js"></script>
+  <script>
+
+    angular.module('monModuleApp', [])
+    .config(['$logProvider', function($logProvider) {
+      $logProvider.debugEnabled(false);
+    }])
+
+    .directive('meteoParis', function() {
+      var monObjectDeConf = {
+        restrict: 'E',
+        templateUrl: './partials/meteo-paris.html',
+        controller: ['$http', '$log', function(monHttp, serviceLog) {
+          this.ville = '***';
+          this.temperature = '***';
+          this.httpError = '';
+          var that = this;
+          serviceLog.debug('Coucou');
+
+          monHttp.get('http://api.openweathermap.org/data/2.5/weather?q=Paris,fr&appid=bb026e3b05ebaf33312aeea8b300ef73xxxxx')
+          .then(function(jsondata) {
+            console.log(jsondata);
+            that.temperature = jsondata.data.main.temp;
+            that.ville = jsondata.data.name;
+            console.log(jsondata.data.main.temp);
+          })
+          .catch(function(error) {
+            console.log(error);
+            if (error.status === 401 ) {
+              that.httpError = 'La requête était non autorisée';
+            }
+          })
+        }],
+        controllerAs: 'monCtrl'
+      }
+      return monObjectDeConf;
+    });
+
+
+/*
+    var $http = {
+      get: alert('get !!!')
+    }
+    var chocolatine = $http;
+    var maFonction = function(monHttp) {
+      monHttp.get();
+    }
+
+    maFonction(chocolatine);
+*/
+
+    angular.bootstrap(window.document, ['monModuleApp'], {strictDi: true});
+  </script>
+
+</body>
+</html>

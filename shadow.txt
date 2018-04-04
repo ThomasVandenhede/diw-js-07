@@ -1,0 +1,11 @@
+    height: 100px;
+    width: 100px;
+    -webkit-box-shadow: 
+         3px 3px 5px 5px white, 
+        -3px 3px 5px 5px white, 
+         3px -3px 5px 5px white, 
+        -3px -3px 5px 5px white;
+    border: 10px solid white;
+    border-radius: 100%;
+    background: #677c5b;
+    opacity: 0.8;

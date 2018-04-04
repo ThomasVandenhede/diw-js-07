@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+
+        var fonctionTest = function(nombre) {
+            var valeurDeRetour;
+            if (nombre >= 10) {
+                valeurDeRetour = 'Choucroute';
+            } else {
+                valeurDeRetour = 'Pizza';
+            }
+            return valeurDeRetour;
+
+/*
+            if (nombre >= 10) {
+                return 'Choucroute';
+            } else {
+                return 'Pizza';
+            }
+*/
+        };
+
+        alert(fonctionTest(10));
+        alert(fonctionTest(2));
+/*
+        var maFonction = function() {
+            var somme = 2 + 2;
+            // alert(somme);
+            return somme;
+        };
+
+        var valeurRetouneeParMaFonction = maFonction();
+        alert('maFonction a retourné : ' + valeurRetouneeParMaFonction);
+        alert('divisé par 10 donne : ' + valeurRetouneeParMaFonction / 10);
+*/
+
+/*
+        var valeurRetouneeParMaFonction = maFonction();
+
+        alert('La fonction a retourné : ' +  valeurRetouneeParMaFonction);
+        alert(valeurRetouneeParMaFonction / 10);
+  */      
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>WebSocket avec le module socket.io</title>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    (function(window, io) {
+      'use strict';
+
+      // Au chargement du document.
+      window.addEventListener('DOMContentLoaded', function() {
+
+        var socket = io('http://192.168.107.145:3001');
+        
+        /**
+         * Retourne un identifiant compatible avec les attributs HTML "id"
+         */
+        const uniqueId = function() {
+          const randomLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
+          return randomLetter + Date.now();
+        };
+
+        /**
+         * Retourne une couleur aléatoire au format hexadécimal
+         */
+        const getRandomColor = function() {
+          return '#' + (0x1000000 + (Math.random()) * 0xffffff).toString(16).substr(1,6);
+        };
+
+        var insererDiv = function(id) {
+          var div = document.createElement('div');
+          div.id = id
+          div.style.backgroundColor = getRandomColor();
+          div.style.width = '100px';
+          div.style.height = '100px';
+          div.style.top = '0px';
+          div.style.left = '0px';
+          div.style.position = 'absolute';
+          document.body.appendChild(div);
+          return id;
+        };
+
+        var id = uniqueId();
+        var divId = insererDiv(id);
+
+        socket.emit('nouveauCarre', {
+          id: divId
+        })
+
+        socket.on('creerNouveauCarreClient', function(message) {
+          console.log('creerNouveauCarreClient', message.id)
+          insererDiv(message.id);
+        });
+
+        document.addEventListener('mousemove', function(event) {
+          var maDiv = document.getElementById(divId);
+          maDiv.style.top = event.clientY + 'px';
+          maDiv.style.left = event.clientX + 'px';
+          socket.emit('nouvellePosition', {
+            id: divId,
+            top: event.clientY + 'px',
+            left: event.clientX + 'px'
+          })
+        })
+
+        socket.on('mettreAJourPosition', function(message) {
+          //console.log(message);
+          var div = document.getElementById(message.id);
+          div.style.top = message.top;
+          div.style.left = message.left;
+        });
+
+      });
+
+    }(window, io)); // IIFE
+  </script>
+</head>
+<body>
+</body>
+</html>

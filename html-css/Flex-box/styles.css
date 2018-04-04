@@ -1,0 +1,100 @@
+/***************************************
+******************Base******************
+***************************************/
+body{
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 1.5em;
+}
+
+#gauche, #action{
+  display: inline-block; vertical-align: top;
+}
+
+#gauche{
+  width: 56%; margin-left: 5%;
+}
+
+h1, h2{
+  margin: 0;
+  color: #fff; background-color: teal;
+  text-align: center;
+}
+
+h1{
+  font-size: 1.6em;
+  border-radius: 10px; margin-bottom: 10px;
+}
+
+h2{
+  font-size: 1.1em;
+  border-radius: 5px;
+}
+
+h2:last-of-type{
+  margin-top: 5px;
+}
+
+h3{
+  font-size: 0.8em;
+  margin: 0;
+  display: inline-block;
+}
+
+.bloc{
+  display: block;
+}
+
+label{
+  font-size: 0.6em;
+}
+
+h3 span, label span{
+  color: teal;
+  font-weight: normal; font-size: 0.7em; font-style italic;
+}
+
+#boite{
+  display: flex;
+  background-color: bisque;
+  height: 300px;
+}
+
+#boite div{
+  padding: 10px;
+  text-align: center;
+}
+
+#element1{
+  background-color: cornflowerblue;
+}
+
+#element2{
+  background-color: brown;
+}
+
+#element3{
+  background-color: coral;
+}
+
+#element4{
+  background-color: chartreuse;
+}
+
+#action{
+  width: 30%;
+  text-align: center;
+  margin-left: 6%;
+}
+
+#action button{
+  display: block;
+  padding: 3px; border: teal 2px solid; border-radius: 5px; margin: 5px auto;
+  background-color: teal; color: #fff;
+  font-size: 0.6em;
+}
+
+#indication{
+  width: 60%; padding: 10px 0; border-radius: 5px; margin-left: 5%;
+  text-align: center;
+  background-color: antiquewhite;
+}

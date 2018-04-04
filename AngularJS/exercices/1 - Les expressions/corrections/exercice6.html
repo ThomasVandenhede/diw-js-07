@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="fr" ng-app="angularjsExercice6" ng-strict-di>
+  <head>
+    <meta charset="utf-8">
+    <title>AngularJS : Les Expressions : Exercice 6</title>
+    <script>
+      // Énoncé
+      /* Les directives ng-submit, ng-src*/
+      /**************************************************************************************************
+        La directive ng-submit permet d'associer une expression AngularJS à l'événement onsubmit. Cette directive annule comportement par défaut du formulaire (il n'est pas envoyé !). La documentation officielle de la directive ng-submit est disponible ici : https://docs.angularjs.org/api/ng/directive/ngSubmit
+
+        La directive ng-src permet d'associer une expression AngularJS à l'attribut src d'une balise img par exemple (si on utilisait l'attribut src directement, le navigateur essaierai d'interpréter l'attribut src contenant l'expression pendant le chargement du document avant que AngularJS ne soit chargé !). La documentation officielle de la directive ng-src est disponible ici : https://docs.angularjs.org/api/ng/directive/ngSrc
+      **************************************************************************************************/
+      
+      /*
+        1. Chargez AngularJS dans ce document. Le contexte applicatif d'AngularJS doit englober tout le document. Votre application s'appellera angularjsExercice6. Un tutoriel officiel sur le chargement d'AngularJS est disponible ici : https://docs.angularjs.org/tutorial/step_00
+      */
+      
+      /*
+        2. Créez un formulaire contenant un champ de saisie texte et un bouton contenant le texte 'afficher'. À l'aide d'une expression, associez le contenu du champ de saisie à une variable saisie.
+      */
+
+      /*
+        3. Créez une balise image. Utilisez l'attribut ng-submit pour affecter le contenu de la variable saisie à une variable src que vous utilisez sur la balise image à l'aide de la directive ng-src. Attention : la directive ng-src a pour valeur un template, pas une expression. 
+      */
+
+      /**************************************************************************************************
+        Lorsque vous saisissez l'url d'une image dans le champ de saisie et que vous cliquez sur le bouton afficher, l'image doit être téléchargée et affichée par la navigateur Internet.
+      **************************************************************************************************/
+    </script>
+  </head>
+  <body>
+    <div ng-init="urlDeImage=''; saisie = '';">
+      <h4>Le formulaire</h4>
+      <form name="monFormulaire" ng-submit="srcDeImage = saisie">
+        <input type="text" name="champ_saisie" ng-model="saisie"/>
+        <input type="submit" value="soumettre"/>
+      </form>
+      <h4>L'image</h4>
+      <p><img ng-src="{{ srcDeImage }}"/></p>
+    </div>
+    <!-- On charge le framework AngularJS dans le document -->
+    <script src="../lib/angular-1.6.5.min.js"></script>
+
+    <!-- On on écrit ou on charge son script JavaScript utilisant AngularJS -->
+    <script>
+      //Bonne pratique : programmer en mode strict JavaScript (voir : https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Strict_mode)
+      'use strict';
+
+      //Bonne pratique : écrire son code dans une fonction anonyme auto-exécutable pour contrôler l'exposition des variables à l'objet global Window. 
+      (function() {
+
+        /*
+          On créé un module AngularJS à l'aide de la méthode angular.module().
+          angular.module() est utilisée ici comme un "setter".
+          Voir : https://docs.angularjs.org/api/ng/function/angular.module
+        */
+        angular.module('angularjsExercice6', []);
+
+        /*
+          On utilise le module AngularJS créé pour interpréter les expressions et directives AngularJS présentes dans le DOM à l'aide de la méthode angular.bootstrap().
+          Voir : https://docs.angularjs.org/api/ng/function/angular.bootstrap
+        */
+        angular.bootstrap(window.document, ['angularjsExercice6'], {strictDi:true});
+        /**
+          window.document : portion de DOM à interpréter.
+          ['angularjsExercice6'] : tableau des modules à utiliser pour interpréter la portion de DOM
+          {strictDi:true} : Objet contenant une propriété qui indique à AngularJS de fonctionner à l'aide d'injections de dépendances strictes (notion que nous détaillerons plus tard).
+        **/
+
+      })();
+      //Fin de la fonction anonyme auto-exécutable
+    </script>
+  </body>
+</html>

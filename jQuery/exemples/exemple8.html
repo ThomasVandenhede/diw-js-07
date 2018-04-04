@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Exemple 8</title>
+  <script src="jquery.js"></script>
+  <script>
+    $(function() {
+      var maDiv = $('div');
+      function animation(){
+        maDiv.animate({top:100,left:140,fontSize:40},1000).animate({top:300,left:600,fontSize:8},2000).animate({top:0,left:200,fontSize:12},1000,animation);
+      };
+      animation();
+    });
+  </script>
+  <style>
+    div{
+      background-color: teal;
+      width: 200px;
+      height: 150px;
+      position: absolute;
+      left: 200px; top: 0;
+      transform: scale(1);
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Exemple 8</h1>
+  <div>Un texte</div>
+</body>
+</html>

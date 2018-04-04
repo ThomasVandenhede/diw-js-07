@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        var unNombre = 50; // Variable déclarée dans le contexte global : en dehors de toute fonction
+
+        var uneFonction = function() {
+            alert(unNombre);
+            var autreVariable = 'Hello World'; // Variable "locale" (déclarée dans une fonction)
+        };
+
+        uneFonction();
+
+        alert(autreVariable); // Variable inexistante dans le contexte global
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

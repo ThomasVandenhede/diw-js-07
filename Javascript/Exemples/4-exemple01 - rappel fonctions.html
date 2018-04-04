@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        
+        var reponseUtilisateur;
+
+        var question = function() {
+            reponseUtilisateur = confirm('Choisissez une réponse'); // Renvoie une valeur booléenne, donc la variable reponseUtilisateur contient soit true, soit false en fonction du choix utilisateur
+        }
+
+        var calcul = function(nombre) {
+            var somme = 5 + nombre;
+            var produit = 3 * somme; // variable locale
+            // alert(produit);
+            if ((produit % 2) == 0 ) {
+                return produit;
+            } else {
+                return 'Nombre impaire';
+            }
+        };
+        
+        alert(calcul(8));
+        alert(calcul(2));
+        alert(calcul(3));
+
+        var resultatAvec5 = calcul(5);
+        alert(resultatAvec5);
+
+
+        // alert(calcul());
+       
+    </script>
+</head>
+<body onload="">
+    <p onclick="question()">test</p>
+</body>
+</html>

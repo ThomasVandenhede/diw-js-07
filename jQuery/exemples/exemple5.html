@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script src="jquery.js"></script>
+  <script>
+    $(function() {
+      $('img').click(function() {
+        $(this).next().html($(this).attr('alt'));
+      });
+    });
+  </script>
+  <title>Exemple 5</title>
+  <style>
+  body{
+    display: flex;
+  }
+  div{
+    width: 30%;
+    text-align: center;
+  }
+  p{
+    height: 18px;
+    font-size: 18px;
+  }
+  </style>
+</head>
+<body>
+  <div><img src="etoile1.jpg" alt="Planète"><p></p></div>
+  <div><img src="etoile2.jpg" alt="Personnage devant la lune"><p></p></div>
+  <div><img src="etoile3.jpg" alt="Collision d'atomes"><p></p></div>
+</body>
+</html>

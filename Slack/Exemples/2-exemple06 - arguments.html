@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        var operation = function(pizza, choucroute, frites) {
+            // les valeurs sont reçues dans l'ordre où elles ont été fournies
+            return pizza + choucroute * frites; // 2 + 3 * 5
+        };
+
+        // operationBis est srictement équivalente à operation
+        var operationBis = function(arg1, arg2, arg3) {
+            // les valeurs sont reçues dans l'ordre où elles ont été fournies
+            return arg1 + arg2 * arg3; // 2 + 3 * 5
+        };
+
+        var functionIsolante = function() {
+            var choucroute = 2;
+            var pizza = 3;
+            var frites = 5;
+            var somme = operation(choucroute, pizza, frites); // on passe les valeurs et non les variables
+            alert(somme); // 17 et pas 13
+            var somme2 = operationBis(choucroute, pizza, frites);
+            alert(somme2); // 17 et pas 13
+        }
+        functionIsolante();
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

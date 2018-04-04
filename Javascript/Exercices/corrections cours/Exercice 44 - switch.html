@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8"/>
+    <title>JavaScript : Exercice 44 - switch</title>
+    <script type="text/javascript">
+      /*********************************
+      ********** PRÉSENTATION **********
+      **********************************
+        L'instruction if/else permet seulement de prendre deux cas en compte pour une expression. En revanche; L'instruction switch permet d'évaluer une expression selon un nombre de cas non limité.
+
+        Cette instruction s'écrit de la façon suivante :
+        switch (expression) {
+          case valeur1:
+          // Instruction s'exécutant lorsque l'expression correspond à valeur1
+          instructions1;
+          break;
+          case valeur2:
+          // Instruction s'exécutant lorsque l'expression correspond à valeur2
+          instructions 2;
+          break;
+          ...
+          default:
+          // Instructions quand aucune des valeurs ne correspond
+          instructions_par_defaut;
+        }
+
+        Le break à la fin d'une instruction n'est pas obligatoire, mais il est fortement recommandé. Ainsi, seules les instructions correspondant à cette instruction seront exécutés.
+        Le cas par défaut (default) est également optionnel.
+      */
+
+      /*
+      Au chargement de la page, demandez à l'utilisateur quel jour de la semaine il est né (en donnant un entier entre 1 et 7). L'utilisateur doit forcément donner un nombre entre 1 et 7.
+        _ s'il répond lundi, vous affichez une réponse.
+        _ s'il répond mardi, mercredi ou jeudi; vous affichez une autre réponse.
+        _ s'il répond vendredi, vous affichez une troisième réponse.
+        _ s'il répond samedi ou dimanche, vous affichez une quatrième réponse.
+      */
+        var reponse = 'a';
+        while (isNaN(reponse) || reponse > 7 || reponse < 1 ) {
+          reponse = parseInt(prompt('Quel jour de la semaine êtes-vous né ? Veuillez saisir un nombre de 1 à 7'));
+        }
+
+        console.log(reponse);
+
+        // Attention: switch fait une comparaison stricte (valeur ET type), '2' !== 2.
+        switch (reponse) {
+          case 1:
+            alert('Vous êtes né un lundi');
+            break;
+
+          case 2:
+          case 3:
+          case 4:
+            alert('Vous êtes né un mardi, mercredi ou jeudi');
+            break;
+
+          case 5:
+            alert('Vous êtes né un vendredi');
+            break;
+
+          case 6:
+          case 7:
+            alert('Vous êtes né un week-end');
+            break;
+
+          default:
+            alert('Impossible (' + reponse + ')');
+            break;
+        }
+
+      /*********************************
+      ************ EXERCICE ************
+      **********************************
+        Reprenez l'exercice précédent en remplaçant les instructions if/else par un switch.
+      */
+    </script>
+  </head>
+  <body>
+    <h1>JavaScript : Exercice 44 - switch</h1>
+    <p>Premier paragraphe</p>
+    <p>Deuxième paragraphe</p>
+    <noscript>
+      <p>Veuillez activer JavaScript</p>
+    </noscript>
+  </body>
+</html>

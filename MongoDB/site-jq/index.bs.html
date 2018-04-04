@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Restaurants NY</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <script src="./lib/jquery-3.3.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+  <script>
+    $(document).ready(function() {
+
+      $.ajax({
+        url: 'http://api.virtuoworks.com/json/v1/Restaurants/count',
+      })
+      .done(function(data) {
+        console.log( "success", data );
+        if (data.count) {
+          $('#count').html( + data.count + ' restaurants');
+        }
+      })
+      .fail(function(data) {
+        console.log( "error", data );
+      })
+
+
+
+      $.ajax({
+        url: 'http://api.virtuoworks.com/json/v1/Restaurants',
+        data: {
+          filter: '{"limit":10}'
+        },
+      })
+      .done(function(data) {
+        console.log( "success", data );
+        data.forEach(function(restaurant) {
+          $('#restaurants').append('<h3>' + restaurant.name + '</h3><p>quartier : <strong>' + restaurant.borough + '</strong>, cuisine : <strong>'+ restaurant.cuisine + '</strong></p>');
+        })
+      })
+      .fail(function(data) {
+        console.log( "error", data );
+      })
+    });
+  </script>
+
+</head>
+
+<body>
+  <h1>Restaurants de New York</h1>
+  <h2 id="count"></h2>
+  <section id="restaurants"></section>
+</body>
+
+</html>

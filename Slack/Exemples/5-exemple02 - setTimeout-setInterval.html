@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+/*
+        var maFonctionADeclencherPlusTard = function() {
+            alert('test');
+        }
+        setTimeout(maFonctionADeclencherPlusTard, 3000);
+*/
+        var produit;
+
+        var timeoutId = setTimeout(function() {
+            console.log('Premier compte à rebours terminé');
+            var somme = 4 + 9;
+            produit = somme *3;
+            console.log('produit : ' + produit);
+
+            setTimeout(function() {
+                console.log('Deuxième compte à rebours terminé');
+                alert(produit);
+            }, 3000);
+
+        }, 4000);
+        console.log('timeoutId : ' + timeoutId);
+
+        // clearTimeout(timeoutId);
+
+        var annulerTimeout = function() {
+            clearTimeout(timeoutId);
+        };
+
+
+        var intervalId = setInterval(function() {
+            alert('Coucou');
+        }, 2000);
+        console.log('intervalId : ' + intervalId);
+
+
+        var annulerInterval = function() {
+            clearInterval(intervalId);
+        };
+    </script>
+</head>
+<body>
+    <p onclick="annulerTimeout()">Arrêter timeout</p>
+    <p onclick="annulerInterval()">Arrêter interval</p>
+</body>
+</html>

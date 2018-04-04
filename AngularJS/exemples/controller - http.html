@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+  <div ng-controller="monControleurJson as monCtrlJson">
+    {{ monCtrlJson.cours }}
+    {{ monCtrlJson.nombre }}
+    <button type="button" ng-click="monCtrlJson.incrementer()">++</button>
+    <p>Adresse IP : {{ monCtrlJson.ip }}</p>
+  </div>
+
+  <script src="./lib/angular.min.js"></script>
+
+<script>
+
+    angular.module('monModuleApp', [])
+    .controller('monControleurJson', ['$http', function(serviceHttp) {
+      this.cours = 'AngularJS';
+      this.nombre = 0;
+      this.ip = '***';
+      this.incrementer = function() {
+        this.nombre++;
+      };
+      var that = this;
+      serviceHttp.get('http://ip.jsontest.com/')
+      .then(function(jsonData) {
+        console.log(jsonData);
+        that.ip = jsonData.data.ip;
+      })
+      .catch(function(error) {
+        console.log(error);
+      })
+
+    }]);
+
+    angular.module('monModuleApp')
+    .config(['$sceDelegateProvider', function($sceDelegateProvider){
+      $sceDelegateProvider.resourceUrlWhitelist([
+        'self', //autorise toutes les requête vers et en provenance du même domaine
+        'http://*.jsontest.com/**' //autorise toutes les requête vers et en provenance du domaine jsontest.com
+      ])
+    }]);
+
+    angular.bootstrap(window.document, ['monModuleApp'], {strictDi: true});
+  </script>
+
+</body>
+</html>

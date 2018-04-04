@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8"/>
+    <title>JavaScript : Exercice 36 - argument fonction</title>
+    <script type="text/javascript">
+      /*********************************
+      ********** PRÉSENTATION **********
+      **********************************
+        Une fonction peut accepter plusieurs arguments. Parmi les arguments, il est possible de fournir une fonction qui sera utilisée dans la fonction.
+
+      /*********************************
+      ************ EXERCICE ************
+      **********************************
+      ** 1 **
+        Réalisez le programme (algorithme) suivant :
+        a) Créez un tableau contenant 4 nombres.
+        b) Créez deux fonctions. L'une retourne l'addition des arguments fournis en entrée et l'autre la multiplication des arguements fournis.
+        c) Une troisième fonction qui boucle le tableau utilise la fonction d'addition ou la fonction de multiplication qui lui est fournie.
+        d) Dans une Boite de dialogue, demandez à l'utilisateur s'il souhaite une addition ou une multiplication.
+        e) Affichez le résultat de l'opération dans une Boite de dialogue.
+
+        Utilisez une boucle for, un bloc if/else, les fonctions confirm() et alert().
+      */
+
+      var tableauNombres = [2, 3, 4, 5];
+      /*
+      somme : 14
+      produit : 120
+      */
+      var addition = function(a, b) {
+        return a + b;
+      };
+
+      var multiplication = function(a, b) {
+        return a * b;
+      };
+
+      var faireOperation = function(operation) {
+        var i = 0;
+        var resultatCourant = tableauNombres[i];
+        while (tableauNombres[i]) {
+          if (tableauNombres[i + 1]) {
+            resultatCourant = operation(resultatCourant, tableauNombres[i + 1]);
+          }
+          i++;
+        }
+        return resultatCourant;
+      };
+
+      var reponse = confirm('Quelle opération ? OK pour addition, Annuler pour multiplication');
+      if (reponse) {
+        var resultat = faireOperation(addition);
+      } else {
+        var resultat = faireOperation(multiplication);
+      }
+
+      alert(resultat);
+
+
+/*      var tableauNombres = [2, 3, 4, 5];
+
+      var addition = function(a, b) {
+        return a + b;
+      };
+
+      var multiplication = function(a, b) {
+        return a * b;
+      };
+
+      var boucleOperation = function(funcOperation) {
+        var i = 0;
+        var res = tableauNombres[i];
+
+        while (tableauNombres[i]) {
+          alert(res);
+          if (tableauNombres[i + 1]) {
+            res = funcOperation(res, tableauNombres[i + 1]);
+          }
+          i++;
+        }
+        return res;
+      };
+      var somme = boucleOperation(addition);
+      alert('addition donne : ' + somme);
+
+      var produit = boucleOperation(multiplication);
+      alert('multiplication donne : ' + produit);
+*/
+      /*
+      ** 2 **
+        On peut connaître le nombre d'entrée d'un tableau de la façon suivante :
+        var monTableau = ['soleil', 15, 'pluie'];
+        alert(monTableau['length']); // affiche 3;
+        Modifiez la boucles de cet exercice en utilisant ['length'].
+      */
+
+
+    </script>
+  </head>
+  <body>
+    <h1>JavaScript : Exercice 36 - argument fonction</h1>
+    <p>Premier paragraphe</p>
+    <p>Deuxième paragraphe</p>
+    <noscript>
+      <p>Veuillez activer JavaScript</p>
+    </noscript>
+  </body>
+</html>

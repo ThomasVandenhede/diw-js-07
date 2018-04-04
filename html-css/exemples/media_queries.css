@@ -1,0 +1,27 @@
+h1{
+  color: magenta;
+  font-style: italic;
+  font-weight: 300;
+}
+
+p{
+  font-family: Arial, sans-serif;
+  vertical-align: top;
+  font-size: 25px;
+  color: chocolate;
+}
+
+@media screen
+0px){
+  p:nth-of-type(n+2){
+    display: inline-block;
+    width: 49.5%;
+  }
+}
+
+@media screen and (min-width:800px){
+  p:nth-of-type(n+1){
+    display: inline-block;
+    width: 30%;
+  }
+}

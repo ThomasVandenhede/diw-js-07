@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./lib/jquery-3.3.1.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      console.log('OK');
+
+      $.ajax({
+        url: 'http://ip.jsontest.com/',
+        method: 'GET',
+        dataType: 'json',
+        success: function(donnees) {
+          console.log(donnees);
+          $('body').append('<h1>Votre adresse IP</h1><p>' + donnees.ip + '</p>')
+        }
+      }) 
+
+
+      // https://httpbin.org/get?foo=bar
+      $('#btn1').on('mouseover', function() {
+        $.ajax({
+          url: 'https://httpbin.org/get',
+          method: 'GET',
+          data: {
+            petitDej: 'chocolatine'
+          },
+          datatype: 'json',
+          success: function(donnees, statutReponse, objetJqXhr) {
+            console.log('SUCCESS');
+            console.log(donnees);
+            console.log(statutReponse);
+            console.log(objetJqXhr);
+          },
+          error: function(objetJqXhr, statutReponse, erreur) {
+            console.log('ERROR');
+            console.log(objetJqXhr);
+            console.log(statutReponse);
+            console.log(erreur);
+          },
+          complete: function(objetJqXhr, statutReponse) {
+            console.log('COMPLETE');
+            if (statutReponse === 'success')  {
+              console.log(objetJqXhr.responseJSON);
+            } else {
+              console.log('Une errreur s\'est produite');
+            }
+            console.log(objetJqXhr);
+            console.log(statutReponse);
+          }
+        });
+      })
+    });
+  </script>
+</head>
+<body>
+  <button type="button" id="btn1">Charger JSON</button>
+</body>
+</html>

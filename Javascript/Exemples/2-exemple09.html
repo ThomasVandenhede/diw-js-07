@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        alert = function() {
+            return 2 + 2;
+        };
+        console.log(alert('au revoir'));
+
+        var texte = 'Bonjour';
+        alert(texte);
+
+        texte = 123;
+        alert(texte);
+
+        texte = ['glace', 'gâteau', [123, 5, true, null]];
+        alert(texte);
+
+
+        var maFonction = function() {
+            alert('Coucou');
+        };
+
+        maFonction = 'test';
+
+        // maFonction();
+
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

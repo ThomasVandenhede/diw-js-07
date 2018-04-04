@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        var maGlobale = 5;
+
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures
+        var maFonction = function() {
+            var texte = 'Bonjour';
+            alert(maGlobale);
+
+            var autreFonction = function() {
+                alert(texte + ' les DIWJS07 (' + maGlobale + ')');
+            };
+
+            return autreFonction;
+        };
+
+        // la fonction retournée par maFonction se "souvient" du contexte dans lequel elle a été déclarée
+        // Cette fonction a donc accès à TOUTES les variables disponibles dans ce contexte original.
+        var valeurRetourneeParMaFonction = maFonction();
+        /*
+        Ctte nouvelle variable a reçu la fonction suivante déclrée dans maFonction :
+        function() {
+                alert(texte + ' les DIWJS07 (' + maGlobale + ')');
+            }
+        */
+
+        valeurRetourneeParMaFonction();
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,15 @@
+header{
+  h1{
+    background-color: $couleur-lien;
+    color: #fff;
+    margin-bottom: 12px + 10px;
+  }
+  ul{
+    text-align: center;
+  }
+  li{
+    list-style-type: none;
+    display: inline-block;
+    margin: 0 5%;
+  }
+}

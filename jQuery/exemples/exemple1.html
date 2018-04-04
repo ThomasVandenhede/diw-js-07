@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <script src="jquery.js"></script>
+  <script>
+    window.onload = function() {
+      $('h1').hide();
+      $('p').hide().slideDown(1600).css('color','magenta');
+      $('p').click(function() {
+        $('p').animate({top:250,left:200},2000);
+      });
+    };
+  </script>
+  <style>
+    p{
+      position: relative;
+      top: 0;
+    }
+  </style>
+  <title>Première page avec jQuery</title>
+</head>
+<body>
+  <h1>Première page avec jQuery</h1>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed quos reiciendis beatae iste quibusdam perferendis, fugiat obcaecati rerum exercitationem consequuntur, architecto vel ab cum quaerat ex id consectetur aut. Obcaecati.</p>
+</body>
+</html>

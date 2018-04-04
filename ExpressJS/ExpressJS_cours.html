@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Cours Express JS</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="sources_cours/styles.css" />
+    <link rel="stylesheet" href="sources_cours/prism.css" />
+    <script src="sources_cours/prism.js"></script>
+    <script src="sources_cours/jquery-1.11.3.min.js"></script>
+    <script>
+      $( document ).ready(function(){
+        function masquer(etat){
+          changementMenu();
+          $('.content').each(function(){
+            $(this).css('display',etat);
+          });
+        };
+        function masquageFiltre(duree){
+          $('#filtre').animate({opacity: 0}, duree, function(){
+            $(this).hide();
+          });
+        };
+        function changementMenu(){
+          if($(window).width() < 864){
+            var refHeader = $('header');
+            var duree = 600;
+            var valeur = refHeader.height();
+            if (parseFloat(refHeader.css('top')) == -valeur) {
+              $('#filtre').animate({opacity: 0.8}, duree).show();
+              refHeader.animate({top: 0}, duree);
+            } else {
+              refHeader.animate({top: -valeur}, duree);
+              masquageFiltre(duree);
+            }
+          }
+        };
+        $(window).resize(function(){
+          if ($(window).width() >= 864) {
+            masquageFiltre(100);
+            if ($('header').attr('style')) {
+              $('header').removeAttr('style');
+            }
+          }
+        });
+        $('#bouton-nav, nav li').click(function(){
+          changementMenu();
+        });
+        $('h2>.triangle').on('click',function(){
+          $(this).toggleClass('haut bas');
+          $(this).parent().siblings('.content').toggle();
+        });
+        $('#masquage').on('click',function(){
+          var balise = $(this);
+          if (balise.text() == 'Tout replier') {
+            balise.text('Tout afficher');
+            masquer('none');
+          } else {
+            balise.text('Tout replier');
+            masquer('block');
+            changementMenu()
+          }
+        });
+      })
+    </script>
+  </head>
+  <body>
+    <div id="page">
+      <header>
+        <h1>Express JS</h1>
+        <nav>
+          <ul>
+            <li><a href="#page">Démarrage</a></li>
+            <li><a href="#templates">Les templates</a></li>
+            <li><a href="#routes">Les routes</a></li>
+            <li><a href="#middleware">Notion de middleware</a></li>
+            <li><a href="#requetes">Les requêtes POST</a></li>
+            <li><a href="#erreurs">Les erreurs</a></li>
+            <li><a href="#sessions">Les sessions</a></li>
+            <li><a href="#base">Base de données</li>
+            <li><a href="#mvc">MVC</a></li>
+          </ul>
+        </nav>
+        <div id="bas">
+          <div id="info">
+            <a href="http://www.virtuoworks.com/" title="Site de VirtuoWorks"><img src="sources_cours/logo.png" alt="logo virtuoworks"></a>
+            <a href="mailto:marc.boussoulade@virtuoworks.com">Marc<br/>Boussoulade</a>
+          </div>
+          <div id="changement">
+            <span id="masquage">Tout replier</span>
+          </div>
+        </div>
+        <div id="bouton-nav">&#9776;</div>
+      </header>
+      <div id="demarrage">
+        <h2>Démarrage<span class="triangle haut"></span></h2>
+        <span class="trait"></span>
+        <div class="content">
+          <h3>Présentation</h3>
+            <p>Express JS est un framework (cadre de travail) Node.js de taille limitée et proposant de nombreuses fonctions pour simplifier la réalisation d'un site web.</p>
+            <p>Express JS facilite l'organisation de l'application grâce à plusieurs notions</p>
+            <ul>
+              <li>guide dans la gestion de la requête et la réponse</li>
+              <li>pile de middlewares</li>
+              <li>routages</li>
+              <li>templates</li>
+            </ul>
+          <h3>Installation</h3>
+            <p>Après avoir créé un dossier spécifique, nous lançons les commandes suivantes dans ce dossier :</p>
+            <h4>Création d'un package JSON</h4>
+            <pre><code class="language-bash">$ npm init</code></pre>
+            <p>Il s'agit de créer un fichier JSON contenant une description de l'application Express JS créée (nom, version, fichier de départ …). L'ensemble des spécifications sont données dans la <a href="https://docs.npmjs.com/files/package.json" title="Documentation NPM sur le package">documentation npm</a>.</p>
+            <h4>Installation d'Express JS proprement dit</h4>
+            <pre><code class="language-bash">$ npm install express --save</code></pre>
+            <p>L'option --save permet d'ajouter Express dans la liste des  dépendances dans le fichier JSON préalablement créé. </p>
+          <h3>Premier affichage</h3>
+            <p>Après avoir écris ce code :</p>
+            <pre><code class="language-javascript line-numbers">var express = require('express');
+var app = express();
+
+app.get('/', function (req, res) {
+  res.send('Bonjour à tous !');
+});
+
+var server = app.listen(8080, function () {
+  var addresseHote = server.address().address;
+  var portEcoute = server.address().port;
+
+  console.log(' L\'application est disponible à l\'adresse http://%s:%s', addresseHote, portEcoute);
+});</code></pre>
+            <p> exécutons le :</p>
+            <pre><code class="language-bash">$ node premiereEssai.js</code></pre>
+            <p>Nous utilisons le module Express et nous l'exécutons. Nous passons ensuite une chaine de caractère puis nous écoutons sur le port 8080.</p>
+          <h3 id="principeRoutes">Principe des routes</h3>
+            <p>Si nous souhaitons, prendre en compte un changement dans l'url, nous modifions notre fichier en y ajoutant les lignes suivantes (8 à 10):</p>
+            <pre data-start="5"><code class="language-javascript line-numbers">
+  res.send('Bonjour à tous !');
+});
+
+app.get('/fin', function (req, res) {
+  res.send('Au-revoir !');
+});
+
+var server = app.listen(8080, function () {
+  …</code></pre>
+          <p>Après avoir relancé le serveur web, nous pouvons modifier l'affichage si nous entrons la valeur fin dans la barre d'adresse après localhost.</p>
+
+          <h3>Fichier statique</h3>
+            <p>L'application web permet de générer des fichiers html en fonction des requêtes qui lui sont envoyées; mais également de fournir des fichiers statiques stockés sur le serveur tels les images, les CSS ou le JavaScript par exemple.</p>
+            <p>Express permet de simplifier l'écriture des URL pour ces fichiers en les stockants tous dans un dossier parent.</p>
+            <p>Il faut utiliser, pour ce faire, une fonction middleware (voir plus bas pour cette notion) en écrivant : </p>
+            <pre><code class="language-javascript">app.use(express.static('public'));</code></pre>
+            <p>Vous pouvez désormais stocker tous vos fichiers dans le dossier public, situé à la racine de votre application, et écrire les URL comme suit:</p>
+            <pre><code class="language-http">http://localhost:8080/images/kitten.jpg
+http://localhost:8080/css/style.css
+http://localhost:8080/js/app.js
+http://localhost:8080/images/bg.png
+http://localhost:8080/hello.html</code></pre>
+            <p>Vous pouvez créer de multiples dossiers statiques :</p>
+            <pre><code class="language-javascript">app.use(express.static('public'));
+app.use(express.static('files'));</code></pre>
+            <p>Express cherchera successivement vos fichiers dans les différents dossiers statiques indiqués.</p>
+        </div>
+      </div>
+      <div id="templates">
+        <h2>Les templates : Jade<span class="triangle haut"></span></h2>
+        <span class="trait"></span>
+        <div class="content">
+          <h3>Principe de base</h3>
+            <p>Jade est un langage de templace. Cela permet de séparer le code qui génère l'affichage du reste du code JavaScript. Il faut obligatoirement utiliser la <a href="http://jade-lang.com/reference/" title="syntaxe de Jade">syntaxe du langage</a>.<br/>
+            Nous insèrons le code suivant dans le fichier JavaScript</p>
+            <pre><code class="language-javascript line-numbers">var express = require('express');
+var app = express();
+
+//définit le dossier de base pour les fichiers statiques (css, images, js, …)
+app.use('/static', express.static('mestemplates'));
+
+//permet d'utiliser Jade
+app.set('view engine', 'jade');
+
+//redéfinir le dossier recevant les fichiers .jade (par défaut : views)
+app.set('views','mestemplates');
+
+//chemin de base de mon application :
+app.get('/',function (req,res) {
+  //permet le rendu du fichier index.jade qui donne un html envoyé ensuite au client
+  res.render('index', {title: 'Titre de la page', message : 'Du texte dans la page'});
+});</code></pre>
+            <p>Nous créons un fichier index.jade dans le dossier mestemplates.</p>
+            <pre><code class="language-http line-numbers">doctype html
+head
+  title= title
+body
+  h1= message</code></pre>
+            <h3>Inclusion d'un fichier dans un autre</h3>
+            <p>Dans nos pages web, une partie de la structure est commune (en-tête, menu …). Il est donc préférable de séparer ces parties communes du reste.<br/> Prenons, tout d'abord, un fichier index.jade</p>
+            <pre><code class="language-http line-numbers">doctype html
+html
+  include ./includes/head.jade
+  body
+    h1= titreH1
+    p Un texte court
+  include ./includes/foot.jade</code></pre>
+            <p>Nous utilisons ensuite les fichiers head.jade et foot.jade situés dans le dossier includes lui-même situé dans le dossier mestemplates.</p>
+            <p>Le fichier head :</p>
+            <pre><code class="language-http line-numbers">head
+  title= titrePage
+  script(src='script.js')
+  link(rel="stylesheet", href="style.css")</code></pre>
+            <p>Le fichier foot :</p>
+            <pre><code class="language-http line-numbers">p
+  a(href='mailto:moi@maboitemail.com') Me contacter</code></pre>
+            <p>L'ensemble nous donne un fichier html comple qui est envoyé au client.</p>
+            <h3>Utilisation d'un layout</h3>
+            <p>Une autre technique de séparation du code consiste à utiliser un Layout. En premier lieu, prenons le fichier layout.jade</p>
+            <pre><code class="language-http line-numbers">doctype html
+html
+  head
+  block title
+    title Default title
+  link(rel="stylesheet", href="style.css")
+  script(src="script.js")
+  body
+    block content</code></pre>
+            <p>Si nous utilisons le fichier index.jade ci-dessous, nous obtenons une page complète.</p>
+            <pre><code class="language-http line-numbers">extends ./layout.jade
+
+block title
+  title= titrePage
+
+block content
+  h1= titreH1
+  p Un texte court</code></pre>
+        <p>Chaque fichier .jade appelé fera appel au layout.</p>
+        </div>
+      </div>
+      <div id="routes">
+        <h2>Les routes<span class="triangle haut"></span></h2>
+        <span class="trait"></span>
+        <div class="content">
+          <p>Nous pouvons améliorer la gestion des routes <a href="#principeRoutes" title="Principe des routes">vue précédemment</a>.</p>
+          <h3>Gestion d'une valeur dans l'url</h3>
+          <p>Ici, l'exécution de ce code permettra d'utiliser l'élément envoyé dans l'url et de la passer en réponse.</p>
+          <pre><code class="language-javascript line-numbers">var express = require('express');
+var app = express();
+
+app.get('/', function (req, res) {
+  res.send('Accueil du site');
+});
+
+app.get('/utilisateur/:id', function(req, res){
+  res.send('L\'utilisateur est ' + req.params.id);
+});
+
+var server = app.listen(8080, function () {
+var adddresseHote = server.address().address;
+var portEcoute = server.address().port;
+
+console.log(' L\'application est disponible à l\'adresse http://%s:%s', adddresseHote, portEcoute);
+});</code></pre>
+        </div>
+      </div>
+      <div id="middleware">
+        <h2>Notion de middleware<span class="triangle haut"></span></h2>
+        <span class="trait"></span>
+        <div class="content">
+          <h3></h3>
+            <p>Express est une librairie web légère facilitant la contruction de routes et utilisant des fonctions middleware.  Une demande expresse est, avant tout, une série d'appels de middleware.</p>
+            <p>Le middleware est une fonction qui va être appelée entre la requête et la réponse pour apporter des possibilités supplémentaires à notre code.</p>
+            <p>Prenons le code suivant :</p>
+            <pre><code class="language-javascript line-numbers">app.use(function (req, res, next) {
+  console.log('Time:', Date.now());
+  next();
+});</code></pre>
+            <p>À chaque requête, l'heure sera affichée dans la console. Vous remarquez que la fonction middleware a pour fondement l'écriture app.use(). On donne comme argument une fonction.</p>
+            <p>Parmi les middleware les plus habituelles avec Express, on trouve la définition de dossiers statiques, l'usage d'un dossier spécifique pour le template, le traitement des requêtes en POST ou encore la gestion des sessions.</p>
+        </div>
+      </div>
+      <div id="requetes">
+        <h2>Gestion des requêtes Post<span class="triangle haut"></span></h2>
+        <span class="trait"></span>
+        <div class="content">
+            <p>Les requêtes de type POST demandent une gestion particulière pour traiter les valeurs envoyées.<br/>Voici la partie centrale du template jade pour générer un formulaire en html:</p>
+            <pre><code class="language-http line-numbers">form(action='reponse' method='post')
+  input(type='text' name='texte')
+  input(type='submit' value='Envoyer')</code></pre>
+            <p>Pour traiter convenablement les données envoyées dans la requêtes, nous allons utiliser le module body-parser ce qui nous donne le code suivant :</p>
+            <pre><code class="language-javascript line-numbers">var express = require('express');
+var app = express();
+var bodyParser = require('body-parser');
+//Support des envois
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
+
+app.set('view engine', 'jade');
+
+app.post('/reponse', function (req, res) {
+  res.render('reponse',{ titrePage: 'Réponse du formualaire',titreH1: 'Une page de réponse', reponse: req.body.text});
+});</code></pre>
+        <p>Nous remarquons que le champ texte du formulaire est récupéré à la fin de la ligne 12 (req.body.text).</p>
+        <p>Enfin, voici la partie centrale du template de l'affichage de la réponse :</p>
+        <pre><code class="language-http line-numbers">h1= titreH1
+p La réponse du formulaire est :
+p #{reponse}</code></pre>
+        </div>
+      </div>
+      <div id="erreurs">
+        <h2>Gestion des erreurs<span class="triangle haut"></span></h2>
+        <span class="trait"></span>
+        <div class="content">
+            <p>Par défaut, Node.js ne génère par les erreurs. Il nous faut donc envoyer une page avec un en-tête 404 lorsque l'url demandée ne correspond à aucune page du site.<br/>Dans le code suivant, situé après toutes les autres routes, nous créons une erreur dans le cas d'une url non présente puis nous ajoutons l'en-tête 404 avant de faire le rendu de la page 404 créée par ailleurs.</p>
+            <pre><code class="language-javascript line-numbers">app.get('/404', function(req, res, next){
+  next();
+});
+
+app.use(function(req, res, next){
+  res.status(404);
+
+  // réponse avec une page html
+  if (req.accepts('html')) {
+    res.render('404',{ titrePage: 'Erreur', titreH1: 'Des erreurs'});
+    return;
+  }
+
+  // réponse avec du json
+  if (req.accepts('json')) {
+    res.send({ error: 'Fichier absent' });
+    return;
+  }
+
+  // Réponse avec une fichier texte
+  res.type('txt').send('Pas de réponse');
+});</code></pre>
+        </div>
+      </div>
+      <div id="sessions">
+        <h2>Les sessions<span class="triangle haut"></span></h2>
+        <span class="trait"></span>
+        <div class="content">
+            <p>Une session est une période délimitée pendant laquelle un client est en communication avec un serveur qui réalise des opérations pour ce client identifié de façon individuelle. Cette identification permet de restreindre l'utilisation d'une partie du site à certaines personnes, enregistrer des données personnelles …</p>
+           <p>Nous devons utiliser ici deux modules : cookie-parser et express-session. Prenons le code suivant :</p>
+            <pre><code class="language-javascript line-numbers">var express = require('express');
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
+
+var app = express();
+var sess;
+app.use(cookieParser())
+app.use(session({
+    secret:'123456789SECRET',
+    saveUninitialized : false,
+    resave: false
+}));
+
+app.set('view engine', 'jade');
+app.use('/static',express.static('files'));
+
+app.get('/', function(req,res){
+  sess = req.session;
+  if (sess.nbr) {
+    sess.nbr++;
+  } else {
+    sess.nbr = 1;
+  }
+  res.render('index',{titre : 'accueil', nombre : sess.nbr})
+});
+
+app.listen(8080,function(){
+  console.log('écoute sur le port 8008');
+});</code></pre>
+            <p>Le template Jade suivant permet d'afficher à l'utilisateur le nombre de fois qu'il affiche la page :</p>
+            <pre><code class="language-http line-numbers">doctype html
+head
+  title= titre
+body
+  h1 Accueil du site
+  p du texte
+  p
+    | Vous avez affiché cette page
+    =nombre
+    |  fois.</code></pre>
+        </div>
+      </div>
+      <div id="base">
+        <h2>Base de données : création et suppression d'informations<span class="triangle haut"></span></h2>
+        <span class="trait"></span>
+          <div class="content">
+            <h3>Connexion à la base données - principe de base</h3>
+              <p>Dans le code suivant, nous nous connectons à la base de donnée. Si cette connexion ne renvoit pas d'erreur, le serveur se met en écoute. </p>
+              <pre><code class="language-javascript line-numbers">var MongoClient = require('mongodb').MongoClient;
+var express = require('express');
+var app = express();
+var URL = 'mongodb://localhost:27017/blog'
+
+app.get('/', function (req, res) {
+  res.send('Accueil du site');
+});
+
+MongoClient.connect(URL, function(err, db) {
+  if (err) {
+    return;
+  }
+  app.listen(8080, function() {
+    console.log('Le serveur est disponible sur le port 8080');
+  });
+});
+
+</code></pre>
+        <h3>Connexion à la base données - regroupement du code</h3>
+          <p>Ici, nous regroupons le code pour la connexion à la base de données dans un fichier db.js :</p>
+          <pre><code class="language-javascript line-numbers">var MongoClient = require('mongodb').MongoClient
+
+var state = {
+  db: null,
+};
+
+exports.connect = function(url, done) {
+  if (state.db) {
+    return done();
+  }
+
+  MongoClient.connect(url, function(err, db) {
+    if (err) {
+      return done(err);
+    }
+    state.db = db;
+    done();
+  });
+};
+
+exports.get = function() {
+  return state.db;
+};
+
+exports.close = function(done) {
+  if (state.db) {
+    state.db.close(function(err, result) {
+      state.db = null;
+      state.mode = null;
+      if (err) {
+        done(err);
+      }
+    });
+  };
+};</code></pre>
+          <p>Le fichier principal se présente de la façon suivante :</p>
+          <pre><code class="language-javascript line-numbers">var express = require('express');
+var app = express();
+var db = require('./db');
+
+app.get('/', function (req, res) {
+  res.send('Accueil du site');
+});
+
+// Gestion de la connexion au démarrage
+db.connect('mongodb://localhost:27017/blog', function(err) {
+  if (err) {
+    console.log('Impossible de se connecter à la base de données.');
+    process.exit(1);
+  } else {
+    app.listen(8080, function() {
+      console.log('Le serveur est disponible sur le port 8080');
+    });
+  }
+});</code></pre>
+         <h3>Inscription et écriture en base</h3>
+          <p>Nous utilisons le fichier db.js préalablement présenté. Dan le fichier index.js, nous gérons une écriture en base suivie d'une lecture de celle-ci :</p>
+          <pre><code class="language-javascript line-numbers">var express = require('express');
+var app = express();
+var db = require('./db');
+
+app.engine('jade', require('jade').__express);
+app.set('view engine', 'jade');
+
+app.get('/', function (req,res) {
+  var collection = db.get().collection('articles');
+  var date = new Date();
+  collection.insert({titre: 'Premier titre', texte: 'Du texte', auteur : 'Moi', date : date.getTime()}, function(err, result) {
+    collection.find().toArray(function(err, data) {
+      res.send(data[0]);
+      db.close();
+    });
+  });
+});
+
+// Gestion de la connexion au démarrage
+db.connect('mongodb://localhost:27017/blog', function(err) {
+  if (err) {
+    console.log('Impossible de se connecter à la base de données.');
+    process.exit(1);
+  } else {
+    app.listen(8080, function() {
+      console.log('Le serveur est disponible sur le port 8080');
+    });
+  }
+});</code></pre>
+        </div>
+      </div>
+      <div id="mvc">
+        <h2>Modèle Vue Controleur<span class="triangle haut"></span></h2>
+        <span class="trait"></span>
+        <div class="content">
+          <p>Au fur et à mesure de l'élaboration d'un site, celui-ci voit ses fichiers devenir de plus en plus longs. De plus, la gestion des routes et l'interaction avec la base de données se trouvent mêlées. La gestion du site devient, de ce fait, difficile. Il est donc conseillé d'organiser son code. Enfin, ceci favorise le travail en équipe. </p>
+          <h3>Première étape</h3>
+            <p>Prenons trois fichiers : index.js, db.js (vu plus haut) et accueil.js.<br/>Voici index.js :</p>
+            <pre><code class="language-javascript line-numbers">var express = require('express');
+var app = express();
+var db = require('./db');
+
+app.engine('jade', require('jade').__express);
+app.set('view engine', 'jade');
+
+app.use('/', require('./routes/accueil'));
+
+// Gestion de la connexion au démarrage
+db.connect('mongodb://localhost:27017/blog', function(err) {
+  if (err) {
+    console.log('Impossible de se connecter à la base de données.');
+    process.exit(1);
+  } else {
+    app.listen(8080, function() {
+      console.log('Le serveur est disponible sur le port 8080');
+    });
+  }
+});</code></pre>
+            <p>Voici accueil.js situé dans le sous-dossier route :</p>
+            <pre><code class="language-javascript line-numbers">var express = require('express');
+var router = express.Router();
+
+var db = require('../db');
+
+router.get('/', function(req,res) {
+  res.send('Connexion');
+});
+
+router.get('/autre', function(req,res) {
+  res.send('autre');
+});
+
+module.exports = router;</code></pre>
+        <h3>Création d'une structure élaborée d'application</h3>
+            <p>Pour réaliser un site web bien organisé où les différents éléments sont séparés: gestion du serveur, accès à la base de données, fichiers statiques …; Express offre un solution 'clef-en-main'.<br/>
+            En effet, Express offre un outil pour créer une structure normalisée destinée à la réalisation d'une application web.<br/>
+            Pour ce faire, au moment de la création de l'application, utilisez la commandes suivante qui installe express,</p>
+            <pre><code class="language-bash">$ npm install express-generator -g</code></pre>
+            <p>puis celle-ci qui déploie l'application proprement dite.</p>
+            <pre class="language-bash"><code>$ express monapplication</code></pre>
+            <p>Vous obtenez, alors, l'affichage suivant :</p>
+            <pre class="language-bash"><code>create : monapplication
+create : monapplication/package.json
+create : monapplication/app.js
+create : monapplication/public/images
+create : monapplication/public/javascripts
+create : monapplication/public
+create : monapplication/routes
+create : monapplication/routes/index.js
+create : monapplication/routes/users.js
+create : monapplication/public/stylesheets
+create : monapplication/public/stylesheets/style.css
+create : monapplication/views
+create : monapplication/views/index.jade
+create : monapplication/views/layout.jade
+create : monapplication/views/error.jade
+create : monapplication/bin
+create : monapplication/bin/www
+</code></pre>
+          <p>Vous remarquez que la structure créée comporte le même package.json que nous avions créé précédemment. Contrairement à ce dernier, ici, nous devons renseigner ensuite les différents champs du package.</p>
+          <p>Nous bénéficions ainsi d'une structure de base complètement fonctionnelle.</p>
+        </div>
+      </div>
+    </div>
+      <div id="remplissage">.</div>
+      <div id="filtre"></div>
+  </body>
+</html>

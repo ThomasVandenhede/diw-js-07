@@ -1,0 +1,27 @@
+<template name="chat">
+  <h2>Chat</h2>
+
+  <form id="formulaire-de-chat">
+
+    <p>Connecté en tant que <strong>{{currentUser.username}}</strong></p>
+    <p>
+      <label>
+        Votre message :
+        <textarea name="message"></textarea>
+      </label>
+    </p>
+
+    <input type="submit" value="Envoyer">
+  </form>
+
+  <h2>Historique des messages</h2>
+
+  <ul>
+    {{#each tousLesMessages}}
+    <li>
+      <strong>{{username}}</strong> dit : {{message}}
+      <em>{{created}}</em>
+    </li>
+    {{/each}}
+  </ul>
+</template>

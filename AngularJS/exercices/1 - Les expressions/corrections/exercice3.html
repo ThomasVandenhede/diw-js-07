@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <title>AngularJS : Les Expressions : Exercice 3</title>
+    <script>
+      // Énoncé
+      /* La directive ng-repeat */
+      /**************************************************************************************************
+        La directive ng-repeat permet de répéter une branche de l'arborescence du DOM pour chaque élément d'une collection (i.e d'un tableau ou d'un objet). La documentation officielle de la directive ng-repeat est disponible ici : https://docs.angularjs.org/api/ng/directive/ngRepeat.
+      **************************************************************************************************/
+
+      /*
+        1. Chargez AngularJS dans ce document. Le contexte applicatif d'AngularJS doit englober tout le document. Votre application s'appellera angularjsExercice3. Un tutoriel officiel sur le chargement d'AngularJS est disponible ici : https://docs.angularjs.org/tutorial/step_00
+      */
+
+      /*
+        2. À l'aide d'une expression et sur une div, initialisez une variable (propriété du contexte) classe qui est un objet. Les caractéristiques de votre classe sont :
+        - Son nom, qui est une chaîne de caractère;
+        - Sa spécialité, qui est une chaîne de caractère;
+        - Ses inscrits, qui est un tableau qui contient 3 objets qui décrivent les caractéristiques d'un élève.
+
+        Les caractéristiques d'un élève sont :
+        - Son prénom, qui est une chaîne de caractère;
+        - Son nom, qui est une chaîne de caractère;
+        - Son âge, qui est un nombre.
+      */
+
+      /*
+        5. À l'aide d'une expression, affichez à l'intérieur de la div le prénom, nom et l'âge de chaque élève de la classe en utilisant la directive présentée en introduction.
+      */
+
+      /*
+        6. À l'aide d'une expression, affichez à l'intérieur d'un paragraphe de texte le nombre d'inscrits (vous devez vous baser sur le tableau des inscrits pour obtenir cette information).
+      */
+    </script>
+  </head>
+  <body>
+    <div ng-init="classe = {nom: 'DIW', specialite: 'JavaScript', inscrits: [{nom: 'Durant', prenom:'Albert', age:'33'}, {nom: 'Dupont', prenom:'Jeanne', age:'27'}, {nom: 'Denis', prenom:'Jude', age:'37'}]}">
+      <h4>Les inscrits</h4>
+      <ul>
+        <li ng-repeat="eleve in classe.inscrits"> {{ eleve.prenom + ' ' + eleve.nom + ' ' + eleve.age + ' ans.' }} </li>
+      </ul>
+      <p>Quel est le nombre d'inscrits ?</p>
+      <p>{{ classe.inscrits.length }}</p>
+    </div>
+    <!-- On charge le framework AngularJS dans le document -->
+    <script src="../lib/angular-1.6.5.min.js"></script>
+
+    <!-- On on écrit ou on charge son script JavaScript utilisant AngularJS -->
+    <script>
+      //Bonne pratique : programmer en mode strict JavaScript (voir : https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Strict_mode)
+      'use strict';
+
+      //Bonne pratique : écrire son code dans une fonction anonyme auto-exécutable pour contrôler l'exposition des variables à l'objet global Window.
+      (function() {
+
+        /*
+          On créé un module AngularJS à l'aide de la méthode angular.module().
+          angular.module() est utilisée ici comme un "setter".
+          Voir : https://docs.angularjs.org/api/ng/function/angular.module
+        */
+        angular.module('angularjsExercice3', []);
+
+        /*
+          On utilise le module AngularJS créé pour interpréter les expressions et directives AngularJS présentes dans le DOM à l'aide de la méthode angular.bootstrap().
+          Voir : https://docs.angularjs.org/api/ng/function/angular.bootstrap
+        */
+        angular.bootstrap(window.document, ['angularjsExercice3'], {strictDi:true});
+        /**
+          window.document : portion de DOM à interpréter.
+          ['angularjsExercice3'] : tableau des modules à utiliser pour interpréter la portion de DOM
+          {strictDi:true} : Objet contenant une propriété qui indique à AngularJS de fonctionner à l'aide d'injections de dépendances strictes (notion que nous détaillerons plus tard).
+        **/
+
+      })();
+      //Fin de la fonction anonyme auto-exécutable
+    </script>
+  </body>
+</html>

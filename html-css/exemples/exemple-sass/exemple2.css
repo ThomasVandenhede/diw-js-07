@@ -1,0 +1,40 @@
+/* Mon css */
+.alert, section h2:last-of-type {
+  background-color: red;
+  font-size: 2em;
+  font-weight: bold;
+  color: #fff; }
+
+header a, footer a {
+  text-decoration: none;
+  color: darkolivegreen; }
+  header a:hover, footer a:hover {
+    color: darkgrey; }
+
+header h1 {
+  background-color: darkolivegreen;
+  color: #fff;
+  margin-bottom: 22px; }
+
+header ul {
+  text-align: center; }
+
+header li {
+  list-style-type: none;
+  display: inline-block;
+  margin: 0 5%; }
+
+section h2 {
+  color: #fff;
+  background-color: darkgrey;
+  padding: 0 5px; }
+
+footer {
+  border: 2px solid black;
+  background-color: darkgrey;
+  color: #fff;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -border-radius: 8px; }
+
+/*# sourceMappingURL=exemple2.css.map */

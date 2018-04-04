@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+/*
+        var reponsePrompt = prompt('Saisissez votre nom');
+        // alert(reponsePrompt);
+
+        if (reponsePrompt === null) {
+            alert('Vous avez choici d\'annuler');
+        } else {
+            if (reponsePrompt == '') {
+                alert('Vous devez saisir votre prénom !');
+            } else {
+                alert('Votre nom est : ' + reponsePrompt);
+            }
+        }*/
+
+        var prenom = null;
+        while (prenom == null || prenom == '') {
+            prenom = prompt('Saisissez votre nom');
+        }
+
+        alert('Merci ' + prenom + ' d\'avoir saisi votre prénom');
+
+
+/*
+        if (null) {
+            alert('null est équivalent à true');
+        } else {
+            alert('null ne vaut pas true donc le bloc else est exécute');
+        }
+*/
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

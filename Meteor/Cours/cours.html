@@ -1,0 +1,816 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>MeteorJS : Introduction à la plate-forme</title>
+    <link rel="stylesheet" href="./lib/prism/prism.css" type="text/css">
+    <link rel="stylesheet" href="./css/style.css" type="text/css">
+    <link type="image/x-icon" rel="icon" href="img/favicon.png">
+    <link type="image/x-icon" rel="shortcut icon" href="img/favicon.png">
+    <script src="./lib/prism/prism.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1>MeteorJS : Introduction à la plate-forme</h1>
+      <div class="copyright">
+        <p>MeteorJS : Introduction à la plate-forme - Sami Radi - <a target="_blank" href="http://www.virtuoworks.com/" title="VirtuoWorks">VirtuoWorks&reg;</a> - tous droits réservés&copy;</p>
+      </div>
+      <div class="page-break"></div>
+      <h2>Sommaire</h2>
+      <nav>
+        <ol>
+          <li><p><a href="#/chapitre-1">La plate-forme MeteorJS</a></p>
+            <ol>
+              <li><p><a href="#/chapitre-1/partie-1">Présentation de MeteorJS</a></p></li>
+              <li><p><a href="#/chapitre-1/partie-3">Installation de MeteorJS</a></p></li>
+              <li><p><a href="#/chapitre-1/partie-2">Les commandes MeteorJS</a></p></li>
+              <li><p><a href="#/chapitre-1/partie-4">La structure d'une application MeteorJS</a></p></li>
+            </ol>
+          </li>
+          <li><p><a href="#/chapitre-2">Développer une application MeteorJS</a></p>
+            <ol>
+              <li><p><a href="#/chapitre-2/partie-1">Notion de SPA (Single Page Application)</a></p></li>
+              <li><p><a href="#/chapitre-2/partie-2">Le &laquo; moteur de template &raquo; Spacebars</a></p></li>
+              <li><p><a href="#/chapitre-2/partie-3">Le &laquo; moteur de événementiel &raquo; Blaze</a></p></li>
+              <li><p><a href="#/chapitre-2/partie-4">Gérer la persistance des données avec MongoDB et Minimongo</a></p></li>
+              <li><p><a href="#/chapitre-2/partie-5">Créer et gérer des &laquo; routes &raquo; avec iron:router</a></p></li>
+            </ol>
+          </li>
+        </ol>
+      </nav>
+    </header>
+    <section class="chapitre chapitre-1" id="/chapitre-1">
+      <header>
+        <h3>1. La plate-forme MeteorJS</h3>
+        <nav>
+          <ol>
+            <li><p><a href="#/chapitre-1/partie-1">Présentation de MeteorJS</a></p></li>
+            <li><p><a href="#/chapitre-1/partie-3">Installation de MeteorJS</a></p></li>
+            <li><p><a href="#/chapitre-1/partie-2">Les commandes MeteorJS</a></p></li>
+            <li><p><a href="#/chapitre-1/partie-4">La structure d'une application MeteorJS</a></p></li>
+          </ol>
+        </nav>
+      </header>
+      <section class="partie partie-1 chapitre-1-partie-1" id="/chapitre-1/partie-1">
+        <h4>1.1. Présentation de MeteorJS</h4>
+        <p><a target="_blank" href="https://www.meteor.com/" title="site officiel de MeteorJS">MeteorJS</a> est une plate-forme de développement &laquo; full-stack &raquo; JavaScript.
+        <p>MeteorJS est documenté :</p>
+        <ul>
+          <li>Sur le <a target="_blank" href="https://www.meteor.com/" title="site officiel de MeteorJS">site officiel de MeteorJS</a>;</i>
+          <li>Sur le <a target="_blank" href="http://www.meteorpedia.com/" title="site Meteorpedia">site Meteorpedia</a>;</li>
+        </ul>
+        <p>La plate-forme MeteorJS contient :</p>
+        <ul>
+          <li>
+            <p>Un outil utilisable en ligne de commande pour :</p>
+            <ul>
+              <li>Générer un <b>squelette</b> d'application;</li>
+              <li>Démarrer un <b>serveur</b> applicatif de test;</li>
+              <li>Installer des <b>modules complémentaires</b> pour MeteorJS;</li>
+              <li>Gérer un système de gestion de <b>bases de données</b> de test;</li>
+              <li>Déployer son application vers <b>différents</b> formats/plate-formes.</li>
+            </ul>
+          </li>
+          <li>
+            <p>Un ensemble de systèmes serveur :</p>
+            <ul>
+              <li>L'interpréteur <b>Node JS</b>;</li>
+              <li>Le système de gestion de base de données <b>MongoDB</b>;</li>
+              <li>Un ensemble de modules complémentaires de Node JS;</li>
+              <li>Un ensemble de modules complémentaires de MeteorJS.</li>
+            </ul>
+          </li>
+          <li>
+            <p>Un ensemble de &laquo; frameworks &raquo; JavaScript client :</p>
+            <ul>
+              <li>jQuery pour la gestion du DOM, documenté <a target="_blank" href="https://jquery.com/" title="documentation officielle de jQuery">ici</a>;</li>
+              <li>Underscore pour un ensemble de fonctions utilitaires, documenté <a target="_blank" href="http://underscorejs.org/" title="documentation officielle de underscore">ici</a>;</li>
+              <li>Cordova pour la gestion des fonctionnalités spécifiques au terminaux mobiles, documenté <a target="_blank" href="https://cordova.apache.org/" title="documentation officielle de cordova">ici</a>;</li>
+              <li>Spacebars (spécifique à MeteorJS), documenté <a target="_blank" href="http://blazejs.org/api/spacebars.html" title="documentation officielle de spacebars">ici</a>, qui est un moteur de template côté client inspiré de <a target="_blank" title="site officiel de Handlebars" href="http://handlebarsjs.com/">Handlebars</a>;</li>
+              <li>Blaze (spécifique à MeteorJS), documenté <a target="_blank" href="http://blazejs.org/api/blaze.html" title="documentation officielle de blaze">ici</a>, qui est un moteur de gestion d'évènement totalement intégré avec Spacebars;</li>
+              <li>Minimongo (spécifique à MeteorJS) documenté <a target="_blank" href="https://atmospherejs.com/meteor/minimongo" title="documentation officielle de minimongo">ici</a>, qui offre une émulation de Mongo DB dans l'espace de stockage local du navigateur Internet;</li>
+              <li>et d'autres... .</li>
+            </ul>
+          </li>
+          <li><p>... <b>et le code HTML5/CSS3/JS de l'application à créer !</b></p></li>
+        </ul>
+        <p>On pourrait schématiser la structure de MeteorJS comme suit :</p>
+        <div class="resource">
+          <object type="image/svg+xml" data="./img/meteor.svg"  width="650" height="400" border="0">Votre navigateur Internet ne supporte pas le format SVG</object>
+        </div>
+        <p>Il s'agira de développer une application HTML5/CSS3/JavaScript au sein de MeteorJS en utilisant les outils (systèmes, &laquo; frameworks &raquo; et autres) mis à disposition par MeteorJS. Puis d'utiliser l'outil en ligne de commande de déploiement de MeteorJS pour <b>générer</b> une application pour la plate-forme cible qui se composera :</p>
+        <ul>
+          <li>côté serveur du serveur JavaScript basé sur Node JS et de la base de données MongoDB;</li>
+          <li>côté client du code HTML5/CSS3/JavaScript pour le navigateur Internet ou l'application mobile hybride correspondant à la plate-forme cible souhaitée (Android, iOS, ...).</li>
+        </ul>
+        <p>On pourrait schématiser ce mécanisme comme suit :</p>
+        <div class="resource">
+          <object type="image/svg+xml" data="./img/meteor-build.svg"  width="900" height="700" border="0">Votre navigateur Internet ne supporte pas le format SVG</object>
+        </div>
+        <p>On parle de &laquo; <b>build</b> &raquo; (en anglais) pour qualifier le fait de générer, à partir d'un code source fonctionnant sous MeteorJS, une application pour une plate-forme cible.</p>
+      </section>
+      <section class="partie partie-2 chapitre-1-partie-2" id="/chapitre-1/partie-2">
+        <h4>1.2. Installation de MeteorJS</h4>
+        <p>MeteorJS est téléchargeable <a target="_blank" href="https://www.meteor.com/install" title="page de téléchargement de MeteorJS">ici</a>. MeteorJS peut être installé sur Linux, Mac OS et Windows.</p>
+        <p>Sur Windows, le dossier d'installation par défaut est le dossier :</p>
+        <ul>
+          <li><p><code class="code">C:\Users\[utilisateur]\AppData\Local\.meteor</code>.</p></li>
+        </ul>
+        <p>Sur MacOS, le dossier d'installation par défaut est le dossier :</p>
+        <ul>
+          <li><p><code class="code">/usr/local/bin/</code>.</p></li>
+        </ul>
+
+        <p>Une fois MeteorJS installé, on peut, à partir d'un terminal, afficher la version de MeteorJS installée en tapant :</p>
+        <pre>
+          <code class="language-bash">
+            # Pour afficher la version de MeteorJS installée
+            meteor --version
+          </code>
+        </pre>
+        <p>Ou afficher la liste des utilitaires disponibles</p>
+        <pre>
+          <code class="language-bash">
+            # Pour afficher la liste des commandes disponibles
+            meteor --help
+          </code>
+        </pre>
+        <p>MeteorJS peut être enrichi de modules complémentaires (appelés &laquo; packages &raquo;) dont on peut consulter les caractéristiques sur le site <a target="_blank" href="https://atmospherejs.com/" title="site des packages de MeteorJS">Atmosphere JS</a>.</p>
+      </section>
+      <section class="partie partie-3 chapitre-1-partie-3" id="/chapitre-1/partie-3">
+        <h4>1.3. Les commandes MeteorJS</h4>
+          <nav>
+            <ol>
+              <li><p><a href="#/chapitre-1/partie-3/sous-partie-1">Créer un nouveau projet</a></p></li>
+              <li><p><a href="#/chapitre-1/partie-3/sous-partie-2">Démarrer une application</a></p></li>
+              <li><p><a href="#/chapitre-1/partie-3/sous-partie-3">Accéder à l'instance MongoDB du projet</a></p></li>
+              <li><p><a href="#/chapitre-1/partie-3/sous-partie-4">Lister, ajouter ou supprimer un &laquo; package &raquo;</a></p></li>
+              <li><p><a href="#/chapitre-1/partie-3/sous-partie-5">Créer une nouvelle plate-forme cible et générer le code source du projet</a></p></li>
+            </ol>
+          </nav>
+        </header>
+        <section class="sous-partie sous-partie-1 chapitre-1-partie-3-sous-partie-1" id="/chapitre-1/partie-3/sous-partie-1">
+          <h5>1.3.1 Créer un nouveau projet</h5>
+          <pre>
+            <code class="language-bash">
+              # Pour créer un nouveau projet dans un dossier :
+              meteor create [nom du dossier pour le projet]
+            </code>
+          </pre>
+          <p>Cette commande crée un dossier portant le nom spécifié et contient un ensemble fichiers qui servent d'amorce au nouveau projet.</p>
+          <p>Par exemple, si on utilise la commande de création comme suit :</p>
+          <pre>
+            <code class="language-bash">
+              # Pour créer un nouveau projet dans le dossier nouveauProjet :
+              meteor create nouveauProjet
+            </code>
+          </pre>
+          <p>On obtient l'arborescence de fichiers suivante :</p>
+          <pre>
+            <code class="language-bash">
+              .\nouveauProjet
+                |__ .meteor             #dossier contenant les dépendances propres à Meteor
+                |__ client              #dossier contenant le code et les templates à utiliser côté client
+                |__ node_modules        #dossier contenant les paquets npm
+                |__ package-lock.json   #fichier de définition npm figé
+                |__ package.json        #fichier de définition npm
+                |__ server              #dossier contenant le code et les templates à utiliser côté serveur
+            </code>
+          </pre>
+          <p>On peut également créer un nouveau projet à partir de modèles pré-existants. Pour créer un nouveau projet à partir d'un modèle pré-existant, on peut taper la commande :</p>
+          <pre>
+            <code class="language-bash">
+              # Pour créer un projet basé sur modèle pré-existant :
+              meteor create [nom du modèle pré-existant]
+            </code>
+          </pre>
+          <p>On peut consulter la liste des modèles pré-existants en tapant :</p>
+          <pre>
+            <code class="language-bash">
+              # Pour lister les modèle de création de projet :
+              meteor create --list
+            </code>
+          </pre>
+        </section>
+        <section class="sous-partie sous-partie-2 chapitre-1-partie-3-sous-partie-2" id="/chapitre-1/partie-3/sous-partie-2">
+          <h5>1.3.2 Démarrer une application</h5>
+          <p>Pour démarrer un serveur applicatif de test pour un projet nouvellement créé, il faut se positionner à la racine du dossier du projet et taper la commande <code class="code">meteor run</code>. Par exemple :</p>
+          <pre>
+            <code class="language-bash">
+              # On se positionne à la racine du dossier contenant le projet :
+              cd nouveauProjet
+              # On tape :
+              meteor run
+            </code>
+          </pre>
+          <p>Lorsqu'un serveur applicatif de test est démarré, on peut le joindre  à l'URL :</p>
+          <ul>
+            <li>http://localhost:3000</li>
+          </ul>
+        </section>
+        <section class="sous-partie sous-partie-3 chapitre-1-partie-3-sous-partie-3" id="/chapitre-1/partie-3/sous-partie-3">
+          <h5>1.3.3 Accéder à l'instance MongoDB du projet</h5>
+          <p>Pour accéder au système de gestion de base de données MongoDB associé au projet, il faut ouvrir un autre terminal et, <b>toujours en étant positionné à la racine du projet</b>, taper la commande :</p>
+          <pre>
+            <code class="language-bash">
+              # Pour accéder à l'instance de MongoDB du projet, on tape (à la racine d'un projet démarré) :
+              meteor mongo
+            </code>
+          </pre>
+          <p>Le terminal client Mongo affiché s'utilise comme n'importe quel terminal Mongo (documenté <a target="_blank" href="https://docs.mongodb.org/manual/reference/mongo-shell/" title="documentation officielle du shell Mongo">ici</a>).</p>
+        </section>
+        <section class="sous-partie sous-partie-4 chapitre-1-partie-3-sous-partie-4" id="/chapitre-1/partie-3/sous-partie-4">
+          <h5>1.3.4 Lister, ajouter ou supprimer un &laquo; package &raquo;</h5>
+          <p>Pour lister les &laquo; packages &raquo; (modules complémentaires) installés pour un projet, on doit taper la commande :</p>
+          <pre>
+            <code class="language-bash">
+              # Pour lister les packages installés pour un projet, on tape (à la racine d'un projet) :
+              meteor list
+            </code>
+          </pre>
+          <p>On peut ajouter des &laquo; packages &raquo; provenant du site Internet <a target="_blank" href="https://atmospherejs.com/" title="site Atmosphere JS des packages de MeteorJS">Atmosphere JS</a> à un projet. Par exemple, pour ajouter le package <a target="_blank" href="https://atmospherejs.com/iron/router" title="page du package iron:router sur Atmosphere JS">iron:router</a> à notre nouveau projet, on doit taper la commande :</p>
+          <pre>
+            <code class="language-bash">
+              # Pour ajouter un package, on tape (à la racine d'un projet) :
+              meteor add iron:router
+            </code>
+          </pre>
+          <p>A contrario, pour supprimer un &laquo; package &raquo;, on doit taper la commande :</p>
+          <pre>
+            <code class="language-bash">
+              # Pour supprimer le package insecure, on tape (à la racine d'un projet) :
+              meteor remove insecure
+            </code>
+          </pre>
+        </section>
+        <section class="sous-partie sous-partie-5 chapitre-1-partie-3-sous-partie-5" id="/chapitre-1/partie-3/sous-partie-5">
+          <h5>1.3.5 Créer une nouvelle plate-forme cible et générer le code source du projet</h5>
+          <p>Avant de générer le code source du projet pour une ou plusieurs plate-formes cible, il faut générer des configurations propres à chaque plate-forme cible. Pour ajouter une nouvelle plate-forme cible pour notre projet on doit taper :</p>
+          <pre>
+            <code class="language-bash">
+              # Pour lister les plate-forme cible du projet, on tape (à la racine d'un projet) :
+              meteor list-platforms
+              # Pour ajouter une nouvelle plate-forme cible, on peut taper :
+              meteor add-platform [nom de la plate-forme cible]
+            </code>
+          </pre>
+          <p><b>ATTENTION</b>, vous ne pouvez pas ajouter la plate-forme Android si vous n'avez pas installé l'<a target="_blank"href="http://developer.android.com/sdk/index.html" title="page officielle de téléchargement d'Android Studio" >Android Studio</a> et ses dépendances. De même, vous ne pouvez pas ajouter la plate-forme iOS si vous n'avez pas un Mac avec Mac OS et l'environnement de développement <a target="_blank" href="https://developer.apple.com/xcode/download/" title="page de officielle de téléchargement de xCode">xCode</a>.</p>
+          <p>De base, tous les projets créés avec MeteorJS ont déjà 2 plate-formes cible installées : <code class="code">browser</code> et <code class="code">server</code>. Pour générer le projet pour ces plate-formes cible, on peut taper :</p>
+          <pre>
+            <code class="language-bash">
+              # Pour générer un projet pour une plate-forme cible, on tape (à la racine d'un projet) :
+
+              # Pour générer le code côté serveur pour Node JS et le code côté client pour le navigateur Internet :
+              meteor build server
+
+              # Pour générer uniquement le code côté client pour le navigateur Internet :
+              meteor build browser
+            </code>
+          </pre>
+          <p>Le code généré est obtenu sous la forme d'une archive en format <code class="code">.tar.gz</code>. Lorsqu'on génère le code côté serveur, l'archive contient l'ensemble des fichiers nécessaires à Node JS pour faire fonctionner cette application.</p>
+          <p>Le fichier principal à utiliser avec Node JS est le fichier <code class="code">main.js</code> contenu dans le dossier <code class="code">bundle</code>.</p>
+          <p>Avant de pouvoir démarrer le programme <code class="code">main.js</code> il faut :</p>
+          <ul>
+            <li>Mettre à jour les dépendances de Node JS en utilisant la commande <code class="code">npm update</code> à partir de la racine du dossier contenant <code class="code">main.js</code>;</li>
+            <li>Définir une variable d'environnement <code class="code">ROOT_URL</code> contenant l'URL de connexion à l'application. Par exemple : <code class="code">ROOT_URL=http://www.nouveauprojet.com</code>;</li>
+            <li>Si l'application utilise une base de données, définir une variable d'environnement <code class="code">MONGO_URL</code> contenant l'URL de connexion au serveur MongoDB. Par exemple : <code class="code">MONGO_URL=mongodb://&lt;username&gt;:&lt;password&gt;@[ip][:port]/&lt;base de données&gt;</code>;</li>
+            <li>D'autres variables d'environnement (optionnelles pour la plupart) peuvent être définies (comme le PORT qui par défaut est 3000). Leur liste exhaustive peut être consultée sur <a target="_blank" href="http://www.meteorpedia.com/read/Environment_Variables" title="Les variables d'environnement sur Meteorpedia">cette page de Meteorpedia</a>.</li>
+          </ul>
+          <p>Pour définir une variable d'environnement sur Windows, on peut écrire à partir du terminal :</p>
+          <pre>
+            <code class="language-bash">
+              # Définir une variable d'environnement temporaire (valable uniquement pour cette session)
+              set ROOT_URL=http://localhost
+
+              # Afficher une variable d'environnement
+              echo %ROOT_URL%
+            </code>
+          </pre>
+          <p>On peut également définir des variables d'environnement dans les paramètres systèmes avancés de Windows si on souhaite définir des variables d'environnement permanentes.</p>
+          <p>Et sur linux/Mac OS, on peut écrire à partir du terminal :</p>
+          <pre>
+            <code class="language-bash">
+              # Définir une variable d'environnement temporaire (valable uniquement pour cette session)
+              set ROOT_URL='http://localhost'
+
+              # Afficher une variable d'environnement
+              echo $ROOT_URL
+            </code>
+          </pre>
+          <p>On peut également définir des variables d'environnement dans le fichier <code class="code">~/.bashrc</code> du dossier utilisateur du système si on souhaite définir des variables d'environnement permanentes.</p>
+        </section>
+      </section>
+      <section class="partie partie-4 chapitre-1-partie-4" id="/chapitre-1/partie-4">
+        <h4>1.4. La structure d'une application MeteorJS</h4>
+        <p>Le système de fichiers d'un application MeteorJS se comporte de façon particulière selon les emplacements des fichiers et/ou les noms de dossier utilisés.</p>
+        <p>Les caractéristiques de la structure du système de fichier d'une application MeteorJS sont documentées <a target="_blank" title="Système de fichiers d'une application MeteorJS" href="http://docs.meteor.com/#/full/structuringyourapp">ici</a>.</p>
+        <p>De base, les fichiers JavaScript à la racine du système de fichiers d'une application seront exécutés <b>côté serveur et côté client</b>. On peut, cependant, créer certains dossiers avec des noms particuliers pour altérer ce comportement par défaut.</p>
+        <p>En résumé :</p>
+        <pre>
+        <code class="language-bash">
+          .\nouveauProjet
+            |__ .meteor            # dossier : Tous les dossiers préfixés par un &laquo . &raquo sont ignorés par Meteor.
+            |__ packages           # dossier : Ce dossier peut contenir un sous dossier par fonctionnalité. Le code de chaque fonctionnalité n'aura pas directement accès au code des autres fonctionnalités.
+            |__ node_modules       # dossier : Ce dossier peut contenir des modules de Node JS. Attention, les modules ne sont pas automatiquement disponibles via require() dans le code
+            |__ client             # dossier : Le code contenu dans ce dossier ne sera envoyé qu'aux clients. C'est ici qu'on pourra placer le code JavaScript client, le code des templates HTML, des CSS à minifier ...
+                |__ compatibility  # dossier : Le code contenu dans ce dossier sera envoyé aux clients en priorité avant tous les autres.
+            |__ server             # dossier : Le code contenu dans ce dossier ne sera pas envoyé aux clients. Il ne sera exécuté que côté serveur.
+            |__ public             # dossier : Les fichiers contenus dans ce dossier sont envoyés tel quel au client sans être exécutés. C'est ici qu'on place les fichiers images, fichiers texte, etc...
+            |__ private            # dossier : Les fichiers contenus dans ce dossier ne sont pas envoyés au client, ne sont pas exécutés automatiquement côté serveur mais peuvent être utilisés/exécutés manuellement à partir d'autres codes exécutés côté serveur.
+            |__ tests              # dossier : Les fichiers contenus dans ce dossier ne sont pas envoyés au client et ne sont pas exécutés côté serveur. C'est dans ce dossier qu'on positionne les fichiers de tests unitaires.
+            |__ nouveauProjet.js   # fichier : Ce fichier sera exécuté côté serveur et côté client.
+        </code></pre>
+        <p>Les fichiers sont envoyés/exécutés par ordre de priorité :</p>
+        <ol>
+          <li><p>Les templates HTML à la racine;</p></li>
+          <li><p>Les fichiers préfixés par <code class="code">main.</code> sont chargés en dernier;</p></li>
+          <li><p>Les fichiers qui seraient dans n'importe quel dossier <code class="code">\lib</code>;</p></li>
+          <li><p>Les fichiers par ordre du plus profond dans l'arborescence au moins profond;</p></li>
+          <li><p>Tous les fichiers par ordre alphabétique.</p></li>
+        </ol>
+      </section>
+    </section>
+    <section class="chapitre chapitre-2" id="/chapitre-2">
+      <header>
+        <h3>2. Développer une application MeteorJS</h3>
+        <nav>
+          <ol>
+            <li><p><a href="#/chapitre-2/partie-1">Notion de SPA (Single Page Application)</a></p></li>
+            <li><p><a href="#/chapitre-2/partie-2">Le &laquo; moteur de template &raquo; Spacebars</a></p></li>
+            <li><p><a href="#/chapitre-2/partie-3">Le &laquo; moteur événementiel &raquo; Blaze</a></p></li>
+            <li><p><a href="#/chapitre-2/partie-4">Gérer la persistance des données avec MongoDB et Minimongo</a></p></li>
+            <li><p><a href="#/chapitre-2/partie-5">Créer et gérer des &laquo; routes &raquo; avec iron:router</a></p></li>
+          </ol>
+        </nav>
+      </header>
+      <section class="partie partie-1 chapitre-2-partie-1" id="/chapitre-2/partie-1">
+        <h4>2.1. Notion de SPA (Single Page Application)</h4>
+        <p>Un des principes fondamentaux du développement d'applications sous MeteorJS est de créer des applications qui sont entièrement constituées d'un seul et unique document HTML. Ce type d'application est nommé &laquo; SPA (Single Page Application) &raquo; en anglais.</p>
+        <p>Ce choix est lié au fait de permettre, à partir d'une application développée sous MeteorJS, d'obtenir une application mobile hybride. Une application mobile hybride est une application mobile qui, lorsqu'elle est lancée, affiche un seul et unique document HTML en plein écran.</p>
+        <p>On a donc l'illusion d'avoir démarré une &laquo; véritable &raquo; application native alors qu'en réalité, il s'agit d'un document HTML en plein écran. Ce principe de fonctionnement implique qu'une application hybride ne peut pas être composée de plusieurs documents HTML.</p>
+        <p>Pour donner l'illusion de plusieurs écrans distincts, le document HTML comportera plusieurs sections qui seront :</p>
+        <ul>
+          <li><p>cachées ou affichées selon les besoins et/ou actions de l'utilisateur;</p></li>
+          <li><p>enrichies de façon asynchrone à l'aide de requêtes AJAX avec des contenus provenant de sources extérieures.</p></li>
+        </ul>
+        <p>Ce type de fonctionnement sera rendu possible grâce à l'utilisation de scripts JavaScript et de &laquo; frameworks &raquo; appropriés</p>
+      </section>
+      <section class="partie partie-2 chapitre-2-partie-2" id="/chapitre-2/partie-2">
+        <h4>2.2. Le &laquo; moteur de template &raquo; Spacebars</h4>
+        <p>Le &laquo; moteur de template &raquo; Spacebars est un moteur au fonctionnement comparable au moteur Jade pour Node JS. Spacebars est inspiré du moteur Handlebars. Il s'agit d'un &laquo; moteur de template &raquo; qui peut être utilisé côté serveur et, aussi, côté client. Pour apprendre à utiliser Spacebars, vous pouvez vous aider :</p>
+        <ul>
+          <li><p>du <a target="_blank" title="site officiel de Spacebars" href="http://blazejs.org/guide/spacebars.html">site officiel de Spacebars</a>;</p></li>
+          <li><p>du <a target="_blank" title="site officiel de Handlebars" href="http://handlebarsjs.com/">site officiel de Handlebars</a>.</p></li>
+        </ul>
+        <p>Spacebars à pour principe syntaxique fondamental l'utilisation des accolades ouvrantes <code class="code">{</code> et fermantes <code class="code">}</code> et d'un balise spéciale <code class="code">&lt;template&gt;</code>. Ainsi, on aura :</p>
+        <ul>
+          <li><p><code class="code">{{variable}}</code> pour une variable, par exemple : <code class="code">{{age}}</code>;</p></li>
+          <li><p><code class="code">{{> template}}</code> pour charger un autre template, par exemple : <code class="code">{{> titre}}</code>;</p></li>
+          <li><p><code class="code">{{#mot-clé variable}} {{/mot-clé}}</code> pour un mot clé du moteur, par exemple : <code class="code">{{#if variable}} {{/if}}</code>.</p></li>
+        </ul>
+        <p>On pourrait avoir le code suivant pour illustrer ces notions :</p>
+        <pre>
+          <code class="language-markup">
+&lt;head>
+  &lt;title>Application Meteor&lt;/title>
+&lt;/head>
+
+&lt;body>
+  {{> titre}}
+  &lt;p>Toutes choses étant égales par ailleurs ?&lt;/p>
+  {{#if estVraie}}
+    &lt;p>&lt;i>Ceteris paribus&lt;/i>&lt;/p>
+  {{/if}}
+&lt;/body>
+
+&lt;template name="titre">
+  &lt;h1>Exemple de syntaxe&lt;/h1>
+  &lt;p>Mon age est : {{age}} ans&lt;/p>
+&lt;/template>
+          </code>
+        </pre>
+        <p>Les variables contenues dans le template sont appelées &laquo;<code class="code">helpers</code>&raquo; en anglais. Leur valeur doit être définie dans le code JavaScript de Meteor dans la partie spécifique au code pour le <b>client</b>.</p>
+        <p>Pour définir les valeur des &laquo;<code class="code">helpers</code>&raquo; on doit utiliser l'objet &laquo;<code class="code">Template</code>&raquo; de l'API de MeteorJS. Les caractéristiques de cet objet sont définies <a target="_blank" title="Template dans l'API de Meteor" href="http://blazejs.org/api/templates.html">ici</a>.</p>
+        <p>Pour le template présenté précédemment on pourra alors écrire le code client suivant :</p>
+        <pre>
+          <code class="language-javascript">
+/**
+  Section de code pour le client uniquement
+**/
+if (Meteor.isClient) {
+  /**
+    Template.body est l'objet qui représente la portion de template qui est dans le &lt;body>.
+    Template.body est documenté ici : http://docs.meteor.com/#/full/template_body
+  **/
+  Template.body.helpers({
+    estVraie: true //valeur de {{estVraie}} dans le template
+  });
+
+  /**
+    Template.titre est l'objet qui représente la portion de template qui est dans la balise &lt;template name="titre">.
+    Template.xyz est documenté ici : http://docs.meteor.com/#/full/templates_api
+  **/
+  Template.titre.helpers({
+    age: function(){
+      return 30; //methode qui retourne la valeur de {{age}} dans le template
+    }
+  });
+
+  /**
+    La méthode .helpers() de ces objets prend en argument un objet dont :
+      - les propriétés définissent les valeurs des variables utilisées dans le template;
+      - ou, les propriétés sont des méthodes qui retournent les valeurs de variables utilisées dans le template;
+    Template.xyz.helpers() est documentée ici : http://docs.meteor.com/#/full/template_helpers
+  **/
+};
+          </code>
+        </pre>
+        <p>L'objet &laquo;<code class="code">Template</code>&raquo; de l'API de MeteorJS fait le lien entre le &laquo; moteur événementiel &raquo; Blaze et le &laquo; moteur de template &raquo; Spacebars.</p>
+      </section>
+      <section class="partie partie-3 chapitre-2-partie-3" id="/chapitre-2/partie-3">
+        <h4>2.3. Le &laquo; moteur événementiel &raquo; Blaze</h4>
+        <p>Blaze est un &laquo; moteur événementiel &raquo; qui est utilisé de concert avec le &laquo; moteur de template &raquo; Spacebars pour définir et gérer le comportement des variables. Il permet, entre autres, de répercuter instantanément des modifications de valeurs de variables sur le DOM et donc sur l'affichage.</p>
+        <p>Pour apprendre à utiliser Blaze, vous pouvez vous aider :</p>
+        <ul>
+            <li><p>du <a target="_blank" title="site officiel de Blaze" href="http://blazejs.org/index.html">site officiel de Blaze</a></p></li>
+            <li><p>de la <a target="_blank" title="Spacebars templates" href="http://blazejs.org/guide/spacebars.html">documentation sur les templates</a>;</p></li>
+            <li><p>ou bien de cette page du site <a target="_blank" title="page du site meteorcapture sur Spacebars" href="http://meteorcapture.com/spacebars/">Meteorcapture</a> sur le sujet.</p></li>
+        </ul>
+        <p>Comme nous l'avons vu précédemment Blaze et Spacebars sont intégrés à l'aide de l'API &laquo;<code class="code">Template</code>&raquo; de MeteorJS.</p>
+        <p>On a pu voir que &laquo;<code class="code">Template.<i>[un template]</i>.helpers()</code>&raquo; est une méthode qui nous permet de définir les valeurs des variables utilisées dans les templates Spacebars.</p>
+        <p>On dispose également de la méthode &laquo;<code class="code">Template.<i>[un template]</i>.events()</code>&raquo; qui nous permet de définir des gestionnaires d'évènement pour des éléments appartenant à un template. Cette méthode est définie <a target="_blank" href="http://docs.meteor.com/#/full/template_events">ici</a>.</p>
+        <p>Elle prend en argument un objet qui associe à une propriété qui est un couple événement/sélecteur CSS une valeur qui est une fonction gestionnaire d'événement. Cet objet est définit <a target="_blank" href="http://docs.meteor.com/#/full/eventmaps">ici</a> dans l'API de MeteorJS.</p>
+        <p>Pour le même template Spacebars que précédemment, on pourrait alors écrire :</p>
+        <pre>
+          <code class="language-javascript">
+/**
+  Section de code pour le client uniquement
+**/
+if (Meteor.isClient) {
+
+  /**
+    Ici on associe un gestionnaire d'évènement au click
+    sur n'importe quel titre h1 du template nommé titre.
+  **/
+  Template.titre.events({
+    'click h1':function(event){
+      // Ce message devrait s'afficher dans la console en cas de click sur le titre
+      console.log('Vous avez cliqué sur le titre de la page.');
+    }
+  });
+
+  /**
+    La méthode .events() de ces objets prend en argument un objet dont :
+      - les propriétés ont pour noms un couple évènement/sélecteur CSS (voir http://docs.meteor.com/#/full/eventmaps);
+      - les valeurs associées sont des gestionnaires d'évènements;
+    Template.xyz.events() est documentée ici : http://docs.meteor.com/#/full/template_events
+  **/
+
+  Template.body.helpers({
+    estVraie: true //valeur de {{estVraie}} dans le template
+  });
+
+
+  Template.titre.helpers({
+    age: function(){
+      return 30; //methode qui retourne la valeur de {{age}} dans le template
+    }
+  });
+};
+          </code>
+        </pre>
+        <p>Blaze nous offre également la possibilité de créer des variables &laquo; réactives &raquo;. C'est à dire des variables dont le changement de valeur sera immédiatement répercuté sur l'affichage sans avoir à effectuer d'opération sur le DOM.</p>
+        <p>Ces variables peuvent être créés à l'aide de l'API <code class="code">ReactiveVar</code> de MeteorJS documentée <a target="_blank" title="API ReactiveVar sur le site officiel de MeteorJS" href="https://docs.meteor.com/api/reactive-var.html" >ici</a>.</p>
+        <p><b>ATTENTION</b>, vous devez installer la package &laquo; reactive-var &raquo; avant de pouvoir utiliser les variables réactives en tapant dans la console, à la racine du projet :</p>
+        <pre>
+          <code class="language-bash">
+            # Installer le package reactive-var
+            meteor add reactive-var
+            # Documenté ici : https://atmospherejs.com/meteor/reactive-var
+          </code>
+        </pre>
+        <p>À titre d'exemple, on peut proposer un application où le fait de cliquer sur un élément du DOM produit l'incrémentation de cet élément.</p>
+        <p>Avec le template Spacebars suivant :</p>
+        <pre>
+          <code class="language-markup">
+&lt;head>
+  &lt;title>Application Meteor</title>
+&lt;/head>
+
+&lt;body>
+  &lt;p id="elementCliquable">Incrémentation : {{nombre}}&lt;/p>
+&lt;/body>
+           </code>
+        </pre>
+        <p>Et le code JavaScript client associé suivant :</p>
+        <pre>
+          <code class="language-javascript">
+
+/**
+  Section de code pour le client uniquement
+**/
+if (Meteor.isClient) {
+
+  /**
+    On crée une variable réactive initialisée à 0
+    ATTENTION vous devez installer le package reactive-var
+    pour pouvoir utiliser les variables réactives :
+      meteor add reactive-var
+  **/
+  var variableReactive = new ReactiveVar(0);
+
+  Template.body.helpers({
+    nombre: function(){
+      // Cette fonction retourne la valeur qui correspond à {{nombre}}.
+      var valeurDeLaVariableReactive = variableReactive.get();
+      // La méthode .get() permet de récupérer la valeur de la variable réactive.
+      return valeurDeLaVariableReactive;
+    }
+  });
+
+  /**
+    Ici on associe un gestionnaire d'évènement qui sera associé
+    au click sur l'élément du body dont l'id est elementCliquable.
+  **/
+  Template.body.events({
+    'click #elementCliquable':function(event){
+      // Cette fonction gestionnaire d'évènement modifie la valeur de la variable réactive.
+      var valeurDeLaVariableReactive = variableReactive.get();
+      // La méthode .set() permet de modifier la valeur de la variable réactive.
+      variableReactive.set(valeurDeLaVariableReactive + 1);
+    }
+  });
+};
+          </code>
+        </pre>
+      </section>
+      <section class="partie partie-4 chapitre-2-partie-4" id="/chapitre-2/partie-4">
+        <h4>2.4. Gérer la persistance des données avec MongoDB et Minimongo</h4>
+        <p>Un des idées de base de MeteorJS est de proposer une base de données côté client qui peut être synchronisée entièrement ou en partie avec la base de données côté serveur. On a donc deux bases de données; à tout moment. Une côté serveur (sous MongoDB) et une côté client (dans le cookie, gérée à l'aide du &laquo; framework &raquo; client Minimongo).</p>
+        <p>Pour le développeur, cela signifie qu'il peut écrire tout ou une partie du code qui accède à la base de données de façon isomorphe, c'est à dire en ne se préoccupant pas de la couche (client ou serveur) sur laquelle s'exécute son code.</p>
+        <p>Pour manipuler des collections, MeteorJS propose une API <code class="code">Mongo.Collection</code> documentée <a target="_blank" title="API Mongo.Collection sur le site officiel de MongoDB" href="https://docs.meteor.com/api/collections.html#Mongo-Collection">ici</a>.</p>
+        <p>L'application ci-après créé des voitures dans une collection côté client et côté serveur à chaque click sur un élément du document HTML affiché :</p>
+        <p>Avec le template Spacebars suivant :</p>
+        <pre>
+          <code class="language-markup">
+&lt;head>
+  &lt;title>Application Meteor&lt;/title>
+&lt;/head>
+
+&lt;body>
+  &lt;p id="elementCliquable">Créer une nouvelle voiture&lt;/p>
+&lt;/body>
+          </code>
+        </pre>
+        <p>Et le code JavaScript client/serveur associé suivant :</p>
+        <pre>
+          <code class="language-javascript">
+/**
+  Section de code pour le client et le serveur
+  Ici je crée une collection voitures qui sera
+  synchronisée côté client avec le côté serveur.
+**/
+Voitures = new Mongo.Collection('voitures');
+
+/**
+  Section de code pour le client uniquement
+**/
+if (Meteor.isClient) {
+
+  /**
+    Ici on associe un gestionnaire d'évènement qui sera associé
+    au click sur l'élément du body dont l'id est elementCliquable.
+  **/
+  Template.body.events({
+    'click #elementCliquable':function(event){
+      //Insertion d'une nouvelle voiture dans la collection Voitures
+      Voitures.insert({
+        marque:'Renault',
+        modele:'Espace',
+        portes:5
+      });
+    }
+  });
+};
+          </code>
+        </pre>
+        <p>Après un click sur l'élément cliquable, on peut vérifier côté <b>client</b> qu'une voiture a bien été ajoutée à la collection locale <code class="code">Voitures</code> en écrivant dans la <b>console</b> :</p>
+        <pre>
+          <code class="language-bash">
+            console.table(Voitures.find().fetch());
+          </code>
+        </pre>
+        <p>Et côté <b>serveur</b>, sur un nouveau <b>terminal</b>, on peut ouvrir le client Mongo à partir du dossier du projet en tapant :</p>
+        <pre>
+          <code class="language-bash">
+            # Démarrage d'un nouveau client Mongo pour accéder à la base MongoDB du projet
+            meteor mongo
+          </code>
+        </pre>
+        <p>Puis vérifier que la même voiture a bien été créée côté serveur :</p>
+        <pre>
+          <code class="language-bash">
+            # À partir du terminal ouvert par le client MongoDB avec meteor mongo
+            use meteor;
+            db.voitures.find({}).pretty();
+          </code>
+        </pre>
+        <p>Par défaut, toutes les données créées dans le base de données MongoDB du serveur sont également envoyées au client et créées dans la base de données locale de chaque client et inversement. Ceci est une <b>vulnérabilité</b> évidente du système. Pour que le système soit un minimum sécurisé, il faut pouvoir :</p>
+        <ul>
+          <li><p>Décider côté serveur des données qui sont envoyées et synchronisées pour chaque client;</p></li>
+          <li><p>Gérer côté serveur toutes les opérations de création, mise à jour et suppression pour pouvoir effectuer des contrôles sur la probité de ces opérations.</p></li>
+        </ul>
+        <p>Les packages qui sont responsables de la synchronisation automatique des données sont les packages <code class="code">insecure</code> et <code class="code">autopublish</code>. La <b>bonne pratique est donc de supprimer ces packages</b> lorsqu'on termine la phase de développement en écrivant dans le terminal :</p>
+        <pre>
+          <code class="language-bash">
+            # On supprime le package insecure
+            meteor remove insecure
+            # On supprime le package autopublish
+            meteor remove autopublish
+          </code>
+        </pre>
+        <p>Pour définir les données qui pourront être publiées côté client, on utilisera l'API <code class="code">Meteor.publish</code> de Meteor documentée <a target="_blank" title="API Meteor.publish sur le site officiel de Meteor" href="http://docs.meteor.com/#/full/meteor_publish">ici</a> et pour accepter des données qui proviennent du serveur côté client, on utilisera l'API <code class="code">Meteor.subscribe</code> de Meteor documentée <a target="_blank" title="API Meteor.publish sur le site officiel de Meteor" href="http://docs.meteor.com/#/full/meteor_subscribe">ici</a>.</p>
+        <p>En respectant les bonnes pratiques client et serveur, l'exemple précédent donne pour la synchronisation des données concernant les voitures :</p>
+        <pre>
+          <code class="language-javascript">
+/**
+  Section de code pour le client et le serveur
+  Ici on créé une collection côté client et serveur.
+  Elle n'est pas automatiquement synchronisée.
+**/
+Voitures = new Mongo.Collection('voitures');
+
+/**
+  Section de code pour le client uniquement
+**/
+if (Meteor.isClient) {
+  //Ici on utilise Meteor.subscribe() pour déclarer la source de données
+  Meteor.subscribe('lesVoitures');
+};
+
+/**
+  Section de code pour le serveur uniquement
+**/
+if (Meteor.isServer) {
+  //Ici on utilise Meteor.publish() pour déclarer des données à publier
+  Meteor.publish('lesVoitures', function(){
+    return Voitures.find({});
+  });
+};
+          </code>
+        </pre>
+        <p>Pour créer des méthodes côté serveur qui prendront en charge la création, mise à jour et suppression de données, on utilisera l'API <code class="code">Meteor.methods</code> documentée <a title="API Meteor.methods" href="http://docs.meteor.com/#/full/meteor_methods">ici</a>. Et, côté client, pour appeler les méthodes côté serveur, on utilisera l'API <code class="code">Meteor.call</code> documentée <a title="API Meteor.methods" href="http://docs.meteor.com/#/full/meteor_call">ici</a>.</p>
+        <p>Toujours en respectant les bonnes pratiques client et serveur, l'exemple précédent donne pour la création des données concernant les voitures :</p>
+        <pre>
+          <code class="language-javascript">
+/**
+  Section de code pour le client et le serveur
+  Ici on créé une collection côté client et serveur.
+  Elle n'est pas automatiquement synchronisée.
+**/
+Voitures = new Mongo.Collection('voitures');
+
+/**
+  Section de code pour le client uniquement
+**/
+if (Meteor.isClient) {
+
+  //Ici on utilise Meteor.subscribe() pour déclarer la source de données
+  Meteor.subscribe('lesVoitures');
+
+  /**
+    Ici on associe un gestionnaire d'évènement qui sera associé
+    au click sur l'élément du body dont l'id est elementCliquable.
+  **/
+  Template.body.events({
+    'click #elementCliquable':function(event){
+      // Appel de la méthode ajouterVoiture côté serveur.
+      Meteor.call('ajouterVoiture', 'Citroën', 'C5', 5);
+    }
+  });
+
+};
+
+
+/**
+  Section de code pour le serveur uniquement
+**/
+if (Meteor.isServer) {
+
+  // On déclare des méthodes qui pourront être appelées par le client.
+  Meteor.methods({
+    ajouterVoiture:function(a, b, c){
+      Voitures.insert({
+        marque: a,
+        modele: b,
+        portes: c
+      });
+    }
+  });
+
+  //Ici on utilise Meteor.publish() pour déclarer des données à publier.
+  Meteor.publish('lesVoitures', function(){
+    return Voitures.find({});
+  });
+};
+          </code>
+        </pre>
+        <p>Pour pouvoir envoyer à travers le réseau tous types de données lorsqu'on utilise l'API <code class="code">Meteor.call</code> sans risque d'erreur inopinée, il est recommandé d'installer le package <b>ejson</b> :</p>
+        <pre>
+          <code class="language-bash">
+            # On ajoute le package ejson
+            meteor add ejson
+          </code>
+        </pre>
+      </section>
+      <section class="partie partie-5 chapitre-2-partie-5" id="/chapitre-2/partie-5">
+        <h4>2.5. Créer et gérer des &laquo; routes &raquo; avec iron:router</h4>
+        <p>En dépit du fait que notre application ne soit construite que sur une seule page, il est possible de construire des routes en utilisant les ancres. L'idée est la suivante : selon l'ancre située dans l'URL, un script récupère de façon asynchrone un template et met à jour l'affichage.</p>
+        <p>On pourrait développer ce système mais il existe un package pour cela : &laquo; iron:router &raquo;. Il est documenté <a title="le site officiel du package iron:router" href="http://iron-meteor.github.io/iron-router/">ici</a>. Pour installer iron:router :</p>
+        <pre>
+          <code class="language-bash">
+            # On ajoute le package ejson
+            meteor add iron:router
+          </code>
+        </pre>
+        <p>L'application que nous proposons posséde 2 routes :</p>
+        <ul>
+          <li><p><code class="code">/</code> qui contient un message de bienvenue.</p></li>
+          <li><p><code class="code">/a-propos</code> qui contient des informations sur l'application.</p></li>
+        </ul>
+        <p>Pour réaliser cette application à l'aide d'&laquo; iron:router &raquo; nous allons avoir besoin de 4 fichiers :</p>
+        <ul>
+          <li><p>Un fichier qui sera le template commun au deux &laquo;affichages&raquo; contenant les méta-données du document, le &lt;body&gt; et les liens pour la navigation;</p></li>
+          <li><p>Un fichier qui sera le template correspondant à l'affichage de l'écran &laquo;Acceuil&raquo;;</p></li>
+          <li><p>Un fichier qui sera le template correspondant à l'affichage de l'écran &laquo;À Propos&raquo;;</p></li>
+          <li><p>Le code JavaScript client/serveur de paramétrage d'&laquo; iron:router &raquo;.</p></li>
+        </ul>
+        <p>Le template commun :</p>
+        <pre>
+          <code class="language-markup">
+&lt;template name="commun">
+  &lt;head>
+    &lt;title>Application Meteor&lt;/title>
+  &lt;/head>
+
+  &lt;body>
+    &lt;h1>Application Meteor&lt;/h1>
+    &lt;li>&lt;a href="/">Accueil&lt;/a>&lt;/li>
+    &lt;li>&lt;a href="/a-propos">À Propos&lt;/a>&lt;/li>
+    &lt;!-- Le mot-clé yield est spécifique à iron:router -->
+    &lt;!-- Il indique l'emplacement que devront prendre les templates chargés à l'aide des routes -->
+    {{> yield }}
+  &lt;/body>
+&lt;/template>
+          </code>
+        </pre>
+        <p>Le template pour l'écran Accueil :</p>
+        <pre>
+          <code class="language-markup">
+&lt;code class="language-markup">
+&lt;template name="accueil">
+  &lt;h2>Accueil&lt;/h2>
+  &lt;p>Bienvenue sur mon application Web nouvelle génération.&lt;/p>
+&lt;/template>
+          </code>
+        </pre>
+        <p>Le template pour l'écran À Propos :</p>
+        <pre>
+          <code class="language-markup">
+&lt;template name="a-propos">
+  &lt;h2>À Propos&lt;/h2>
+  &lt;p>Je suis un étudiant assidu en développement Web.&lt;/p>
+&lt;/template>
+          </code>
+        </pre>
+        <p>Le code client/serveur :</p>
+        <pre>
+          <code class="language-javascript">
+/**
+  Section de code pour le client et le serveur
+**/
+
+// Ici on indique quel est le template principal de l'application.
+Router.configure({
+  layoutTemplate: 'commun'
+});
+
+// Ici la route / doit entraîner l'affichage du template accueil.
+Router.route('/', function(){
+  this.render('accueil');
+});
+
+// Ici la route /a-propos doit entraîner l'affichage du template a-propos.
+Router.route('/a-propos', function(){
+  this.render('a-propos');
+});
+          </code>
+        </pre>
+        <p>Les routes peuvent être plus élaborées, contenir des paramètres variables, etc...</p>
+      </section>
+    </section>
+    <footer>
+      <p>MeteorJS : Introduction à la plate-forme - Sami Radi - <a target="_blank" href="http://www.virtuoworks.com/" title="VirtuoWorks">VirtuoWorks&reg;</a> - tous droits réservés&copy;</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8"/>
+    <title>JavaScript : Exercice 14 - confirm 2</title>
+    <script type="text/javascript">
+      /*********************************
+      ************ EXERCICE ************
+      **********************************
+      ** 1 **
+        Réalisez le programme (algorithme) suivant :
+        Au chargement du document, j'affiche une boîte de dialogue contenant le message « Voulez-vous continuer ? ».
+        Si l'utilisateur clique sur OK, j'affiche une boîte de dialogue avec le message « Vous avez cliqué sur OK ! », sinon j'affiche une boîte de dialogue avec le message « Vous avez choisi d'annuler ».
+
+        Utilisez l'attribut d'évènement onload, la fonction confirm(), la fonction alert() et un bloc conditionnel if/else.
+      */
+        var boite1 = function(){
+          var reponse = confirm('Voulez-vous continuer ?');
+          if(reponse){
+            alert('Vous avez cliqué sur OK !');
+          }else{
+            alert('Vous avez choisi d\'annuler');
+          }
+        }
+
+
+
+
+
+      /*var phrase = confirm('Voulez-vous continuer ?');
+      if(phrase) {
+        alert('Vous avez cliqué sur OK !');
+      } else {
+        alert('Vous avez choisi d\'annuler');
+      }
+      */
+
+      /*
+      ** 2 **
+        Réalisez le programme (algorithme) suivant :
+        Quand l'utilisateur clique sur le premier paragraphe, j'affiche une boîte de dialogue contenant le message « Voulez-vous continuer ? ».
+        Si l'utilisateur clique sur OK, j'affiche une boîte de dialogue avec le message « Vous avez cliqué sur OK ! » sinon j'affiche une boîte de dialogue avec le message « Vous avez choisi d'annuler ».
+
+        Utilisez l'attribut d'évènement onclick, la fonction confirm(), la fonction alert() et un bloc conditionnel if/else
+      */
+      
+      var boite2 = function(){
+        var reponse2 =  confirm('Voulez-vous continuer ,');
+        if(reponse2){
+          alert('Vous avez cliqué sur Ok !');
+        }else{
+          alert('Vous avez choisi d\'annuler');
+        }
+      }
+      
+      
+      
+      /*var para1 = function() {
+        var reponse = confirm('Voulez-vous continuer ?');
+      if(reponse) {
+          alert('Vous avez cliqué sur OK !');
+      } else {
+          alert('Vous avez choisi d\'annuler')
+      }
+      }
+      */
+
+      /*
+      ** 3 **
+        Réalisez le programme (algorithme) suivant :
+        Quand l'utilisateur survole le premier titre, j'affiche une boîte de dialogue contenant le message « Voulez-vous continuer ? ».
+        Si l'utilisateur clique sur OK, j'affiche une boîte de dialogue avec le message « Vous avez cliqué sur OK ! » sinon j'affiche une boîte de dialogue avec le message « Vous avez choisi d'annuler ».
+
+        Utilisez l'attribut d'évènement onmouseover, la fonction confirm(), la fonction alert() et un bloc conditionnel if/else.
+      */
+      var boite3 = function(){
+        var reponse3 = confirm('Voulez-vous continuer ?');
+        if(reponse3){
+          alert('Vous avez cliqué sur Ok !');
+        }else{
+          alert('Vous avez choisi d\'annuler');
+        }
+      }
+
+
+
+      /*var titre = function() {
+        var resultat = confirm('Voulez-vous continuer ? ');
+      if(resultat) {
+        alert('Vous avez cliqué sur OK !');
+      } else {
+        alert('Vous avez choisi d\'annuler');
+      }
+      }
+      */
+    </script>
+  </head>
+  <body onload="boite1();";>
+    <h1 onmouseover="boite3();";>JavaScript : Exercice 14 - confirm 2</h1>
+    <p onclick="boite2();";>Premier paragraphe</p>
+    <p>Deuxième paragraphe</p>
+    <noscript>
+      <p>Veuillez activer JavaScript</p>
+    </noscript>
+  </body>
+</html>

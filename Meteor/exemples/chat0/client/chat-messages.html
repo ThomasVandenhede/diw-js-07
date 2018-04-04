@@ -1,0 +1,9 @@
+<template name="chatMessages">
+  <h2>Historique des messages</h2>
+
+  <ul>
+    {{#each tousLesMessages}}
+      <li><strong>{{username}}</strong> dit : {{message}} <em>{{created}}</em></li>
+    {{/each}}
+  </ul>
+</template>

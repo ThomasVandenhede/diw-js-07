@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8"/>
+    <title>JavaScript : Exercice 18 - prompt 3</title>
+    <script type="text/javascript">
+      /*********************************
+      ************ EXERCICE ************
+      **********************************
+        Réalisez le programme (algorithme) suivant :
+        Quand je CLIQUE sur un paragraphe, j'affiche une boîte de dialogue avec un champ de saisie à l'utilisateur.
+        Tant que l'utilisateur clique sur Annuler ou clique sur OK sans rien saisir, j'affiche une boîte de dialogue avec un champ de saisie.
+        Puis, j'affiche la saisie de l'utilisateur dans une boîte de dialogue
+
+        Utilisez l'attribut d'évènement onclick, la fonction prompt(), la fonction alert() et une boucle while.
+      */
+
+      var exigerSaisie = function(){
+        var boiteDial = prompt('Veuillez saisir une information');
+        while(boiteDial == null || boiteDial ==''){
+          boiteDial =prompt('Vous devez absolument saisir quelques chose!');
+          alert(boiteDial);
+        }
+      };
+
+    
+
+
+
+
+      /*var exigerSaisie = function() {
+        var reponse = prompt('Veuillez saisir votre prénom');
+
+    
+        while (reponse == null || reponse =='') {
+          /* La première partie de la condition (à gauche du Ou) vérifie que la valeur retournée 
+          par la fonction prompt est égale à null. Si oui, la condition est validée
+           La Seconde partie de la condition(à droite du Ou) vérifié que la valeur retournée par
+          la fonction prompt est égale à chaîne vide(''). Si oui, la condition est vérifiée
+          la condition du while est True si l'une ou l'autre des expressions autour du OU est vraie.
+          Sinon aucune des expressions autour du Ou n'est vraie, la boucle n'est pas executée : on passe à la suite du code.
+
+          reponse = prompt('Veuillez saisir votre prénom');
+        }
+
+        alert(reponse);
+
+      };
+      */
+      
+
+
+
+    </script>
+  </head>
+  <body>
+    <h1>JavaScript : Exercice 18 - prompt 3</h1>
+    <p onclick="exigerSaisie()">Premier paragraphe</p>
+    <p>Deuxième paragraphe</p>
+    <noscript>
+      <p>Veuillez activer JavaScript</p>
+    </noscript>
+  </body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Flexbox - Illustration</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js"></script>
+</head>
+<body>
+  <div id="gauche">
+    <h1>Flex-Box</h1>
+    <div id="boite">
+      <div id="element1">Bloc 1</div>
+      <div id="element2">Bloc 2</div>
+      <div id="element3">Bloc 3</div>
+      <div id="element4">Bloc 4</div>
+    </div>
+  </div>
+  <div id="action">
+    <h2>Ensemble</h2>
+    <div>
+      <h3 for="selectFlexDirection">Distribution <span>flex-direction</span></h3>
+      <select name="selectFlexDirection" cible="boite" type="flex-direction">
+        <option value="row" selected>row</option>
+        <option value="row-reverse">row-reverse</option>
+        <option value="column">column</option>
+        <option value="column-reverse">column-reverse</option>
+      </select>
+    </div>
+    <div>
+      <h3 for="selectJustifyContent">Alignement <span>justify-content</span></h3>
+      <select name="selectJustifyContent" cible="boite" type="justify-content">
+        <option value="flex-start" selected>flex-start</option>
+        <option value="flex-end">flex-end</option>
+        <option value="center">center</option>
+        <option value="space-between">space-between</option>
+        <option value="space-around">space-around</option>
+      </select>
+    </div>
+    <div>
+      <h3 for="selectAlignItems">Axe secondaire <span>align-items</span></h3>
+      <select name="selectAlignItems" cible="boite" type="align-items">
+        <option value="flex-start" selected>flex-start</option>
+        <option value="flex-end">flex-end</option>
+        <option value="center">center</option>
+        <option value="baseline">baseline</option>
+        <option value="stretch">stretch</option>
+      </select>
+    </div>
+    <h2>Blocs</h2>
+    <div>
+      <h3 class="bloc">Bloc 1</h3>
+      <div>
+        <label for="selectOrdreBloc1">Ordre <span>order</span></label>
+        <select name="selectOrdreBloc1" cible="element1" type="order">
+          <option value="0" selected>0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+        </select>
+      </div>
+      <div>
+        <label for="selectBloc1">Alignement <span>align-self</span></label>
+        <select name="selectAligneBloc1" cible="element1" type="align-self">
+          <option value="auto" selected>auto</option>
+          <option value="flex-start">flex-start</option>
+          <option value="flex-end">flex-end</option>
+          <option value="center">center</option>
+          <option value="baseline">baseline</option>
+          <option value="stretch">stretch</option>
+        </select>
+      </div>
+      <h3 class="bloc">Bloc 2</h3>
+      <div>
+        <label for="selectOrdreBloc2">Ordre <span>order</span></label>
+        <select name="selectOrdreBloc2" cible="element2" type="order">
+          <option value="0" selected>0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+        </select>
+      </div>
+      <div>
+        <label for="selectBloc2">Alignement <span>align-self</span></label>
+        <select name="selectAligneBloc2" cible="element2" type="align-self">
+          <option value="auto" selected>auto</option>
+          <option value="flex-start">flex-start</option>
+          <option value="flex-end">flex-end</option>
+          <option value="center">center</option>
+          <option value="baseline">baseline</option>
+          <option value="stretch">stretch</option>
+        </select>
+      </div>
+      <h3 class="bloc">Bloc 3</h3>
+      <div>
+        <label for="selectOrdreBloc3">Ordre <span>order</span></label>
+        <select name="selectOrdreBloc3" cible="element3" type="order">
+          <option value="0" selected>0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+        </select>
+      </div>
+      <div>
+        <label for="selectBloc3">Alignement <span>align-self</span></label>
+        <select name="selectAligneBloc3" cible="element3" type="align-self">
+          <option value="auto" selected>auto</option>
+          <option value="flex-start">flex-start</option>
+          <option value="flex-end">flex-end</option>
+          <option value="center">center</option>
+          <option value="baseline">baseline</option>
+          <option value="stretch">stretch</option>
+        </select>
+      </div>
+      <h3 class="bloc">Bloc 4</h3>
+      <div>
+        <label for="selectOrdreBloc4">Ordre <span>order</span></label>
+        <select name="selectOrdreBloc4" cible="element4" type="order">
+          <option value="0" selected>0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+        </select>
+      </div>
+      <div>
+        <label for="selectBloc4">Alignement <span>align-self</span></label>
+        <select name="selectAligneBloc4" cible="element4" type="align-self">
+          <option value="auto" selected>auto</option>
+          <option value="flex-start">flex-start</option>
+          <option value="flex-end">flex-end</option>
+          <option value="center">center</option>
+          <option value="baseline">baseline</option>
+          <option value="stretch">stretch</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

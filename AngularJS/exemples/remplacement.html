@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var maBalise = document.body.children[0];
+      if (maBalise.tagName === 'PAIN-AU-CHOCOLAT') {
+        var h1 = document.createElement('h1');
+        h1.innerHTML = 'Petit déjeûner';
+        maBalise.parentNode.replaceChild(h1, maBalise);
+        h1.addEventListener('click', function() {
+          alert('Bonjour les DIW JS');
+        })
+      }
+
+    });
+  </script>
+  <title>Document</title>
+</head>
+<body>
+
+    <pain-au-chocolat>BBB</pain-au-chocolat>
+
+    <div class="croissant">AAA</div>
+
+    <petit-dejeuner boisson="café"></petit-dejeuner>
+
+</body>
+</html>

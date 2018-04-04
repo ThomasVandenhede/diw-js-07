@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Mémo jQuery</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width">
+    <link rel="shortcut icon" href="sources_cours/favicon.ico">
+		<script src="sources_cours/prism.js"></script>
+		<script src="sources_cours/jquery-3.1.0.min.js"></script>
+		<script src="sources_cours/scripts.js"></script>
+		<link rel="stylesheet" href="sources_cours/prism.css">
+		<link rel="stylesheet" href="sources_cours/styles.css">
+	</head>
+	<body>
+		<div id="page">
+      <header>
+        <h1>Mémo jQuery</h1>
+        <nav>
+          <ul>
+            <li><a href="#page">Cibler</a></li>
+            <li><a href="#manipulerDOM">Manipulation du DOM</a></li>
+            <li><a href="#manipulerAutre">Autres manipulations</a></li>
+            <li><a href="#effets">Effets</a></li>
+            <li><a href="#evenements">Évènements</a></li>
+            <li><a href="#callbacks">Fonctions de retour</a></li>
+            <li><a href="#utilitaires">Utilitaires</a></li>
+          </ul>
+        </nav>
+        <div id="bas">
+          <div id="info">
+            <a href="http://www.virtuoworks.com/" title="Site de VirtuoWorks"><img src="http://www.virtuoworks.com/sites/all/themes/virtuoworks2014/logo.png" alt="logo virtuoworks"></a>
+            <a href="mailto:marc.boussoulade@virtuoworks.com">Marc<br/> Boussoulade</a>
+          </div>
+          <div id="changement">
+            <span id="masquage">Tout replier</span>
+          </div>
+        </div>
+        <div id="bouton-nav">&#9776;</div>
+      </header>
+			<div id="cibler">
+				<h2>Cibler<span class="triangle haut"></span></h2>
+				<div class="content">
+					<h4>Viser une balise<span class="methode">$(balise)</span></h4>
+					<pre><code class="language-javascript">$(h3');</code></pre>
+					<h4>Viser une balise dans une autre<span class="methode">$(balise1 balise2)</span></h4>
+					<pre><code class="language-javascript">$('div img');</code></pre>
+					<h4>Viser une id <span class="methode">$(#id)</span></h4>
+					<pre><code class="language-javascript">$('#monId');</code></pre>
+					<h4>Viser une class<span class="methode">$(.class)</span></h4>
+					<pre><code class="language-javascript">$('.maClass')</code></pre>
+					<h4>Viser une balise enfant directe<span class="methode">$(balise1 > balise2)</span></h4>
+					<pre><code class="language-javascript">$('div > p'); 	</code></pre>
+					<h4>Viser une balise voisine<span class="methode">$(balise1 + balise2)</span></h4>
+					<pre><code class="language-javascript">$('p + img');</code></pre>
+					<h4>Viser une balise suivant une autre<span class="methode">$(balise1 ~ balise2)</span></h4>
+					<pre><code class="language-javascript">$('div ~ p');</code></pre>
+					<h3>Viser les enfants</h3>
+					<div class="l-content">
+						<h4>Premier enfant<span class="methode">:first-child</span></h4>
+						<pre><code class="language-javascript">$('p:first-child');</code></pre>
+						<h4>Premier enfant d'un type de balise<span class="methode">:first-of-type</span></h4>
+						<pre><code class="language-javascript">$('p:first-of-type');</code></pre>
+						<h4>Dernier enfant<span class="methode">:last-child</span></h4>
+						<pre><code class="language-javascript">$('p:last-child');</code></pre>
+						<h4>Dernier enfant d'un type de balise<span class="methode">:last-of-type</span></h4>
+						<pre><code class="language-javascript">$('p:last-of-type');</code></pre>
+						<h4>Premiers enfants de rang n<span class="methode">:nth-child(n)</span></h4>
+						<pre><code class="language-javascript">$('p:nth-child(5)');</code></pre>
+						<h4>Derniers enfants de rang n<span class="methode">:nth-last-child(n)</span></h4>
+						<pre><code class="language-javascript">$('p:nth-last-child(7)');</code></pre>
+						<h4>Premiers enfants d'un type de balise de rang n<span class="methode">:nth-of-type(n)</span></h4>
+						<pre><code class="language-javascript">$('p:nth-of-type(2)');</code></pre>
+						<h4>Derniers enfants d'un type de balise de rang n<span class="methode">:nth-last-of-type(n)</span></h4>
+						<pre><code class="language-javascript">$('p:nth-last-of-type(6)');</code></pre>
+						<h4>Enfant unique<span class="methode">:only-child</span></h4>
+						<pre><code class="language-javascript">$('p:only-child)');</code></pre>
+						<h4>Enfant unique d'un type de balise<span class="methode">only-of-type</span></h4>
+						<pre><code class="language-javascript">$('p:only-of-type');</code></pre>
+					</div>
+					<h3>Viser une balise ayant un contenu spécifique</h3>
+					<div class="l-content">
+						<h4>Contient le texte mis entre parenthèse.<span class="methode">:contains(x)</span></h4>
+						<pre><code class="language-javascript">$("div:contains('jeu')"</span>);</code></pre>
+						<h4>Balise vide<span class="methode">:empty</span></h4>
+						<pre><code class="language-javascript">$('p:empty');</code></pre>
+						<h4>Balise ayant un parent<span class="methode">:parent</span></h4>
+						<pre><code class="language-javascript">$('p:parent)');</code></pre>
+						<h4>Balise contenant le sélecteur indiqué<span class="methode">:has(balise)</span></h4>
+						<pre><code class="language-javascript">$('p:has(ul)');</code></pre>
+					</div>
+					<h3>Viser une balise selon un critère spécifique</h3>
+					<div class="l-content">
+						<h4>Cibler tous les éléments non indiqués<span class="methode">:not(element)</span></h4>
+						<pre><code class="language-javascript">$("input:not(:checked)"</span>);</code></pre>
+						<h4>Cibler les éléments pairs<span class="methode">:even</span></h4>
+						<pre><code class="language-javascript">$('p:even');</code></pre>
+						<h4>Cibler les éléments impairs<span class="methode">odd</span></h4>
+						<pre><code class="language-javascript">$('p:odd');</code></pre>
+						<h4>Cibler l'énième élément<span class="methode">:eq(n)</span></h4>
+						<pre><code class="language-javascript">$('p:eq(2)');</code></pre>
+						<h4>Cibler le premier élément<span class="methode">:first</span></h4>
+						<pre><code class="language-javascript">$('p:first');</code></pre>
+						<h4>Cibler le dernier élément<span class="methode">:last</span></h4>
+						<pre><code class="language-javascript">$('p:last');</code></pre>
+						<h4>Cibler tous les éléments inférieurs à n<span class="methode">:lt(n)</span></h4>
+						<pre><code class="language-javascript">$('p:lt(6)');</code></pre>
+						<h4>Cibler tous les éléments supérieurs à n<span class="methode">gt(n)</span></h4>
+						<pre><code class="language-javascript">$('p:gt(3)');</code></pre>
+						<h4>Cibler l'élément racine du document<span class="methode">:root</span></h4>
+						<pre><code class="language-javascript">$(':root');</code></pre>
+						<h4>Cibler l'élément actuellement ciblé<span class="methode">:focus</span></h4>
+						<pre><code class="language-javascript">$('p:focus');</code></pre>
+						<h4>Cibler tous les éléments d'une langue<span class="methode">lang(x)</span></h4>
+						<pre><code class="language-javascript">$('p:lang(fr-fr)');</code></pre>
+						<h4>Cibler tous les éléments qui sont en cours d'animation<span class="methode">:animated</span></h4>
+						<pre><code class="language-javascript">$('p:animated');</code></pre>
+						<h4>Cibler tous les titres (h1-h6)<span class="methode">:header</span></h4>
+						<pre><code class="language-javascript">$(':header');</code></pre>
+					</div>
+					<h3>Viser une balise selon son attribut</h3>
+					<div class="l-content">
+						<h4>Cibler les éléments qui ont l'attribut indiqué.<span class="methode">[attribut]</span></h4>
+						<pre><code class="language-javascript">$("div[id]"</span>);</code></pre>
+						<h4>Cibler tous les éléments dont l'attribut contient exactement la valeur<span class="methode">[attribut='valeur]</span></h4>
+						<pre><code class="language-javascript">$("div[class='autre']"</span>);</code></pre>
+						<h4>Cibler tous les éléments dont l'attribut contient la valeur.<span class="methode">[attribut*='valeur']</span></h4>
+						<pre><code class="language-javascript">$("div[class*='plus']"</span>);</code></pre>
+						<h4>Cibler tous les éléments dont l'attribut contient la valeur délimitée par des espaces.<span class="methode">[attribut~='valeur']</span></h4>
+						<pre><code class="language-javascript">$("div"[class~='grand']"</span>);</code></pre>
+						<h4>Cibler tous les éléments dont l'attribut contient la valeur ou celle-ci est suivie d'un tiret<span class="methode">[attribut|='valeur']</span></h4>
+						<pre><code class="language-javascript">$("a[hreflang|='fr']"</span>);</code></pre>
+						<h4>Cibler les éléments qui débutent exactement par la valeur indiquée.<span class="methode">[attribut^='valeur']</span></h4>
+						<pre><code class="language-javascript">$("div[attribut^='valeur']"</span>);</code></pre>
+						<h4>Cibler tous les éléments dont l'attribut se termine par la valeur<span class="methode">[attribut$='valeur']</span></h4>
+						<pre><code class="language-javascript">$("div[class$='grand']"</span>);</code></pre>
+						<h4>Cibler les éléments qui ont toutes les attributs et valeurs indiqués.<span class="methode">[attributFiltre1][attributFiltre2][attributFiltreN]</span></h4>
+						<pre><code class="language-javascript">$("a[id][title*=paysage]"</span>);</code></pre>
+						<h4>Cibler les éléments qui n'ont pas l'attribut spécifié ou qui ont cet attribut sans la valeur spécifiée.<span class="methode">[attribut!='valeur']</span></h4>
+						<pre><code class="language-javascript">$("div[class!='petit']"</span>);</code></pre>
+					</div>
+				</div>
+			</div>
+      <div id="manipulerDOM" class="vide">
+				<h2>Manipulation du DOM<span class="triangle haut"></span></h2>
+				<div class="content">
+					<h3>DOM - insertion - autre</h3>
+						<h4>Crée une copie de l'élément<span class="methode">.clone()<span class="methode"></span></h4>
+						<pre><code class="language-javascript">$('.element').clone().appendTo('.ajout');</code></pre>
+					<h3>DOM - insertion - autour</h3>
+					<div class="l-content">
+					  <h4>Entoure l'élément par un autre élément.<span class="methode">.wrap()</span></h4>
+						<pre><code class="language-javascript">$('a.autre').wrap('&lt;p class="grand"&gt;&lt;/p&gt');</code></pre>
+					  <h4>Entoure le contenu d'un élément à l'intérieur de ses balises par un autre élément.<span class="methode">wrapInner()</span></h4>
+					  <pre><code class="language-javascript">$('li').wrapInner('&lt;a href="lien.htlm"&gt;&lt;/a&gt');</code></pre>
+					  <h4>Entoure d'une façon globale les éléments sélectionnés par un autre élément.<span class="methode">.wrapAll()</span></h4>
+					  <pre><code class="language-javascript">$('.texte').wrapAll('&lt;div id="contenu"&gt;&lt;/div&gt');</code></pre>
+					  <h4>Supprime l'élément parent.<span class="methode">.unwrap()</span></h4>
+						<pre><code class="language-javascript">$('a.autre').unwrap();</code></pre>
+					</div>
+					<h3>DOM - insertion - à l'intérieur</h3>
+					<div class="l-content">
+						<h4>Renvoie ou fixe le contenu en html de tous les éléments visés.<span class="methode">.html()</span></h4>
+						<pre><code class="language-javascript">$('#contenu').html('Un &lt;strong&gt;nouveau&lt/strong&gt; message');</code></pre>
+						<h4>Renvoie ou fixe le contenu textuel de tous les éléments visés.<span class="methode">.text()</span></h4>
+						<pre><code class="language-javascript">$('#contenu').text('Un autre message</span>);</code></pre>
+						<h4>Insère du contenu au début de la sélection<span class="methode">.preprend()</span></h4>
+						<pre><code class="language-javascript">$('#autre').preprend('&lt;p &gt;Nouvelle information&lt;/p &gt;');</code></pre>
+						<h4>Insère du contenu au début de la sélection<span class="methode">.preprendTo()</span></h4>
+						<pre><code class="language-javascript">$('&lt;p &gt;Nouvelle information&lt;/p &gt;').preprendTo('#autre');</code></pre>
+						<h4>Insère du contenu à la fin de la sélection<span class="methode">.append</span></h4>
+						<pre><code class="language-javascript">$('#message').append(' la suite');</code></pre>
+						<h4>Insère du contenu à la fin de la sélection<span class="methode">.appendTo</span></h4>
+						<pre><code class="language-javascript">$(' la suite').appendTo('#message');</code></pre>
+					</div>
+					<h3>DOM - insertion - En dehors</h3>
+					<div class="l-content">
+						<h4>Insère du contenu après la sélection<span class="methode">.before()</span></h4>
+						<pre><code class="language-javascript">$('.information').before('&lt;span&gt;Un autre texte&lt/span&gt;');</code></pre>
+						<h4>Insère du contenu avant la sélection <span class="methode">.insertBefore()</span></h4>
+						<pre><code class="language-javascript">$('&lt;span&gt;Un autre texte&lt/span&gt;').insertBefore('.information');</code></pre>
+						<h4>Insère du contenu après la sélection<span class="methode">.after()</span></h4>
+						<pre><code class="language-javascript">$('.information').after('&lt;span&gt;Un autre texte&lt/span&gt;');</code></pre>
+						<h4>Insère du contenu après la sélection<span class="methode">.insertAfter()</span></h4>
+						<pre><code class="language-javascript">$('&lt;span&gt;Un autre texte&lt/span&gt;').insertAfter('.information');</code></pre>
+
+					</div>
+					<h3>DOM - Supression</h3>
+					<div class="l-content">
+						<h4>Retire l'ensemble des éléments visés du DOM.<span class="methode">.remove()</span></h4>
+            <pre><code class="language-javascript">$('footer p').remove();</code></pre>
+						<h4>Retire le contenue des éléments visés du DOM.<span class="methode">.empty()</span></h4>
+            <pre><code class="language-javascript">$('#info').empty();</code></pre>
+						<h4>Retire l'ensemble des éléments visés du DOM sans enlever les données et les évènements.<span class="methode">.detach()</span></h4>
+            <pre><code class="language-javascript">$('.suppression').detach();</code></pre>
+					</div>
+					<h3>DOM Remplacement</h3>
+					<div class="l-content">
+						<h4>Remplacer tous les éléments visés par un nouveau contenu.<span class="methode">.replaceWith()</span></h4>
+						<pre><code class="language-javascript">$('div.seconde').replaceWith('&lt;h2&gt;Nouveau titre&lt;/h2&gt;');</code></pre>
+						<h4>Remplacer tous les éléments visés par un nouveau contenu.<span class="methode">.replaceAll()</span></h4>
+						<pre><code class="language-javascript">$('&lt;h2&gt;Nouveau titre&lt;/h2&gt;').replaceAll('.autre');</code></pre>
+					</div>
+				</div>
+			</div>
+			<div id="manipulerAutre" class="vide">
+				<h2>Manipulations - autres<span class="triangle haut"></span></h2>
+				<div class="content">
+					<h3>class</h3>
+					<div class="l-content">
+						<h4>Ajouter une ou plusieurs class.<span class="methode">.addClass()</span></h4>
+            <pre><code class="language-javascript">$('h3').addClass('premiereClass secondeClass');</code></pre>
+            <h4>Vérifier la présence d'une class.<span class="methode">.hasClass()</span></h4>
+            <pre><code class="language-javascript">$('div p').hasClass('premiereClass');</code></pre>
+            <h4>Enlever une ou plusieurs class.<span class="methode">.removeClass</span></h4>
+            <pre><code class="language-javascript">$('h3').removeClass('uneClass autreClass');</code></pre>
+						<h4>Ajoute ou supprime plusieurs class<span class="methode">.toggleClass()</span></h4>
+            <pre><code class="language-javascript">$('h3').toggleClass('vraimentClass superClass');</code></pre>
+						</div>
+					<h3>Propriétés de style</h3>
+					<div class="l-content">
+						<h4>Renvoie ou fixe la valeur d'une ou plusieurs propriétés css de tous les éléments visés.<span class="methode">.css()</span></h4>
+            <pre><code class="language-javascript">$('#contenu img').css({
+	"backgroundColor": "black",
+	"color": "white"
+});</code></pre>
+						<h4>Renvoie ou fixe la valeur de la hauteur de l'élément<span class="methode">.height()</span></h4>
+             <pre><code class="language-javascript">$('#ajout').height(150</span>);</code></pre>
+						<h4>>Renvoie ou fixe la valeur de la hauteur de l'élément, padding compris.<span class="methode">innerHeight()</span></h4>
+            <pre><code class="language-javascript">$('div p').innerHeight(65</span>);</code></pre>
+						<h4>Renvoie ou fixe la valeur de la hauteur de l'élément, padding et bordure compris.<span class="methode">.outerHeight() </span></h4>
+            <pre><code class="language-javascript">$('#autre').outerHeight(120</span>);</code></pre>
+						<h4>Renvoie ou fixe la valeur de la largeur de l'élément.<span class="methode">.width()</span></h4>
+            <pre><code class="language-javascript">$('header img').width(220</span>);</code></pre>
+						<h4>>Renvoie ou fixe la valeur de la largeur de l'élément, padding compris.<span class="methode">.innerWidth()</span></h4>
+             <pre><code class="language-javascript">$('div p').innerWidth(65</span>);</code></pre>
+						<h4>Renvoie ou fixe la valeur de la largeur de l'élément, padding et bordure compris.<span class="methode">.outerWidth()</span></h4>
+            <pre><code class="language-javascript">$('section img').outerWidth(210</span>);</code></pre>
+						<h4>Renvoie ou fixe la valeur de la position d'un élément par rapport au sommet et au côté gauche du document.<span class="methode">.offset()</span></h4>
+            <pre><code class="language-javascript">$('mouvement').offset({ top: 10</span>, left: 30</span> });</code></pre>
+						<h4>Renvoie la position du premier élément par rapport au sommet et au côté gauche de l'élément parent.<span class="methode">.position()</span></h4>
+            <pre><code class="language-javascript">$('h2').position();</code></pre>
+						<h4>Renvoie ou fixe la valeur de la position de l'ascenseur horizontal pour l'élément visé ou fixe cette position par rapport au côté gauche de cet élément.<span class="methode">.scrollLeft()</span></h4>
+            <pre><code class="language-javascript">$('section img').scrollLeft(312</span>);</code></pre>
+						<h4>Renvoie ou fixe la valeur de la position de l'ascenseur vertical pour l'élément visé ou fixe cette position par rapport au sommet de cet élément.<span class="methode">scrollTop()</span></h4>
+            <pre><code class="language-javascript">$('section img').scrollTop(320</span>);</code></pre>
+					</div>
+					<h3>Attributs généraux</h3>
+					<div class="l-content">
+						<h4>Renvoie ou fixe la valeur d'un élément<span class="methode">.val()</span></h4>
+            <pre><code class="language-javascript">$('input[name=age]').val();</code></pre>
+						<h4>Renvoie ou fixe la valeur d'un attribut de tous les éléments visés<span class="methode">.attr()</span></h4>
+            <pre><code class="language-javascript">$('article img').attr('title','Joli paysage');</code></pre>
+						<h4>Enlève un attribut de tous les éléments visés<span class="methode">.removeAttr()</span></h4>
+            <pre><code class="language-javascript">$('header img').removeAttr('alt');</code></pre>
+						<h4>Renvoie ou fixe la valeur d'une propriété de tous les éléments visés<span class="methode">.prop()</span></h4>
+            <pre><code class="language-javascript">$('input').prop('checked',true</span> );</code></pre>
+						<h4>Enlève une propriété de tous les éléments visés<span class="methode">.removeProp()</span></h4>
+            <pre><code class="language-javascript">$('input').removeProp('disabled');</code></pre>
+					</div>
+				</div>
+			</div>
+			<div id="effets" class="vide">
+				<h2>Effets<span class="triangle haut"></span></h2>
+				<div class="content">
+					<h3>Effets - simples</h3>
+					<div class="l-content">
+						<h4>masque l'élément visé<span class="methode">.hide()</span></h4>
+            <pre><code class="language-javascript">$('#message').hide();</code></pre>
+						<h4>affiche l'élément visé<span class="methode">.show()</span></h4>
+            <pre><code class="language-javascript">$('.commentaire').show();</code></pre>
+						<h4>masque ou affiche l'élément visé.<span class="methode">.toggle()</span></h4>
+            <pre><code class="language-javascript">$('img.grande').toggle();</code></pre>
+					</div>
+					<h3>Effets - avancés</h3>
+					<div class="l-content">
+						<h4>Animation d'un élément en modifiant les propriétées css indiquées (uniquement valeurs numériques)<span class="methode">.animate()</span></h4>
+            <pre><code class="language-javascript">$('p').animate({opacity:0.5</span>,fontSize:'2em'},800</span>);</code></pre>
+						<h4>Pause dans le déroulement des méthodes<span class="methode">.delay()</span></h4>
+						<pre><code class="language-javascript">$('#truc').delay(2000</span>).hide();</code></pre>
+						<h4>Arrête l'animation en court, retire toutes les animations en file d'attente et complète toutes les animations pour les éléments visés.<span class="methode">.finish()</span></h4>
+            <pre><code class="language-javascript">$('#element').finish();</code></pre>
+						<h4>Arrête l'animation sur les éléments visés.<span class="methode">.stop()</span></h4>
+            <pre><code class="language-javascript">$('.objets').stop();</code></pre>
+					</div>
+					<h3>Effets - apparition / disparition</h3>
+					<div class="l-content">
+						<h4>Affiche l'élément progressivement avec un effet de fondu.<span class="methode">.fadeIn()</span></h4>
+            <pre><code class="language-javascript">$('.objets').fadeIn('slow');</code></pre>
+						<h4>Masque l'élément progressivement avec un effet de fondu.<span class="methode">.fadeOut()</span></h4>
+            <pre><code class="language-javascript">$('#element').fadeOut('fast');</code></pre>
+						<h4>Modifie l'opacité de l'élément.<span class="methode">.fadeTo()</span></h4>
+            <pre><code class="language-javascript">$('article img').fadeTo('slow',0.6</span>);</code></pre>
+						<h4>Affiche ou masque l'élément progressivement.<span class="methode">.fadeToggle()</span></h4>
+            <pre><code class="language-javascript">$('.objets').fadeToggle(1200</span>);</code></pre>
+					</div>
+					<h3>Effets - glissé</h3>
+					<div class="l-content">
+						<h4>Affiche l'élément avec un effet de déroulement.<span class="methode">.slideDown()</span></h4>
+            <pre><code class="language-javascript">$('section p.masque').slideDown(fast</span>);</code></pre>
+						<h4>Masque l'élément avec un effet d'enroulement.<span class="methode">.slideUp()</span></h4>
+            <pre><code class="language-javascript">$('#annonce').slideUp(1000</span>);</code></pre>
+						<h4>Affiche avec un effet de déroulement ou masque l'élément avec un effet d'enroulement<span class="methode">.slideToggle()</span></h4>
+            <pre><code class="language-javascript">$('img.changement').slideToggle(1200</span>);</code></pre>
+					</div>
+				</div>
+			</div>
+			<div id="evenements" class="vide">
+				<h2>Événements<span class="triangle haut"></span></h2>
+				<div class="content">
+					<h3>Navigateur</h3>
+					<div class="l-content">
+            <h4>Lien à l'évènement de changement de taille.<span class="methode">.resize()</span></h4>
+            <pre><code class="language-javascript">$(window).resize(function(){
+	$('#bas').hide();
+});</code></pre>
+						<h4>Lien à l'évènement de mouvement d'ascenseur.<span class="methode">.scroll()</span></h4>
+            <pre><code class="language-javascript">$('#article').scroll(function(){
+	$('#contenu').show();
+});</code></pre>
+					</div>
+					<h3>Document - chargement</h3>
+					<div class="l-content">
+						<h4>Lien à l'évènement de chargement du DOM<span class="methode">.ready()</span></h4>
+            <pre><code class="language-javascript">$(document).ready(function(){
+	$('.elements').hide();
+});</span></code>
+					</div>
+					<h3>Évènements attachés</h3>
+					<div class="l-content">
+						<h4>Ajout d'une ou plusieurs gestion d'évènements aux éléments visés.<span class="methode">.on()</span></h4>
+            <pre><code class="language-javascript">$('#info').on('click',function(){
+	$('header img').hide();
+});</code></pre>
+						<h4>Suppression d'une ou plusieurs gestion d'évènements aux éléments visés.<span class="methode">.off()</span></h4>
+            <pre><code class="language-javascript">$('#info').off('click');</code></pre>
+						<h4>Ajout d'une ou plusieurs gestion d'évènements aux éléments visés. L'évènement ne se déclenchera qu'une seule fois.<span class="methode">.one()</span></h4>
+            <pre><code class="language-javascript">$('article .ajout').one('hover',function(){
+	$('footer p').show();
+});</code></pre>
+						<h4>Déclenchement d'un évènement sans action de l'utilisateur.<span class="methode">.trigger()</span></h4>
+            <pre><code class="language-javascript">$('#message').trigger('click');</code></pre>
+						<h4>Déclenche d'un évènement sans action de l'utilisateur.<span class="methode">.triggerHandler()</span></h4>
+            <pre><code class="language-javascript">$('.textes').triggerHandler('focus');</code></pre>
+						<h4>Ajoute une fonction de retour à un ou plusieurs évènements pour tous les éléments qui correspondent au sélecteur indiqué, y compris les éléments ajoutés ensuite au DOM.<span class="methode">.delegate()</span></h4>
+            <pre><code class="language-javascript">$('body').delegate('#message','click',function(){
+	$(this).after('&lt;p&gt;Un autre texte&lt;/p&gt;');
+});</code></pre>
+						<h4>Supprime une gestionnaire d'évènement pour tous les éléments qui correspondent au sélecteur indiqué.<span class="methode">.undelegate()</span></h4>
+            <pre><code class="language-javascript">$('body').undelegate('#message','click');</code></pre>
+					</div>
+					<h3>Formulaire</h3>
+					<div class="l-content">
+						<h4>Lien à l'évènement de focus sur un élément.<span class="methode">focus()</span></h4>
+            <pre><code class="language-javascript">$('#cible').focus(function(){
+	$('#info').show();
+});</code></pre>
+						<h4>Lien à l'évènement de perte du focus sur l'élément.<span class="methode">blur()</span></h4>
+            <pre><code class="language-javascript">$('#cible').blur(function(){
+	$('#info').hide();
+});</code></pre>
+						<h4>Lien à l'évènement de changement de valeur d'un élément.<span class="methode">change()</span></h4>
+            <pre><code class="language-javascript">$('#formulaire textarea').change(function(){
+	$('#message').text('vous avez saisi :' + $(this).val());
+});</code></pre>
+						<h4>Lien à l'évènement de focus sur un élément ou un de ses enfants.<span class="methode">focusin()</span></h4>
+            <pre><code class="language-javascript">$('form').focusin(function(){
+	$('form input').css('borderColor','red');
+});</code></pre>
+						<h4>Lien à l'évènement de perte du focus sur un élément ou un de ses enfants.<span class="methode">focusout()</span></h4>
+            <pre><code class="language-javascript">$('form').focusout(function(){
+	$('form input').css('borderColor','grey');
+});</code></pre>
+						<h4>Lien à l'évènement de sélection d'un texte.<span class="methode">select()</span></h4>
+            <pre><code class="language-javascript">$('p').select(function(){
+	$(this).css('fontStyle','italic');
+});</code></pre>
+						<h4>Lien à l'évènement de soumission d'un formulaire.<span class="methode">.submit()</span></h4>
+            <pre><code class="language-javascript">$('form').submit(function(){
+	$('#information').animate({
+		opacity:1,
+		width:'60%'
+	},1200);
+});</code></pre>
+					</div>
+					<h3>Clavier</h3>
+					<div class="l-content">
+						<h4>Lien à l'évènement d'appui sur la touche du clavier.<span class="methode">keyup()</span></h4>
+            <pre><code class="language-javascript">$('article').keyup(function(){
+	$('#decoration').show();
+});</code></pre>
+						<h4>Lien à l'évènement d'appui et maintien sur la touche du clavier.<span class="methode">keypress()</span></h4>
+            <pre><code class="language-javascript">$('#content').keypress(function(){
+	$('.infos').css('color','red');
+});</code></pre>
+						<h4>Lien à l'évènement de relâchement d'une touche du clavier<span class="methode">keydown()</span></h4>
+            <pre><code class="language-javascript">$('footer').keydown(function(){
+	$('#decoration').hide();
+});</code></pre>
+					</div>
+					<h3>Souris</h3>
+					<div class="l-content">
+            <h4>Lien à l'évènement du clique.<span class="methode">.click()</span></h4>
+            <pre><code class="language-javascript">$('#boite').click(function(){
+	$('#img').width('350');
+});</code></pre>
+            <h4>Lien à l'évènement du double clique.<span class="methode">.dblclick()</span></h4>
+            <pre><code class="language-javascript">$('img').dblclick(function(){
+	$('#contenu').css('backgroundColor','yellow');
+});</code></pre>
+            <h4>Lien à l'évènement du survol du curseur de la souris.<span class="methode">.horver()</span></h4>
+            <pre><code class="language-javascript">$('img').hover(function(){
+	$('#bloc').show();
+});</code></pre>
+            <h4>Lien à l'évènement du mouvement du curseur de la souris.<span class="methode">.mousemove()</span></h4>
+            <pre><code class="language-javascript">$('img').mousemove(function(){
+  $('#contenu').css('backgroundColor','yellow');
+});</code></pre>
+            <h4>Lien à l'évènement de la présence du curseur de la souris sur l'élément .<span class="methode">.mouseover()</span></h4>
+            <pre><code class="language-javascript">$('img').mouseover(function(){
+	$('#contenu').css('backgroundColor','yellow');
+});</code></pre>
+            <h4>Lien à l'évènement de l'entrée du curseur de la souris.<span class="methode">.mouseenter()</span></h4>
+            <pre><code class="language-javascript">$('img').mouseenter(function(){
+	$(this).css('borderWidth','5px');
+});</code></pre>
+            <h4>Lien à l'évènement de l'arrêt du survol du curseur de la souris.<span class="methode">.mouseleave()</span></h4>
+            <pre><code class="language-javascript">$('img').mouseleave(function(){
+	$(this).css('borderWidth','0px');
+});</code></pre>
+            <h4>>Lien à l'évènement de l'arrêt du survol du curseur de la souris.<span class="methode">.mouseout()</span></h4>
+            <pre><code class="language-javascript">$('img').mouseout(function(){
+	$('#contenu').css('backgroundColor','transparent');
+});</code></pre>
+            <h4>Lien à l'évènement de la pression sur un bouton de la souris.<span class="methode">.mousedown()</span></h4>
+            <pre><code class="language-javascript">$('img').mousedown(function(){
+	$('#message').html('Vous avez appuyez sur un bouton de la souris.');
+});</code></pre>
+            <h4>Lien à l'évènement du relâchement d'un bouton de la souris .<span class="methode">.mouseup()</span></h4>
+            <pre><code class="language-javascript">$('img').mouseup(function(){
+	$('#message').html('Vous ne touchez plus à un bouton.');
+});</code></pre>
+					</div>
+				</div>
+			</div>
+      <div id="callbacks" class="vide">
+				<h2>Fonctions de retour (callbacks)<span class="triangle haut"></span></h2>
+				<div class="content">
+          <h3>Ajout et gestion</h3>
+					<h4>Ajoute une ou plusieurs fonctions de retour à la liste des fonctions de retour<span class="methode">callbacks.add()</span></h4>
+          <pre><code class="language-javascript">callbacks.add(fonction);</code></pre>
+          <h4>Lance toutes les fonctions de retour avec les arguments fournis<span class="methode">callbacks.fire()</span></h4>
+          <pre><code class="language-javascript">callbacks.fire('bonjour');</code></pre>
+          <h4>Appelle toutes les fonctions de retour avec leur contexte d'appel et les arguments fournis<span class="methode">callbacks.fireWith()</span></h4>
+          <pre><code class="language-javascript">callbacks.fireWith(window, ['bidule','chose'] );</code></pre>
+          <h3>Vérification</h3>
+          <h4>Vérifie si les fonctions de retour ont été appelées au moins une fois<span class="methode">callbacks.fired()</span></h4>
+          <pre><code class="language-javascript">callbacks.fired();</code></pre>
+          <h4>Déterminer si la liste de fonctions de retour n'est pas vide. Dans le cas où une fonction est fourni comme argument, callback.has vérifie si cette fonction fait partie de la liste.<span class="methode">callbacks.has()</span></h4>
+          <pre><code class="language-javascript">callback.has(fonctionAVerifier);</code></pre>
+          <h4>Vérifie si la liste de fonctions de retour est bloquée<span class="methode">callbacks.locked()</span></h4>
+          <pre><code class="language-javascript">callbacks.locked();</code></pre>
+          <h4>Vérifie si la liste de fonctions de retour est désactivée<span class="methode">callbacks.disabled()</span></h4>
+          <pre><code class="language-javascript">callbacks.disabled();</code></pre>
+          <h3>Modification et suppression</h3>
+          <h4>Supprime une ou plusieurs fonctions de retour d'une liste de fonctions de retour.<span class="methode">callbacks.remove()</span></h4>
+          <pre><code class="language-javascript">callbacks.remove(fonctionAEnlever);</code></pre>
+          <h4>Bloque la liste de fonctions de retour dans son état actuel<span class="methode">callbacks.lock()</span></h4>
+          <pre><code class="language-javascript">callback.lock();</code></pre>
+          <h4>Désactive la liste de fonctions de retour<span class="methode">callbacks.disable()</span></h4>
+          <pre><code class="language-javascript">callbacks.disable();</code></pre>
+          <h4>Supprime toutes les fonctions de retour de la liste<span class="methode">callbacks.empty()</span></h4>
+          <pre><code class="language-javascript">callbacks.empty();</code></pre>
+				</div>
+			</div>
+      <div id="utilitaires" class="vide">
+				<h2>Utilitaires<span class="triangle haut"></span></h2>
+				<div class="content">
+          <h4>Méthode pour parcourir un objet.<span class="methode">jQuery.each()</span></h4>
+					<pre><code class="language-javascript">$('p').each(function(){$(this).html() = texte + ' un ajout';});</code></pre>
+					<h3>Gestion des méthodes en attente</h3>
+          <h4>Voir ou manipuler la file des méthodes en attente sur les éléments visés.<span class="methode">queue()<span></h4>
+          <pre><code class="language-javascript">$('#information').text(div.queue().length);</code></pre>
+          <h4>Exécuter la méthode suivante en attente sur les éléments visés.<span class="methode">dequeue()<span></h4>
+          <pre><code class="language-javascript">$('#information').dequeue();</code></pre>
+					<h4>Supprime de la file d'attente pour les éléments visés toutes les méthodes qui n'ont pas encore été exécutées.<span class="methode">clearQueue()</span></h4>
+          <pre><code class="language-javascript">$('#information').clearQueue();</code></pre>
+          <h3>Gestion des données</h3>
+          <h4>Stocke une donnée arbitraire sur l'élément précisé visés ou récupère cette même valeur.<span class="methode">jQuery.data()</span></h4>
+          <pre><code class="language-javascript">jQuery.data(p,'essais','bonjour');</code></pre>
+          <h4>Vérifie si un élément a une donnée<span class="methode">jQuery.hasData()</span></h4>
+          <pre><code class="language-javascript">jQuery.hasData(img);</code></pre>
+          <h4>Supprime une donnée qui a été stockée.<span class="methode">jQuery.removeData()</span></h4>
+          <pre><code class="language-javascript">jQuery.removeData(p,'essais');</code></pre>
+          <h3>Vérification </h3>
+          <h4>Vérifie si un élément du DOM est un enfant d'un autre élément du DOM<span class="methode">jQuery.contains()</span></h4>
+          <pre><code class="language-javascript">jQuery.contains(document.body,document.getElementById('content'));</code></pre>
+          <h4>Recherche une valeur particulière dans un tableau et renvoie son index<span class="methode">jQuery.inArray()</span></h4>
+          <pre><code class="language-javascript">jQuery.inArray('voiture',['avion','sous-marin','voiture','bateau']);</code></pre>
+          <h4>Vérifie si un élément est un tableau<span class="methode">jQuery.isArray()</span></h4>
+          <pre><code class="language-javascript">jQuery.([415</span>,48</span>,25</span>]);</code></pre>
+          <h4>Vérifie si un élément est une fonction<span class="methode">jQuery.isFunction()</span></h4>
+          <pre><code class="language-javascript">var</span> truc = function(){
+	alert('Bonjour');
+};
+jQuery.isFunction(truc);</code></pre>
+          <h4>Vérifie si un élément est un nombre<span class="methode">jQuery.isNumeric()</span></h4>
+          <pre><code class="language-javascript">jQuery.isNumeric(458</span>);</code></pre>
+          <h4>Vérifie si un élément est un objet<span class="methode">jQuery.isPlainObject()</span></h4>
+          <pre><code class="language-javascript">jQuery.isPlainObject(document.body);</code></pre>
+          <h4>Vérifie si un élément est un objet vide<span class="methode">jQuery.isEmptyObject()</span></h4>
+          <pre><code class="language-javascript">var</span> vide = {};jQuery.isEmptyObject(vide);</code></pre>
+          <h4>Vérifie si un élément du DOM est dans un document XML ou est un document XML.<span class="methode">jQuery.isXMLDoc()</span></h4>
+          <pre><code class="language-javascript">jQuery.isXMLDoc(body);</code></pre>
+          <h4>Vérifie si un élément est une fenêtre<span class="methode">jQuery.isWindow()</span></h4>
+          <pre><code class="language-javascript">jQuery.isWindow(window);</code></pre>
+          <h4>Détermine le type de l'élément passé<span class="methode">jQuery.type()</span></h4>
+          <pre><code class="language-javascript">jQuery.type('du texte');</code></pre>
+          <h3>Manipulation</h3>
+          <h4>Supprime les espace au début et à la fin d'une chaine<span class="methode">jQuery.trim()</span></h4>
+          <pre><code class="language-javascript">jQuery.trim(' un texte entouré d\'espaces ');</code></pre>
+          <h4>Retourne un tableau à partir d'une chaine contenant du HTML<span class="methode">jQuery.parseHTML()</span></h4>
+          <pre><code class="language-javascript">jQuery.parseHTML('voici &lt;cite&gt;du code&lt;/cite&gt; html');</code></pre>
+          <h4>Réunis le contenu de deux tableaux dans le premier tableau<<span class="methode">jQuery.merge()</span></h4>
+          <pre><code class="language-javascript">jQuery.merge(['truc','chose',15],[78,'bidule']);</code></pre>
+          <h4>Filtre un tableau grâce à la fonction qui lui est passé. Le tableau d'origine n'est pas touché<span class="methode">jQuery.grep()</span></h4>
+          <pre><code class="language-javascript">var</span>lis = $('#test li').get();
+var grep = $.grep(lis, function(index, value){
+	return (lis[value].firstChild.nodeValue % 2 == 0);
+});</code></pre>
+          <h4>Trie un tableau en supprimant les doublons<span class="methode">jQuery.unique()</span></h4>
+          <pre><code class="language-javascript">jQuery.unique(elements);</code></pre>
+          <h4>Convertit un ensemble organisé d'élément en tableau JavaScript<span class="methode">jQuery.makeArray()</span></h4>
+          <pre><code class="language-javascript">var elements = document.getElementsByTagName('ul li');
+var tableau = jQuery.makeArray(elements);</code></pre>
+          <h4>Convertit tous les éléments dans un tableau ou un objet dans un nouveau tableau en modifiant ces éléments avec une fonction.<span class="methode">jQuery.map()</span></h4>
+          <pre><code class="language-javascript">jQuery.map([ 0, 1, 2 ], function(n){
+	return n + 4;}
+);</code></pre>
+          <h4>Réunis le contenu de deux objets ou plus dans le premier objet<span class="methode">jQuery.extend()</span></h4>
+          <pre><code class="language-javascript">jQuery.extend({un:1,deux:2,trois:3},{quatre:4,cinq:5});</code></pre>
+          <h4>Ajoute un objet au prototype de jQuery<span class="methode">jQuery.fn.extend()</span></h4>
+          <pre><code class="language-javascript">jQuery.fn.extend({
+	message: function(texte){
+		alert(texte);
+	}
+});</code></pre>
+          <h4>Balaye un JSON et retourne la valeur JavaScript correspondante<span class="methode">jQuery.parseJSON()</span></h4>
+          <pre><code class="language-javascript">var contenu = jQuery.parseJSON('{
+	"info":"Il fait beau"
+}');
+$('#message').text(contenu.info);</code></pre>
+          <h4>Balaye une chaine de caractère cet la renvoie sous forme d'un document XML<span class="methode">jQuery.parseXML()</span></h4>
+          <pre><code class="language-javascript">jQuery.parseXML(duXml);</code></pre>
+          <h3>Divers</h3>
+          <h4>Exécute un code dans le contexte global<span class="methode">jQuery.globalEval()</span></h4>
+          <pre><code class="language-javascript">jQuery.globalEval('var chose = 45');</code></pre>
+          <h4>Prend une fonction et la retourne dans un contexte particulier<span class="methode">jQuery.proxy()</span></h4>
+          <pre><code class="language-javascript">jQuery.proxy(objParticulier,'fonctionSpeciale');</code></pre>
+          <h4>Donne une fonction vide (utile pour la création de plugin)<span class="methode">jQuery.noop()</span></h4>
+          <pre><code class="language-javascript">jQuery.noop();</code></pre>
+          <h4>Donne un nombre représentant l'heure actuelle<span class="methode">jQuery.now()</span></h4>
+          <pre><code class="language-javascript">jQuery.now();</code></pre>
+				</div>
+			</div>
+		</div>
+      <div id="remplissage">.</div>
+      <div id="filtre"></div>
+	</body>
+</html>

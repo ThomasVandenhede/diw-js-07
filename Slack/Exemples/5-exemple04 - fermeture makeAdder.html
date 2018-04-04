@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        var creerFonctionAdditionner = function(base) {
+
+            var additionner = function(nombre) {
+                return base + nombre;
+            }
+            return additionner;
+
+/*
+            return function(nombre) {
+                return base + nombre;
+            }
+*/
+        }
+
+        var ajouterA10 = creerFonctionAdditionner(10);
+        console.log(ajouterA10(5));
+
+        var ajouterA25 = creerFonctionAdditionner(25);
+        console.log(ajouterA25(5));
+
+        var ajouterA100 = creerFonctionAdditionner(100);
+        console.log(ajouterA100(5));
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

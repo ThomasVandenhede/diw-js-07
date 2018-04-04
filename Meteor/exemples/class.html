@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script>
+  class Rectangle {
+  constructor(hauteur, largeur) {
+    this.hauteur = hauteur;
+    this.largeur = largeur;
+  }
+ 
+  get area() {
+    return this.calcArea();
+  }
+
+  click(event) {
+    
+  }
+  static methodeStatique() {
+    console.log('Une méthode accessible sans instance');
+  }
+
+  'click .accept'(event) {
+
+  }
+
+  calcArea() {
+    return this.largeur * this.hauteur;
+  }
+}
+var carre = new Rectangle(10, 10);
+// console.log(carre.area);
+console.log(carre.calcArea());
+
+Rectangle.methodeStatique()
+
+
+var RectangleES5 = function(hauteur, largeur) {
+  this.hauteur = hauteur;
+  this.largeur = largeur;
+
+  this.calcArea = function() {
+    return this.largeur * this.hauteur;
+  }
+}
+
+var carre = new RectangleES5(20, 20);
+// carre.hauteur;
+// carre['hauteur'];
+// console.log(carre.calcArea());
+
+
+var MaFonction = function() {
+  this.truc = 'aaa';
+  this.machin = 'bidule';
+
+  var that = this;
+  this.afficherMachin = function() {
+    setTimeout(function() {
+      console.log('MaFonction', this.machin); // undefined
+      console.log('MaFonction', that.machin); // valeur de la propriété de l'objet
+    }, 10);
+    
+  }
+
+  this.fonctionFleche = () => {
+    setTimeout(() => {
+      console.log('fonctionFleche', this.machin);
+    }, 10);
+    
+  } 
+}
+var maFonction = new MaFonction()
+maFonction.afficherMachin();
+maFonction.fonctionFleche();
+
+/*
+var maFonctionFleche = () => {
+  console.log('maFonctionFleche', this.machin);
+}
+maFonctionFleche()
+*/
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

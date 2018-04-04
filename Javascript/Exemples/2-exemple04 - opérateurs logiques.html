@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        var texte = 'Hello World!'; // contient une chaîne vide
+
+        if (texte == '') {
+            alert('La variable texte est vide');
+        } else {
+            alert('La valeur de texte est : ' + texte);
+        }
+
+        var maVariable = true;
+        var autreVariable = true;
+
+        alert(maVariable && autreVariable); // true
+
+        // && retourne true si les DEUX expressions sont vraie (== true)
+        alert(true && true); // true
+        alert(true && false); // false
+        alert(false && false); // false
+
+        // || retourne true si AU MOINS UNE des expressions est vraie (== true)
+        alert(true || false); // true
+        alert(false || true); // true
+        alert(false || false); // false
+
+
+        alert( (5 > 3) && (5 > 10) ); // false
+
+        if ( texte != '' && texte == 'bonjour' ) {
+            alert('texte contient "bonjour"');
+        } else {
+            alert('texte contient ' + texte);
+        }
+
+        var resultat = 5 > 1 && 5 > 2 && 5 > 3 || 5 > 6
+        // équivaut à :
+        var resultat2 = (((5 > 1) && (5 > 2)) && (5 > 3)) || (5 > 6);
+
+        // L'opérateur ! inverse la valeur d'une expession
+        alert(!true); // affiche false
+        alert(!false); // affiche true
+
+        var monBooleen = true;
+        alert(monBooleen); // affiche true
+        alert(!monBooleen); // affiche false
+
+        alert( !(5 > 1) ) // affiche false
+</script>
+</head>
+<body>
+    
+</body>
+</html>

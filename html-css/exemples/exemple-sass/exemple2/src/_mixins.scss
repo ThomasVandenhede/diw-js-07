@@ -1,0 +1,12 @@
+
+@mixin boite-noire{
+  border: 2px solid black;
+  background-color: darkgrey;
+  color: #fff;
+}
+
+@mixin arrondi($dimension){
+  -moz-border-radius : $dimension;
+  -webkit-border-radius : $dimension;
+  -border-radius : $dimension;
+}

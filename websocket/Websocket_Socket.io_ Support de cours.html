@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<!-- saved from url=(0061)https://learning.virtuoworks.com/mod/resource/view.php?id=122 -->
+<html dir="ltr" lang="fr" xml:lang="fr" class="yui3-js-enabled"><div id="yui3-css-stamp" style="position: absolute !important; visibility: hidden !important" class=""></div><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Websocket/Socket.io: Support de cours</title>
+    <link rel="shortcut icon" href="https://learning.virtuoworks.com/theme/image.php?theme=virtuoworks&amp;component=theme&amp;image=favicon">
+    
+<meta name="keywords" content="moodle, Websocket/Socket.io: Support de cours">
+<script type="text/javascript">
+//<![CDATA[
+var M = {}; M.yui = {};
+M.pageloadstarttime = new Date();
+M.cfg = {"wwwroot":"https:\/\/learning.virtuoworks.com","sesskey":"8LFbCjurTx","loadingicon":"https:\/\/learning.virtuoworks.com\/theme\/image.php?theme=virtuoworks&component=core&image=i%2Floading_small","themerev":-1,"slasharguments":1,"theme":"virtuoworks","jsrev":"1446550186","admin":"admin","svgicons":true};var yui1ConfigFn = function(me) {if(/-skin|reset|fonts|grids|base/.test(me.name)){me.type='css';me.path=me.path.replace(/\.js/,'.css');me.path=me.path.replace(/\/yui2-skin/,'/assets/skins/sam/yui2-skin')}};
+var yui2ConfigFn = function(me) {var parts=me.name.replace(/^moodle-/,'').split('-'),component=parts.shift(),module=parts[0],min='-min';if(/-(skin|core)$/.test(me.name)){parts.pop();me.type='css';min=''};if(module){var filename=parts.join('-');me.path=component+'/'+module+'/'+filename+min+'.'+me.type}else me.path=component+'/'+component+'.'+me.type};
+YUI_config = {"debug":false,"base":"https:\/\/learning.virtuoworks.com\/lib\/yuilib\/3.17.2\/","comboBase":"https:\/\/learning.virtuoworks.com\/theme\/yui_combo.php?","combine":true,"filter":null,"insertBefore":"firstthemesheet","groups":{"yui2":{"base":"https:\/\/learning.virtuoworks.com\/lib\/yuilib\/2in3\/2.9.0\/build\/","comboBase":"https:\/\/learning.virtuoworks.com\/theme\/yui_combo.php?","combine":true,"ext":false,"root":"2in3\/2.9.0\/build\/","patterns":{"yui2-":{"group":"yui2","configFn":yui1ConfigFn}}},"moodle":{"name":"moodle","base":"https:\/\/learning.virtuoworks.com\/theme\/yui_combo.php?m\/1446550186\/","combine":true,"comboBase":"https:\/\/learning.virtuoworks.com\/theme\/yui_combo.php?","ext":false,"root":"m\/1446550186\/","patterns":{"moodle-":{"group":"moodle","configFn":yui2ConfigFn}},"filter":null,"modules":{"moodle-core-lockscroll":{"requires":["plugin","base-build"]},"moodle-core-actionmenu":{"requires":["base","event","node-event-simulate"]},"moodle-core-popuphelp":{"requires":["moodle-core-tooltip"]},"moodle-core-handlebars":{"condition":{"trigger":"handlebars","when":"after"}},"moodle-core-event":{"requires":["event-custom"]},"moodle-core-dock":{"requires":["base","node","event-custom","event-mouseenter","event-resize","escape","moodle-core-dock-loader"]},"moodle-core-dock-loader":{"requires":["escape"]},"moodle-core-checknet":{"requires":["base-base","moodle-core-notification-alert","io-base"]},"moodle-core-formchangechecker":{"requires":["base","event-focus"]},"moodle-core-dragdrop":{"requires":["base","node","io","dom","dd","event-key","event-focus","moodle-core-notification"]},"moodle-core-tooltip":{"requires":["base","node","io-base","moodle-core-notification-dialogue","json-parse","widget-position","widget-position-align","event-outside","cache-base"]},"moodle-core-maintenancemodetimer":{"requires":["base","node"]},"moodle-core-formautosubmit":{"requires":["base","event-key"]},"moodle-core-chooserdialogue":{"requires":["base","panel","moodle-core-notification"]},"moodle-core-notification":{"requires":["moodle-core-notification-dialogue","moodle-core-notification-alert","moodle-core-notification-confirm","moodle-core-notification-exception","moodle-core-notification-ajaxexception"]},"moodle-core-notification-dialogue":{"requires":["base","node","panel","escape","event-key","dd-plugin","moodle-core-widget-focusafterclose","moodle-core-lockscroll"]},"moodle-core-notification-alert":{"requires":["moodle-core-notification-dialogue"]},"moodle-core-notification-confirm":{"requires":["moodle-core-notification-dialogue"]},"moodle-core-notification-exception":{"requires":["moodle-core-notification-dialogue"]},"moodle-core-notification-ajaxexception":{"requires":["moodle-core-notification-dialogue"]},"moodle-core-blocks":{"requires":["base","node","io","dom","dd","dd-scroll","moodle-core-dragdrop","moodle-core-notification"]},"moodle-core_availability-form":{"requires":["base","node","event","panel","moodle-core-notification-dialogue","json"]},"moodle-backup-backupselectall":{"requires":["node","event","node-event-simulate","anim"]},"moodle-backup-confirmcancel":{"requires":["node","node-event-simulate","moodle-core-notification-confirm"]},"moodle-calendar-info":{"requires":["base","node","event-mouseenter","event-key","overlay","moodle-calendar-info-skin"]},"moodle-course-toolboxes":{"requires":["node","base","event-key","node","io","moodle-course-coursebase","moodle-course-util"]},"moodle-course-dragdrop":{"requires":["base","node","io","dom","dd","dd-scroll","moodle-core-dragdrop","moodle-core-notification","moodle-course-coursebase","moodle-course-util"]},"moodle-course-categoryexpander":{"requires":["node","event-key"]},"moodle-course-modchooser":{"requires":["moodle-core-chooserdialogue","moodle-course-coursebase"]},"moodle-course-util":{"requires":["node"],"use":["moodle-course-util-base"],"submodules":{"moodle-course-util-base":{},"moodle-course-util-section":{"requires":["node","moodle-course-util-base"]},"moodle-course-util-cm":{"requires":["node","moodle-course-util-base"]}}},"moodle-course-management":{"requires":["base","node","io-base","moodle-core-notification-exception","json-parse","dd-constrain","dd-proxy","dd-drop","dd-delegate","node-event-delegate"]},"moodle-course-formatchooser":{"requires":["base","node","node-event-simulate"]},"moodle-form-dateselector":{"requires":["base","node","overlay","calendar"]},"moodle-form-passwordunmask":{"requires":["node","base"]},"moodle-form-showadvanced":{"requires":["node","base","selector-css3"]},"moodle-form-shortforms":{"requires":["node","base","selector-css3","moodle-core-event"]},"moodle-core_message-messenger":{"requires":["escape","handlebars","io-base","moodle-core-notification-ajaxexception","moodle-core-notification-alert","moodle-core-notification-dialogue","moodle-core-notification-exception"]},"moodle-question-chooser":{"requires":["moodle-core-chooserdialogue"]},"moodle-question-searchform":{"requires":["base","node"]},"moodle-question-qbankmanager":{"requires":["node","selector-css3"]},"moodle-question-preview":{"requires":["base","dom","event-delegate","event-key","core_question_engine"]},"moodle-availability_completion-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-availability_date-form":{"requires":["base","node","event","io","moodle-core_availability-form"]},"moodle-availability_grade-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-availability_group-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-availability_grouping-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-availability_profile-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-mod_assign-history":{"requires":["node","transition"]},"moodle-mod_forum-subscriptiontoggle":{"requires":["base-base","io-base"]},"moodle-mod_quiz-quizquestionbank":{"requires":["base","event","node","io","io-form","yui-later","moodle-question-qbankmanager","moodle-core-notification-dialogue"]},"moodle-mod_quiz-toolboxes":{"requires":["base","node","event","event-key","io","moodle-mod_quiz-quizbase","moodle-mod_quiz-util-slot","moodle-core-notification-ajaxexception"]},"moodle-mod_quiz-randomquestion":{"requires":["base","event","node","io","moodle-core-notification-dialogue"]},"moodle-mod_quiz-modform":{"requires":["base","node","event"]},"moodle-mod_quiz-dragdrop":{"requires":["base","node","io","dom","dd","dd-scroll","moodle-core-dragdrop","moodle-core-notification","moodle-mod_quiz-quizbase","moodle-mod_quiz-util-base","moodle-mod_quiz-util-page","moodle-mod_quiz-util-slot","moodle-course-util"]},"moodle-mod_quiz-questionchooser":{"requires":["moodle-core-chooserdialogue","moodle-mod_quiz-util","querystring-parse"]},"moodle-mod_quiz-util":{"requires":["node"],"use":["moodle-mod_quiz-util-base"],"submodules":{"moodle-mod_quiz-util-base":{},"moodle-mod_quiz-util-slot":{"requires":["node","moodle-mod_quiz-util-base"]},"moodle-mod_quiz-util-page":{"requires":["node","moodle-mod_quiz-util-base"]}}},"moodle-mod_quiz-quizbase":{"requires":["base","node"]},"moodle-mod_quiz-autosave":{"requires":["base","node","event","event-valuechange","node-event-delegate","io-form"]},"moodle-mod_quiz-repaginate":{"requires":["base","event","node","io","moodle-core-notification-dialogue"]},"moodle-message_airnotifier-toolboxes":{"requires":["base","node","io"]},"moodle-block_navigation-navigation":{"requires":["base","io-base","node","event-synthetic","event-delegate","json-parse"]},"moodle-filter_glossary-autolinker":{"requires":["base","node","io-base","json-parse","event-delegate","overlay","moodle-core-event","moodle-core-notification-alert","moodle-core-notification-exception","moodle-core-notification-ajaxexception"]},"moodle-filter_mathjaxloader-loader":{"requires":["moodle-core-event"]},"moodle-editor_atto-editor":{"requires":["node","transition","io","overlay","escape","event","event-simulate","event-custom","node-event-html5","yui-throttle","moodle-core-notification-dialogue","moodle-core-notification-confirm","moodle-editor_atto-rangy","handlebars","timers"]},"moodle-editor_atto-plugin":{"requires":["node","base","escape","event","event-outside","handlebars","event-custom","timers"]},"moodle-editor_atto-menu":{"requires":["moodle-core-notification-dialogue","node","event","event-custom"]},"moodle-editor_atto-rangy":{"requires":[]},"moodle-report_eventlist-eventfilter":{"requires":["base","event","node","node-event-delegate","datatable","autocomplete","autocomplete-filters"]},"moodle-report_loglive-fetchlogs":{"requires":["base","event","node","io","node-event-delegate"]},"moodle-gradereport_grader-gradereporttable":{"requires":["base","node","event","handlebars","overlay","event-hover"]},"moodle-gradereport_history-userselector":{"requires":["escape","event-delegate","event-key","handlebars","io-base","json-parse","moodle-core-notification-dialogue"]},"moodle-tool_capability-search":{"requires":["base","node"]},"moodle-tool_monitor-dropdown":{"requires":["base","event","node"]},"moodle-assignfeedback_editpdf-editor":{"requires":["base","event","node","io","graphics","json","event-move","event-resize","querystring-stringify-simple","moodle-core-notification-dialog","moodle-core-notification-exception","moodle-core-notification-ajaxexception"]},"moodle-atto_accessibilitychecker-button":{"requires":["color-base","moodle-editor_atto-plugin"]},"moodle-atto_accessibilityhelper-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_align-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_bold-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_charmap-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_clear-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_collapse-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_emoticon-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_equation-button":{"requires":["moodle-editor_atto-plugin","moodle-core-event","io","event-valuechange","tabview","array-extras"]},"moodle-atto_html-button":{"requires":["moodle-editor_atto-plugin","event-valuechange"]},"moodle-atto_image-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_indent-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_italic-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_link-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_managefiles-usedfiles":{"requires":["node","escape"]},"moodle-atto_managefiles-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_media-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_noautolink-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_orderedlist-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_rtl-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_strike-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_subscript-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_superscript-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_table-button":{"requires":["moodle-editor_atto-plugin","moodle-editor_atto-menu","event","event-valuechange"]},"moodle-atto_title-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_underline-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_undo-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_unorderedlist-button":{"requires":["moodle-editor_atto-plugin"]}}},"gallery":{"name":"gallery","base":"https:\/\/learning.virtuoworks.com\/lib\/yuilib\/gallery\/","combine":true,"comboBase":"https:\/\/learning.virtuoworks.com\/theme\/yui_combo.php?","ext":false,"root":"gallery\/1446550186\/","patterns":{"gallery-":{"group":"gallery"}}}},"modules":{"core_filepicker":{"name":"core_filepicker","fullpath":"https:\/\/learning.virtuoworks.com\/lib\/javascript.php\/1446550186\/repository\/filepicker.js","requires":["base","node","node-event-simulate","json","async-queue","io-base","io-upload-iframe","io-form","yui2-treeview","panel","cookie","datatable","datatable-sort","resize-plugin","dd-plugin","escape","moodle-core_filepicker"]}}};
+M.yui.loader = {modules: {}};
+
+//]]>
+</script>
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/yui_combo.php"><script type="text/javascript" src="./Websocket_Socket.io_ Support de cours_files/yui_combo(1).php"></script><script charset="utf-8" id="yui_3_17_2_2_1519719016545_14" src="./Websocket_Socket.io_ Support de cours_files/yui_combo(2).php" async=""></script><link charset="utf-8" rel="stylesheet" id="yui_3_17_2_2_1519719016545_58" href="./Websocket_Socket.io_ Support de cours_files/yui_combo(3).php"><script charset="utf-8" id="yui_3_17_2_2_1519719016545_59" src="./Websocket_Socket.io_ Support de cours_files/yui_combo(4).php" async=""></script><script charset="utf-8" id="yui_3_17_2_2_1519719016545_67" src="./Websocket_Socket.io_ Support de cours_files/yui_combo(5).php" async=""></script><script charset="utf-8" id="yui_3_17_2_2_1519719016545_101" src="./Websocket_Socket.io_ Support de cours_files/yui_combo(6).php" async=""></script><script id="firstthemesheet" type="text/css">/** Required in order to fix style inclusion problems in IE with YUI **/</script><link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug.php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(1).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(2).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(3).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(4).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(5).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(6).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(7).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(8).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(9).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(10).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(11).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(12).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(13).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(14).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(15).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(16).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(17).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(18).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(19).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(20).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(21).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(22).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(23).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(24).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(25).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(26).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(27).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(28).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(29).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(30).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(31).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(32).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(33).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(34).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(35).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(36).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(37).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(38).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(39).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(40).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(41).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(42).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(43).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(44).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(45).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(46).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(47).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(48).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(49).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(50).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(51).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(52).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(53).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(54).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(55).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(56).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(57).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(58).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(59).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(60).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(61).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(62).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(63).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(64).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(65).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(66).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(67).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(68).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(69).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(70).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(71).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(72).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(73).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(74).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(75).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(76).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(77).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(78).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(79).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(80).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(81).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(82).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(83).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(84).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(85).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(86).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(87).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(88).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(89).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(90).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(91).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(92).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(93).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(94).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(95).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(96).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(97).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(98).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(99).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(100).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(101).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(102).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(103).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(104).php">
+<link rel="stylesheet" type="text/css" href="./Websocket_Socket.io_ Support de cours_files/styles_debug(105).php">
+<script type="text/javascript" src="./Websocket_Socket.io_ Support de cours_files/javascript-static.js.téléchargement"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="core/first" src="./Websocket_Socket.io_ Support de cours_files/first.js.téléchargement"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="jqueryprivate" src="./Websocket_Socket.io_ Support de cours_files/jquery-private.js.téléchargement"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="jquery" src="./Websocket_Socket.io_ Support de cours_files/jquery-1.11.2.min.js.téléchargement"></script><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    config: ["Accessible.js", "Safe.js"],
+    errorSettings: { message: ["!"] },
+    skipStartupTypeset: true,
+    messageStyle: "none"
+});
+</script></head>
+
+<body id="page-mod-resource-view" class="format-topics  path-mod path-mod-resource safari dir-ltr lang-fr yui-skin-sam yui3-skin-sam learning-virtuoworks-com pagelayout-incourse course-32 context-450 cmid-122 category-15 has-region-side-pre used-region-side-pre has-region-side-post empty-region-side-post side-pre-only jsenabled">
+
+<div class="skiplinks"><a class="skip" href="https://learning.virtuoworks.com/mod/resource/view.php?id=122#maincontent">Passer au contenu principal</a></div>
+<script type="text/javascript">
+//<![CDATA[
+document.body.className += ' jsenabled';
+//]]>
+</script>
+
+
+<header role="banner" class="navbar navbar-fixed-top moodle-has-zindex">
+    <nav role="navigation" class="navbar-inner">
+        <div class="container-fluid">
+            <a class="brand" href="https://learning.virtuoworks.com/">Learning VirtuoWorks</a>
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <div class="usermenu"><div id="action-menu-0" class="moodle-actionmenu nowrap-items" data-enhance="moodle-core-actionmenu" data-enhanced="1"><ul id="action-menu-0-menubar" class="menubar" role="menubar"><li role="presentation"><a class="toggle-display textmenu" title="" id="action-menu-toggle-0" role="menuitem" href="https://learning.virtuoworks.com/mod/resource/view.php?id=122#" aria-haspopup="true"><span class="userbutton"><span class="usertext">DIW JS07</span><span class="avatars"><span class="avatar current"><img src="./Websocket_Socket.io_ Support de cours_files/f2" alt="Avatar DIW JS07" title="Avatar DIW JS07" class="userpicture" width="35" height="35" role="presentation"></span></span></span><b class="caret"></b></a></li></ul><ul id="action-menu-0-menu" class="menu  align-tr-br" data-rel="menu-content" aria-labelledby="action-menu-toggle-0" role="menu" data-align="tr-br" aria-hidden="true"><li role="presentation"><a class="icon menu-action" role="menuitem" href="https://learning.virtuoworks.com/my/" aria-labelledby="actionmenuaction-1"><img class="iconsmall" alt="" src="./Websocket_Socket.io_ Support de cours_files/image.php"><span class="menu-action-text" id="actionmenuaction-1">Tableau de bord</span></a></li><li role="presentation"><span class="filler">&nbsp;</span></li><li role="presentation"><a class="icon menu-action" role="menuitem" href="https://learning.virtuoworks.com/user/profile.php?id=18" aria-labelledby="actionmenuaction-2"><img class="iconsmall" alt="" src="./Websocket_Socket.io_ Support de cours_files/image(1).php"><span class="menu-action-text" id="actionmenuaction-2">Profil</span></a></li><li role="presentation"><a class="icon menu-action" role="menuitem" href="https://learning.virtuoworks.com/grade/report/overview/index.php" aria-labelledby="actionmenuaction-3"><img class="iconsmall" alt="" src="./Websocket_Socket.io_ Support de cours_files/image(2).php"><span class="menu-action-text" id="actionmenuaction-3">Notes</span></a></li><li role="presentation"><a class="icon menu-action" role="menuitem" href="https://learning.virtuoworks.com/message/index.php" aria-labelledby="actionmenuaction-4"><img class="iconsmall" alt="" src="./Websocket_Socket.io_ Support de cours_files/image(3).php"><span class="menu-action-text" id="actionmenuaction-4">Messages personnels</span></a></li><li role="presentation"><a class="icon menu-action" role="menuitem" href="https://learning.virtuoworks.com/user/preferences.php" aria-labelledby="actionmenuaction-5"><img class="iconsmall" alt="" src="./Websocket_Socket.io_ Support de cours_files/image(4).php"><span class="menu-action-text" id="actionmenuaction-5">Préférences</span></a></li><li role="presentation"><span class="filler">&nbsp;</span></li><li role="presentation"><a class="icon menu-action" role="menuitem" href="https://learning.virtuoworks.com/login/logout.php?sesskey=8LFbCjurTx" aria-labelledby="actionmenuaction-6"><img class="iconsmall" alt="" src="./Websocket_Socket.io_ Support de cours_files/image(5).php"><span class="menu-action-text" id="actionmenuaction-6">Déconnexion</span></a></li></ul></div></div>            <div class="nav-collapse collapse">
+                <ul class="nav"><li class="dropdown langmenu"><a href="https://learning.virtuoworks.com/mod/resource/view.php?id=122#" class="dropdown-toggle" data-toggle="dropdown" title="Langue">Français (fr)<b class="caret"></b></a><ul class="dropdown-menu"><li><a title="English (en)" href="https://learning.virtuoworks.com/mod/resource/view.php?id=122&amp;lang=en">English (en)</a></li><li><a title="Français (fr)" href="https://learning.virtuoworks.com/mod/resource/view.php?id=122&amp;lang=fr">Français (fr)</a></li></ul></li></ul>                <ul class="nav pull-right">
+                    <li></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div id="page" class="container-fluid">
+    <header id="page-header" class="clearfix"><div class="logo"></div><div class="clearfix" id="page-navbar"><nav class="breadcrumb-nav"><span class="accesshide">Chemin de la page</span><ul class="breadcrumb"><li><a href="https://learning.virtuoworks.com/my/">Tableau de bord</a> <span class="divider"> <span class="accesshide "><span class="arrow_text">/</span>&nbsp;</span><span class="arrow sep">►</span> </span></li><li><a href="https://learning.virtuoworks.com/course/index.php?categoryid=27">Développement</a> <span class="divider"> <span class="accesshide "><span class="arrow_text">/</span>&nbsp;</span><span class="arrow sep">►</span> </span></li><li><a href="https://learning.virtuoworks.com/course/index.php?categoryid=11">JavaScript</a> <span class="divider"> <span class="accesshide "><span class="arrow_text">/</span>&nbsp;</span><span class="arrow sep">►</span> </span></li><li><a href="https://learning.virtuoworks.com/course/index.php?categoryid=14">Back-end</a> <span class="divider"> <span class="accesshide "><span class="arrow_text">/</span>&nbsp;</span><span class="arrow sep">►</span> </span></li><li><a href="https://learning.virtuoworks.com/course/index.php?categoryid=15">Frameworks</a> <span class="divider"> <span class="accesshide "><span class="arrow_text">/</span>&nbsp;</span><span class="arrow sep">►</span> </span></li><li><a title="Websocket et Socket.io : Fondamentaux et avancé" href="https://learning.virtuoworks.com/course/view.php?id=32">Websocket/Socket.io</a> <span class="divider"> <span class="accesshide "><span class="arrow_text">/</span>&nbsp;</span><span class="arrow sep">►</span> </span></li><li><span tabindex="0">Cours</span> <span class="divider"> <span class="accesshide "><span class="arrow_text">/</span>&nbsp;</span><span class="arrow sep">►</span> </span></li><li><a title="Fichier" href="https://learning.virtuoworks.com/mod/resource/view.php?id=122">Support de cours</a></li></ul></nav><div class="breadcrumb-button"></div></div><div id="course-header"></div></header>    <div id="page-content" class="row-fluid">
+        <div id="region-main-box" class="span9">
+            <div class="row-fluid">
+                <section id="region-main" class="span8 pull-right">
+                    <div role="main"><span id="maincontent"></span><h2>Support de cours</h2><div class="resourcecontent resourcegeneral">
+  <iframe id="resourceobject" src="./Websocket_Socket.io_ Support de cours_files/cours.html" style="width: 1214px; height: 629px;">
+    Cliquer le lien &lt;a href="https://learning.virtuoworks.com/pluginfile.php/450/mod_resource/content/4/cours.html" &gt;cours.html&lt;/a&gt; pour afficher le fichier.
+  </iframe>
+</div><div id="resourceintro" class="box mod_introbox"><div class="no-overflow"><p><span style="color: rgb(51, 51, 51); font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 14px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: 20px; orphans: auto; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 1; word-spacing: 0px; -webkit-text-stroke-width: 0px; display: inline !important; float: none; background-color: rgb(255, 255, 255);">Le support de cours au format HTML.</span><br></p></div></div></div>                </section>
+                <aside id="block-region-side-pre" class="span4 desktop-first-column block-region" data-blockregion="side-pre" data-droptarget="1"><a href="https://learning.virtuoworks.com/mod/resource/view.php?id=122#sb-1" class="skip-block">Sauter Navigation</a><div id="inst4" class="block_navigation  block" role="navigation" data-block="navigation" data-instanceid="4" aria-labelledby="instance-4-header" data-dockable="1"><div class="header"><div class="title" id="yui_3_17_2_2_1519719016545_89"><div class="block_action"><img class="block-hider-hide" alt="Cacher bloc Navigation" src="./Websocket_Socket.io_ Support de cours_files/image(6).php" title="Cacher bloc Navigation"><img class="block-hider-show" alt="Afficher bloc Navigation" src="./Websocket_Socket.io_ Support de cours_files/image(7).php" title="Afficher bloc Navigation"><input type="image" class="moveto customcommand requiresjs" alt="Déplacer vers le dock" title="Mettre le bloc Navigation dans le dock" src="./Websocket_Socket.io_ Support de cours_files/image(8).php"></div><h2 id="instance-4-header">Navigation</h2></div></div><div class="content"><ul class="block_tree list"><li class="type_unknown depth_1 contains_branch" aria-expanded="true"><p class="tree_item branch canexpand navigation_node"><a href="https://learning.virtuoworks.com/my/">Tableau de bord</a></p><ul><li class="type_setting depth_2 item_with_icon"><p class="tree_item leaf hasicon"><a href="https://learning.virtuoworks.com/?redirect=0"><img class="smallicon navicon" alt="" src="./Websocket_Socket.io_ Support de cours_files/image(9).php"><span class="item-content-wrap">Accueil du site</span></a></p></li><li class="type_course depth_2 collapsed contains_branch" aria-expanded="false"><p class="tree_item branch"><span title="E-learning VirtuoWorks" tabindex="0">Pages du site</span></p><ul><li class="type_custom depth_3 item_with_icon"><p class="tree_item leaf hasicon"><a href="https://learning.virtuoworks.com/calendar/view.php?view=month"><img class="smallicon navicon" alt="" src="./Websocket_Socket.io_ Support de cours_files/image(9).php"><span class="item-content-wrap">Calendrier</span></a></p></li></ul></li><li class="type_system depth_2 contains_branch" aria-expanded="true"><p class="tree_item branch"><span tabindex="0">Cours actuel</span></p><ul><li class="type_course depth_3 contains_branch" aria-expanded="true"><p class="tree_item branch canexpand"><a title="Websocket et Socket.io : Fondamentaux et avancé" href="https://learning.virtuoworks.com/course/view.php?id=32">Websocket/Socket.io</a></p><ul><li class="type_unknown depth_4 collapsed contains_branch" aria-expanded="false"><p class="tree_item branch"><a href="https://learning.virtuoworks.com/user/index.php?id=32">Participants</a></p><ul><li class="type_user depth_5 item_with_icon"><p class="tree_item leaf hasicon"><a href="https://learning.virtuoworks.com/user/view.php?id=18&amp;course=32"><img class="smallicon navicon" alt="" src="./Websocket_Socket.io_ Support de cours_files/image(9).php"><span class="item-content-wrap">DIW JS07</span></a></p></li></ul></li><li class="type_structure depth_4 contains_branch" aria-expanded="true"><p class="tree_item branch"><span tabindex="0">Cours</span></p><ul><li class="type_activity depth_5 item_with_icon current_branch"><p class="tree_item leaf hasicon active_tree_node"><a title="Fichier" href="https://learning.virtuoworks.com/mod/resource/view.php?id=122"><img class="smallicon navicon" alt="Fichier" title="Fichier" src="./Websocket_Socket.io_ Support de cours_files/image(10).php"><span class="item-content-wrap">Support de cours</span></a></p></li></ul></li><li class="type_structure depth_4 collapsed contains_branch" aria-expanded="false"><p class="tree_item branch" id="expandable_branch_30_330" data-expandable="1" data-loaded="0"><span tabindex="0">Exercices d'application</span></p></li></ul></li></ul></li><li class="type_system depth_2 collapsed contains_branch" aria-expanded="false"><p class="tree_item branch" id="expandable_branch_0_mycourses" data-expandable="1" data-loaded="0"><span tabindex="0">Mes cours</span></p></li></ul></li></ul></div></div><span id="sb-1" class="skip-block-to"></span></aside>            </div>
+        </div>
+        <aside id="block-region-side-post" class="span3 pull-right block-region" data-blockregion="side-post" data-droptarget="1"></aside>    </div>
+
+    <footer id="page-footer">
+        <div id="course-footer"></div>
+        <p class="helplink"></p>
+        <div class="logininfo">Connecté sous le nom «&nbsp;<a href="https://learning.virtuoworks.com/user/profile.php?id=18" title="Consulter le profil">DIW JS07</a>&nbsp;» (<a href="https://learning.virtuoworks.com/login/logout.php?sesskey=8LFbCjurTx">Déconnexion</a>)</div><div class="homelink"><a href="https://learning.virtuoworks.com/course/view.php?id=32">Websocket/Socket.io</a></div>    </footer>
+
+    <script type="text/javascript">
+//<![CDATA[
+var require = {
+    baseUrl : 'https://learning.virtuoworks.com/lib/requirejs.php/1446550186/',
+    // We only support AMD modules with an explicit define() statement.
+    enforceDefine: true,
+    skipDataMain: true,
+
+    paths: {
+        jquery: 'https://learning.virtuoworks.com/lib/javascript.php/1446550186/lib/jquery/jquery-1.11.2.min',
+        jqueryui: 'https://learning.virtuoworks.com/lib/javascript.php/1446550186/lib/jquery/ui-1.11.4/jquery-ui.min',
+        jqueryprivate: 'https://learning.virtuoworks.com/lib/javascript.php/1446550186/lib/requirejs/jquery-private'
+    },
+
+    // Custom jquery config map.
+    map: {
+      // '*' means all modules will get 'jqueryprivate'
+      // for their 'jquery' dependency.
+      '*': { jquery: 'jqueryprivate' },
+
+      // 'jquery-private' wants the real jQuery module
+      // though. If this line was not here, there would
+      // be an unresolvable cyclic dependency.
+      jqueryprivate: { jquery: 'jquery' }
+    }
+};
+
+//]]>
+</script>
+<script type="text/javascript" src="./Websocket_Socket.io_ Support de cours_files/require.min.js.téléchargement"></script>
+<script type="text/javascript">
+//<![CDATA[
+require(['core/first'], function() {
+;
+require(["core/log"], function(amd) { amd.setConfig({"level":"warn"}); });
+});
+//]]>
+</script>
+<script type="text/javascript">
+//<![CDATA[
+M.yui.add_module({"mathjax":{"name":"mathjax","fullpath":"https:\/\/cdn.mathjax.org\/mathjax\/2.5-latest\/MathJax.js?delayStartupUntil=configured"}});
+
+//]]>
+</script>
+<script type="text/javascript" src="./Websocket_Socket.io_ Support de cours_files/javascript.php"></script>
+<script type="text/javascript">
+//<![CDATA[
+M.str = {"moodle":{"lastmodified":"Modifi\u00e9 le","name":"Nom","error":"Erreur","info":"Information","viewallcourses":"Afficher tous les cours","morehelp":"Plus d'aide","loadinghelp":"Chargement...","cancel":"Annuler","yes":"Oui","confirm":"Confirmer","no":"Non","areyousure":"En \u00eates-vous bien s\u00fbr\u00a0?","closebuttontitle":"Fermer","unknownerror":"Erreur inconnue"},"repository":{"type":"Type","size":"Taille","invalidjson":"Cha\u00eene JSON non valide","nofilesattached":"Aucun fichier joint","filepicker":"S\u00e9lecteur de fichiers","logout":"D\u00e9connexion","nofilesavailable":"Aucun fichier disponible","norepositoriesavailable":"D\u00e9sol\u00e9, aucun de vos d\u00e9p\u00f4ts actuels ne peut retourner de fichiers dans le format requis.","fileexistsdialogheader":"Le fichier existe","fileexistsdialog_editor":"Un fichier de ce nom a d\u00e9j\u00e0 \u00e9t\u00e9 joint au texte que vous modifiez.","fileexistsdialog_filemanager":"Un fichier de ce nom a d\u00e9j\u00e0 \u00e9t\u00e9 joint","renameto":"Renommer \u00e0 {$a}","referencesexist":"Ce fichier est utilis\u00e9 comme source par {$a} alias.","select":"S\u00e9lectionnez"},"block":{"addtodock":"D\u00e9placer vers le dock","undockitem":"Retirer cet \u00e9l\u00e9ment du dock","dockblock":"Mettre le bloc {$a} dans le dock","undockblock":"\u00d4ter du dock le bloc {$a}","undockall":"Tout retirer du dock","hidedockpanel":"Cacher le panneau du dock","hidepanel":"Cacher le dock"},"langconfig":{"thisdirectionvertical":"btt"},"admin":{"confirmation":"Confirmation"}};
+//]]>
+</script>
+<script type="text/javascript">
+//<![CDATA[
+var navtreeexpansions4 = [{"id":"expandable_branch_30_330","key":"330","type":30},{"id":"expandable_branch_0_mycourses","key":"mycourses","type":0}];
+//]]>
+</script>
+<script type="text/javascript">
+//<![CDATA[
+YUI().use('node', function(Y) {
+M.util.load_flowplayer();
+setTimeout("fix_column_widths()", 20);
+Y.use("moodle-core-dock-loader",function() {M.core.dock.loader.initLoader();
+});
+ M.util.js_pending('random5a9512612f2381'); Y.on('domready', function() { M.util.init_maximised_embed(Y, "resourceobject");  M.util.js_complete('random5a9512612f2381'); });
+Y.use("moodle-block_navigation-navigation",function() {M.block_navigation.init_add_tree({"id":"4","instance":"4","candock":true,"courselimit":"20","expansionlimit":0});
+});
+Y.use("moodle-block_navigation-navigation",function() {M.block_navigation.init_add_tree({"id":"5","instance":"5","candock":true});
+});
+M.util.help_popups.setup(Y);
+Y.use("moodle-core-popuphelp",function() {M.core.init_popuphelp();
+});
+Y.use("moodle-core-actionmenu",function() {M.core.actionmenu.init();
+});
+M.util.init_block_hider(Y, {"id":"inst4","title":"Navigation","preference":"block4hidden","tooltipVisible":"Cacher bloc Navigation","tooltipHidden":"Afficher bloc Navigation"});
+Y.use("moodle-filter_mathjaxloader-loader",function() {M.filter_mathjaxloader.configure({"mathjaxconfig":"\nMathJax.Hub.Config({\n    config: [\"Accessible.js\", \"Safe.js\"],\n    errorSettings: { message: [\"!\"] },\n    skipStartupTypeset: true,\n    messageStyle: \"none\"\n});\n","lang":"fr"});
+});
+ M.util.js_pending('random5a9512612f2384'); Y.on('domready', function() { M.util.js_complete("init");  M.util.js_complete('random5a9512612f2384'); });
+
+});
+//]]>
+</script>
+
+</div>
+
+
+</body></html>

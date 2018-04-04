@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="2-rappel.js"></script>
+    <script>
+        // alert('Du code exécuté dans HEAD');
+        var bonjour = 'Hello';
+        bonjour = 'Bonjour';
+        // bonjour = bonjour + ' à tous';
+        bonjour += 'à tous';
+
+        var nombre = 45;
+        var autreNombre = 2;
+        var resultat = nombre / autreNombre;
+        alert(resultat); // un nombre décimal
+
+
+        var maFonction = function() {
+            alert('Bonjour les DIWJS !');
+        };
+
+        var auChargement = function() {
+            alert('Le document est chargé');
+        };
+    </script>
+</head>
+<body onload="auChargement();">
+    <p onclick="maFonction();">Lorem ipsum</p>
+    <script>
+        // alert('Du code exécuté dans le BODY');
+    </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        // Un embranchement dans le code.
+        // la condition entre parenthèses est une expression qui réslute en une valeur booléene
+        if (true) {
+            // Code à exécuter si la condition vaut true
+        }
+
+        var texte = 'Bonjour';
+        if (texte == 'Bon' + 'jour') {
+            alert('C\'est le matin');
+        }
+
+        if (confirm('Voulez-vous continuer ?')) {
+            alert('Vous avez décidé de continuer');
+        } else {
+            alert('Vous ne voulez pas jouer !');
+        }
+
+        var reponse = confirm('Voulez-vous continuer ?');
+        if (reponse) {
+            alert('Vous avez décidé de continuer');
+        } else {
+            alert('Vous ne voulez pas jouer !');
+        }
+        alert(reponse);
+
+
+        var direBonjour = function(nom) {
+            return 'Bonjour ' + nom;
+        };
+        var salutation = '';
+        // var salutation = direBonjour('Rachid');
+        if (salutation != '') {
+            alert(salutation);
+        }
+
+        var valeurEstPaire = function(nombre) {
+            var reste = nombre % 2;
+            if (reste === 0) {
+                return true;
+            } else {
+                return false;
+            }
+        };
+
+        var somme = 569 + 123;
+        if (valeurEstPaire(somme)) {
+            alert('La somme est paire');
+        } else {
+            alert('La somme est impaire');
+        }
+
+/*
+        alert('1 : ' + valeurEstPaire(1));
+        alert('2 : ' + valeurEstPaire(2));
+        alert('99 : ' + valeurEstPaire(99));
+        alert('222 : ' + valeurEstPaire(222));
+*/
+
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

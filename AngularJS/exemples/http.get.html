@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+
+  <div ng-controller="monControllerHttp as httpCtrl">
+    {{ httpCtrl }}
+  </div>
+
+
+  <script src="./lib/angular.min.js"></script>
+  <script>
+    var refMonModule = angular.module('monModuleApp', []); // 2 arguments : Setter (on crée un module)
+
+    angular.module('monModuleApp').config(['$sceDelegateProvider', function($sceDelegateProvider){
+      $sceDelegateProvider.resourceUrlWhitelist([
+        'self', //autorise toutes les requête vers et en provenance du même domaine
+        'http://samples.openweathermap.org/**' //autorise toutes les requête vers et en provenance du domaine api.openweathermap.org
+      ])
+    }]);
+
+    refMonModule.controller('monControllerHttp', ['$http', function(serviceHttp) {
+      serviceHttp.jsonp('http://samples.openweathermap.org/data/2.5/weather?q=Paris&appid=bb026e3b05ebaf33312aeea8b300ef73')
+      .then(function(data) {
+        console.log(data);
+      }, function(error) {
+        console.log(error);
+      });
+    }]);
+
+    angular.bootstrap(window.document, ['monModuleApp'], {strictDi: true});
+  </script>
+</body>
+</html>

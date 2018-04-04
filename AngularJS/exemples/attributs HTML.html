@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+  <p class="test autre-classe truc">Texte de mon paragraphe</p>
+
+  <div class="" ng-init="maVariable = 2 * 5"></div>
+
+  <div ng-init="monObj={un:1,tab:[{a:1,b:2},{a:5,b:3}]}"></div>
+
+  <script src="./lib/angular.min.js"></script>
+  <script>
+    angular.module('monModule', []);
+    angular.bootstrap(window.document, ['monModule'], {strictDi: true});
+  </script>
+
+</body>
+</html>

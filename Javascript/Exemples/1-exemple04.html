@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        var monTableauVide = []; // tableau vide
+
+        var monTableau = ['bonjour', 13, 'Bonne sieste', true, 3];
+        alert(monTableau[1] * monTableau[4]);
+        alert(monTableau[0] + ' ' + monTableau[2]);
+
+        var autreTableau = ['bonjour', 13, 'Bonne sieste', true, 3, ['valeur dans tableau imbriqué', 'autre valeur']];
+        alert(autreTableau[5][0]); // affiche le premier élément du tableau imbriqué
+        autreTableau[6] = 'Nouvelle valeur';
+        autreTableau[7] = [];
+        autreTableau[7][0] = ['Matthieu', 'Ronald', 'David', 'Oumar', 'Arnaud', 'Vinaro'];
+        autreTableau[7][1] = ['Pierre', 'Guillaume', 'Audrey', 'Cyprien', 'Davy', 'Élodie', 'Mikael'];
+/*
+        // En une seule instruction
+        autreTableau[7] = [
+            ['Matthieu', 'Ronald', 'David', 'Oumar', 'Arnaud', 'Vinaro'],
+            ['Pierre', 'Guillaume', 'Audrey', 'Cyprien', 'Davy', 'Élodie', 'Mikael']
+        ];
+*/
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

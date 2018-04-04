@@ -1,0 +1,17 @@
+body {
+  margin: 0;
+  background-color: bisque;
+  font-size: 1em; }
+
+p {
+  font-style: italic; }
+  p:hover {
+    font-style: normal; }
+
+div {
+  font-size: 1.1em;
+  border-bottom-width: 2px;
+  border-bottom-style: dotted;
+  border-bottom-color: magenta; }
+  div p {
+    font-size: 1.1em; }

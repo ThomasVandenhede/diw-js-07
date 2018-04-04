@@ -1,0 +1,10 @@
+ <!DOCTYPE html>
+<html>
+<head>
+	<title>Top Moumoute</title>
+</head>
+	<body>
+	  <h1>Top Moumoute</h1>
+	  <p>Date du jour : #[(laDate)]# </p>
+	</body>
+</html> 

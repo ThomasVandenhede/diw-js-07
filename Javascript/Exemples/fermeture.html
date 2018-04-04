@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+
+        var dimensions = function(unite) {
+
+            var fonctionUnite = function(nombre) {
+                return nombre + ' ' + unite;
+            };
+
+            return fonctionUnite;
+        };
+
+
+        var fonctionPixels = dimensions('px');
+        alert(fonctionPixels(40));
+        alert(fonctionPixels(60));
+
+        var fonctionEms = dimensions('em');
+        alert(fonctionEms(2));
+        alert(fonctionEms(1.5));
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

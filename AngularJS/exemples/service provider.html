@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div ng-controller="monControleur1 as monCtrl1">
+    Votre clé d'API : {{ monCtrl1.maCle }}
+  </div>
+    <script src="./lib/angular.min.js"></script>
+    <script>
+    angular.module('monModuleApp', [])
+    .provider('monFournisseurDeCleAPIMeteo', function() {
+      this.cleAPI = 'valeur par défaut';
+      this.enregistrerCle = function(cle) {
+        this.cleAPI = cle;
+      }
+      this.$get = function() {
+        return {
+          cle: this.cleAPI
+        };
+      }
+    })
+    .config(['monFournisseurDeCleAPIMeteoProvider', function(obj) {
+      obj.enregistrerCle('bb026e3b05ebaf33312aeea8b300ef73');
+    }])
+    .controller('monControleur1', ['monFournisseurDeCleAPIMeteo', function(mfdCAPI) {
+      console.log(mfdCAPI);
+      this.maCle = mfdCAPI.cle;
+    }]);
+    angular.bootstrap(window.document, ['monModuleApp'], {strictDi: true});
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+  <div ng-controller="monControleur1 as ctrl1">{{ ctrl1.nomComplet }}
+  </div>
+  <div ng-controller="monAutreControleur as ctrl2">    {{ ctrl2.nom }}
+  </div>
+
+  <script src="./lib/angular.min.js"></script>
+  <script>
+    angular.module('monModuleApp', [])
+    .factory('utilisateur', ['$http', function(serviceHttp) {
+
+      return {
+        auth: true,
+        prenom: 'Douglas',
+        nom: 'Crockford'
+      };
+    }])
+    .controller('monControleur1', ['utilisateur', function(monServiceUtilisateur) {
+      this.nomComplet = monServiceUtilisateur.prenom + ' ' + monServiceUtilisateur.nom;
+    }])
+    .controller('monAutreControleur', ['utilisateur', function(monServiceUtilisateur) {
+      this.nom = monServiceUtilisateur.prenom + ' ' + monServiceUtilisateur.nom;;
+    }])
+    angular.bootstrap(window.document, ['monModuleApp'], {strictDi: true});
+  </script>
+
+</body>
+</html>

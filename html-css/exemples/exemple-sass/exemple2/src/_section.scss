@@ -1,0 +1,11 @@
+
+section{
+  h2{
+    color: #fff;
+    background-color: darkgrey;
+    padding: 0 5px;
+    &:last-of-type{
+      @extend .alert;
+    }
+  }
+}

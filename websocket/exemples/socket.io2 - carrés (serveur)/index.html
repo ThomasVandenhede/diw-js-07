@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <style>
+    div {
+      animation: fadeIn 1s;
+    }
+    div.vanish {
+      animation: vanish 550ms;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes vanish {
+      to {
+        transform: scale(0.1, 0.1);
+        opacity: 0;
+      }
+    }
+  </style>
+  <!--
+    Chargement du "framework" client socket.io
+    Cette URL est disponible automatiquement
+    si le framework socket.io est intallé côté serveur
+  -->
+  <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+  <title>Carrés (gestion côté serveur) - WebSocket avec le module socket.io</title>
+  <script>
+    (function(window, io) {
+      'use strict';
+
+      /**
+       * Insère une DIV dans le DOM en appliquant les paramètres
+       * reçus du serveur
+       */
+      var insertDiv = function(square) {
+        var div = window.document.createElement('div');
+        div.id = square.id;
+        div.style.left = (square.x - (square.size / 2)) + 'px';
+        div.style.top = (square.y - (square.size / 2)) + 'px';
+        div.style.backgroundColor = square.color;
+        div.style.borderRadius = "50%";
+        div.style.width = square.size + 'px';
+        div.style.height = square.size + 'px';
+        div.style.position = 'absolute';
+        window.document.body.appendChild(div);
+      };
+
+      /**
+       * Mise à jour de la DIV avec une gestion des bords
+       * pour qu'une DIV reste entièrement dans les limites
+       * du navigateur
+       */
+      var updateDivPosition = function(square) {
+        var div = window.document.getElementById(square.id);
+        if (div) {
+          var newLeft = (square.x - (square.size / 2));
+          var newTop = (square.y - (square.size / 2));
+          if (newLeft < 0) {
+            newLeft = 0;
+          }
+          if (newTop < 0) {
+            newTop = 0;
+          }
+          if ((newLeft + (square.size)) > document.documentElement.clientWidth) {
+            newLeft = document.documentElement.clientWidth - (square.size);
+          }
+          if ((newTop + (square.size)) > document.documentElement.clientHeight) {
+            newTop = document.documentElement.clientHeight - (square.size);
+          }
+          div.style.top = newTop + 'px';
+          div.style.left = newLeft + 'px';
+        }
+      };
+
+      /**
+       * Suppression d'une DIV lorsqu'un utilisateur se déconnecte
+       */
+      var removeDiv = function(divId) {
+        var div = window.document.getElementById(divId);
+        if (div) {
+          div.classList.add('vanish'); // La classe comporte une animation CSS
+
+          /**
+           * On attent la fin de l'animation avant de retirer l'élément du DOM
+           */
+          window.setTimeout(function() {
+            div.parentNode.removeChild(div);
+          }, 500);
+        }
+      };
+
+      // Au chargement du document.
+      window.addEventListener('DOMContentLoaded', function() {
+        /**
+         * Établissement d'une nouvelle connexion WebSocket vers le serveur
+         * WebSocket à l'aide de la fonction io fournie par le "framework"
+         * client socket.io.
+         */
+        var socketIo = io('http://192.168.107.145:8080/'); // adresse du serveur NodeJS
+
+        /**
+         * On demnande la création d'un nouveu carré sans aucune information particulière.
+         * Toute la logique de création des caractéristiques est contrôlée par le serveur
+        */
+        socketIo.emit('createSquare');
+        
+        /**
+         * Gestionnaire d'événement socket.io :
+         * Lorsque le serveur retourne les caractéristiques de notre carré,
+         * on peut l'insérer dans le DOM et créer le gestionnaire d'événement DOM
+         * responsable de réagir aux actions de l'utilisateur
+         */
+        socketIo.on('mySquareCreated', function (mySquare) {
+          console.log('Nouveau carré reçu (créé côté serveur)', mySquare);
+          insertDiv(mySquare); // On crée le "carré" dans le DOM
+
+          /**
+           * À chaque mouvement de la souris on envoie les coordonnées
+           * au serveur pour qu'il répercute la position de mon carré
+           * sur tous les clients, y compris le mien.
+           */
+          window.document.addEventListener('mousemove', function(event) {
+            socketIo.emit('moveSquare', {x: event.clientX, y: event.clientY});
+          });
+
+        });
+
+        /**
+         * Gestionnaire d'événement socket.io :
+         * Réception des caractéristiques mises à jour d'un carré
+         */
+        socketIo.on('updateSquarePosition', function(square) {
+          // console.log('[updateSquerPosition]', square);
+          updateDivPosition(square);
+        });
+
+        /**
+         * Gestionnaire d'événement socket.io :
+         * Ajout d'un nouveau carré lorsqu'un nouvel utilisateur
+         * se connecte
+         */
+        socketIo.on('newSquare', function(square) {
+          console.log('[newSquare]', square);
+          insertDiv(square);
+        });
+
+        /**
+         * Gestionnaire d'événement socket.io :
+         * Un client vient de se déconnecter, on supprime
+         * son carré
+         */
+        socketIo.on('removeSquare', function(divId) {
+          console.log('[removeSquare] divId: ', divId);
+          removeDiv(divId);
+        });
+
+        /**
+         * Gestionnaire d'événement socket.io :
+         * Dès que la connexion WebSocket est établie,
+         * on reçoit cet événement qui nous donne la liste
+         * des carrés des clienrs déjà connectés.
+         */
+         socketIo.on('allSquares', function(squares) {
+          console.log('[allSquares] squares: ', squares);
+          /**
+           * On a reçu un tableau d'objets définissant des carrés,
+           * pour chaque élément on doit afficher une DIV.
+           */
+          squares.forEach(function(square) {
+            insertDiv(square);
+          });
+        });
+
+      }); // DOMContentLoaded
+
+    }(window, io)); // IIFE
+  </script>
+</head>
+<body>
+</body>
+</html>

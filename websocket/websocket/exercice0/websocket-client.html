@@ -1,0 +1,61 @@
+<doctype html!>
+<html>
+  <head>
+    <title>HTML5/JS & Websockets</title>
+  </head>
+  <script type="text/javascript">
+    (function(window){
+
+      // Au chargement du document.
+      window.addEventListener('DOMContentLoaded',function(){
+
+          // Établissement d'une nouvelle connexion WebSocket vers le serveur WebSocket.
+          var webSocketClient = new WebSocket('ws://127.0.0.1:8888/', 'diwjs');
+          /**
+            Le premier argument est l'URL du serveur WebSocket.
+            Le second argument est le "protocole". Cette chaîne de caractère peut
+            être utilisée coté serveur pour déterminer le traitement à effectuer.
+          **/
+
+          /**
+            On attache un gestionnaire d'évènement à l'évènement 'open' qui correspond 
+            à la fin de l'échange request handshake / response handshake.
+          **/
+          webSocketClient.addEventListener('open', function(event){
+
+            var HTMLpElement = window.document.getElementById('clickable-element');
+            HTMLpElement.addEventListener('click', function(event){
+
+              /**
+                A chaque clic de souris sur l'élément HTML considéré
+                on envoi un message à travers la connexion WebSocket.
+              **/
+              webSocketClient.send('Hello !');
+
+            });
+
+            /**
+              On attache un gestionnaire d'évènement à l'évènement 'message' qui correspond  à
+              l'événement déclenché lorsqu'un message à été reçu en provenance du serveur WebSocket.
+            **/
+            webSocketClient.addEventListener('message', function(event){
+
+              /**
+                A chaque message reçu, on affiche les données
+                obtenues dans la console du navigateur Internet.
+              **/
+              console.log(event.data);
+
+            });
+
+          });
+
+      });
+
+    })(window);
+  </script>
+  <body>
+    <h1>HTML5/JS & WebSocket</h1>
+    <p id="clickable-element">Envoyer un message à l'aide de WebSocket</p>
+  </body>
+</html>

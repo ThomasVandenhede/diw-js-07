@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <title>AngularJS : Les Expressions : Exercice 5</title>
+    <script>
+      // Énoncé
+      /* La directive ng-model et la directive ng-bind */
+      /**************************************************************************************************
+        Comme vu précédemment, La directive ng-model permet d'associer le contenu d'un champ de type input, select ou textarea à une variable (propriété du contexte). La documentation officielle de la directive ng-model est disponible ici : https://docs.angularjs.org/api/ng/directive/ngModel
+
+        La directive ng-bind permet de remplacer le contenu d'une balise par le résultat d'une expression. Si cette expression est une valeur, le contenu de la balise est remplacé par cette valeur. Si cette expression est une variable (propriété du contexte), le contenu texte de la balise est remplacé par la valeur de cette variable (propriété du contexte). En cas de changement de la valeur de la variable (propriété du contexte), ng-bind actualise le contenu texte de la balise. La documentation officielle de la directive ng-bind est disponible ici : https://docs.angularjs.org/api/ng/directive/ngBind
+      **************************************************************************************************/
+
+      /*
+        1. Chargez AngularJS dans ce document. Le contexte applicatif d'AngularJS doit englober tout le document. Votre application s'appellera angularjsExercice5. Un tutoriel officiel sur le chargement d'AngularJS est disponible ici : https://docs.angularjs.org/tutorial/step_00
+      */
+      
+      /*
+        2. Dans une div, créez un formulaire d'inscription pour un élève. Ce formulaire propose les saisies suivantes :
+        - Le nom de l'élève, qui est un champ texte;
+        - Le prénom de l'élève, qui est un champ texte;
+        - L'adresse e-mail de l'élève, qui est un champ texte;
+        - La date de naissance de l'élève, qui est un champ texte;
+        - une liste de sélection de formations, qui est une liste de sélection;
+      */
+
+      /*
+        3.  À l'aide d'une expression et sur la div, initialisez une variable (propriété de contexte) qui est un objet représentant un élève. Les caractéristiques d'un élève sont : 
+        - Son nom, que vous initialiserez avec la valeur 'Inconnu';
+        - Son prénom, que vous initialiserez avec la valeur 'Inconnu';
+        - Son adresse e-mail, que vous initialiserez avec la valeur 'Inconnue';
+        - Sa date de naissance que vous initialiserez avec la valeur 'Inconnue';
+        - Sa formation que vous initialiserez avec la valeur 'Inconnue'.
+      */
+      
+      /*
+        4. À l'aide de la directive ng-model, associez le contenu de chaque champ de votre formulaire avec l'objet correspondant à un élève que vous avez initialisé.
+      */
+
+      /*
+        5. Créez 5 paragraphes, à l'aide de la directive ng-bind, associez le contenu de chaque propriété de l'objet correspondant à l'élève à un des paragraphes créé.
+      */
+
+      /**************************************************************************************************
+        Lorsque vous saisissez une valeur dans un des champs de votre formulaire, l'objet élève est mis à jour grâce à la directive ng-model et un des paragraphes doit être mis à jour avec le contenu de la propriété de l'objet élève qui a été modifiée grâce à la directive ng-bind.
+      **************************************************************************************************/
+    </script>
+  </head>
+  <body>
+    <div ng-init="donnees = {nom: 'Inconnu', prenom: 'Inconnu', adresseEmail: 'Inconnue', dateDeNaissance: 'Inconnue', formation: 'Inconnue'}">
+      <h4>Formulaire d'inscription</h4>
+      <form name="monFormulaire">
+        <p><label>Nom<br><input type="text" name="champ_nom" ng-model="donnees.nom" /></label></p>
+        <p><label>Prénom<br><input type="text" name="champ_prenom" ng-model="donnees.prenom"/></label></p>
+        <p><label>E-mail<br><input type="text" name="champ_adresse_email" ng-model="donnees.adresseEmail"/></label></p>
+        <p><label>Date de naissance<br><input type="text" name="champ_date_de_naissance" ng-model="donnees.dateDeNaissance"/></label></p>
+
+        <label>Formation<br>
+        <select name="champ_formation" ng-model="donnees.formation">
+          <option value="DIW">Développeur Intégrateur Web</option>
+          <option value="DIW OO">Développeur Intégrateur Web Orienté Objet</option>
+          <option value="DIW JS">Développeur Intégrateur Web Spécialité JavaScript</option>
+        </select>
+        </label>
+        <p><input type="submit" value="soumettre"/></p>
+      </form>
+      <h4>Récapitulatif des informations saisies</h4>
+      <p ng-bind="donnees.nom"></p>
+      <p ng-bind="donnees.prenom"></p>
+      <p ng-bind="donnees.adresseEmail"></p>
+      <p ng-bind="donnees.dateDeNaissance"></p>
+      <p ng-bind="donnees.formation"></p>
+    </div>
+    <!-- On charge le framework AngularJS dans le document -->
+    <script src="../lib/angular-1.6.5.min.js"></script>
+
+    <!-- On on écrit ou on charge son script JavaScript utilisant AngularJS -->
+    <script>
+      //Bonne pratique : programmer en mode strict JavaScript (voir : https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Strict_mode)
+      'use strict';
+
+      //Bonne pratique : écrire son code dans une fonction anonyme auto-exécutable pour contrôler l'exposition des variables à l'objet global Window. 
+      (function() {
+
+        /*
+          On créé un module AngularJS à l'aide de la méthode angular.module().
+          angular.module() est utilisée ici comme un "setter".
+          Voir : https://docs.angularjs.org/api/ng/function/angular.module
+        */
+        angular.module('angularjsExercice5', []);
+
+        /*
+          On utilise le module AngularJS créé pour interpréter les expressions et directives AngularJS présentes dans le DOM à l'aide de la méthode angular.bootstrap().
+          Voir : https://docs.angularjs.org/api/ng/function/angular.bootstrap
+        */
+        angular.bootstrap(window.document, ['angularjsExercice5'], {strictDi:true});
+        /**
+          window.document : portion de DOM à interpréter.
+          ['angularjsExercice5'] : tableau des modules à utiliser pour interpréter la portion de DOM
+          {strictDi:true} : Objet contenant une propriété qui indique à AngularJS de fonctionner à l'aide d'injections de dépendances strictes (notion que nous détaillerons plus tard).
+        **/
+
+      })();
+      //Fin de la fonction anonyme auto-exécutable
+    </script>
+  </body>
+</html>

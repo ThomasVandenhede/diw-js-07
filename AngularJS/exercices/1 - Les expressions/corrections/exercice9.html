@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <title>AngularJS : Les Expressions : Exercice 9</title>
+    <script>
+      // Énoncé
+      /* Les filtres */
+      /***********************************************************************************************************
+        Les filtres sont des fonctions définies dans AngularJS et qui peuvent être utilisée dans les expressions à l'aide du symbole | (qu'on appelle pipe - tube en français). La documentation officielle des filtres est disponible ici : https://docs.angularjs.org/api/ng/filter
+      ***********************************************************************************************************/
+      
+      /*
+        1. Chargez AngularJS dans ce document. Le contexte applicatif d'AngularJS doit englober tout le document. Votre application s'appellera angularjsExercice9. Un tutoriel officiel sur le chargement d'AngularJS est disponible ici : https://docs.angularjs.org/tutorial/step_00
+      */
+      
+      /*
+        1. Initialisez un tableau qui contient 3 objets qui représentent des voitures. Une voiture à pour caractéristiques :
+        - Son prix, qui est un nombre;
+        - Son modèle, qui est un texte;
+        - Sa puissance, qui est un texte;
+        - Sa date de fabrication, qui est un nombre (un timestamp).
+      */
+
+      /*
+        2. Affichez, pour chacune des voiture :
+        - Son prix formaté avec le filtre approprié;
+        - Sa date de fabrication formatée avec le filtre approprié;
+        - Sa puissance formatée en majuscule;
+        - Son modèle formaté en minuscule.
+        L'affichage sera ordonnancé par date croissante.
+      */
+      </script>
+  </head>
+  <body>
+    <div ng-init="voitures = [{prix:9000, modele: 'Peugeot 206', puissance: '8cv', dateDeFabrication: 1167606000000}, {prix:7000, modele: 'Renault Clio', puissance: '6cv', dateDeFabrication: 915145200000}, {prix:12000, modele: 'Renault Espace', puissance: '10cv', dateDeFabrication: 1009839600000}]">
+      <h4>Ma collection de voitures</h4>
+      <!-- https://docs.angularjs.org/api/ng/filter/orderBy -->
+      <div ng-repeat="voiture in voitures | orderBy:'dateDeFabrication'">
+        <ul>
+          <!-- https://docs.angularjs.org/api/ng/filter/currency -->
+          <li>{{ voiture.prix | currency : '€'}}</li>
+          <!-- https://docs.angularjs.org/api/ng/filter/date -->
+          <li>{{ voiture.dateDeFabrication | date : 'dd/MM/yyyy'}}</li>
+          <!-- https://docs.angularjs.org/api/ng/filter/lowercase -->
+          <li>{{ voiture.modele | lowercase }}</li>
+          <!-- https://docs.angularjs.org/api/ng/filter/uppercase -->
+          <li>{{ voiture.puissance | uppercase }}</li>
+        </ul>
+      </div>
+    </div>
+    <!-- On charge le framework AngularJS dans le document -->
+    <script src="../lib/angular-1.6.5.min.js"></script>
+
+    <!-- On on écrit ou on charge son script JavaScript utilisant AngularJS -->
+    <script>
+      //Bonne pratique : programmer en mode strict JavaScript (voir : https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Strict_mode)
+      'use strict';
+
+      //Bonne pratique : écrire son code dans une fonction anonyme auto-exécutable pour contrôler l'exposition des variables à l'objet global Window. 
+      (function() {
+
+        /*
+          On créé un module AngularJS à l'aide de la méthode angular.module().
+          angular.module() est utilisée ici comme un "setter".
+          Voir : https://docs.angularjs.org/api/ng/function/angular.module
+        */
+        angular.module('angularjsExercice9', []);
+
+        /*
+          On utilise le module AngularJS créé pour interpréter les expressions et directives AngularJS présentes dans le DOM à l'aide de la méthode angular.bootstrap().
+          Voir : https://docs.angularjs.org/api/ng/function/angular.bootstrap
+        */
+        angular.bootstrap(window.document, ['angularjsExercice9'], {strictDi:true});
+        /**
+          window.document : portion de DOM à interpréter.
+          ['angularjsExercice9'] : tableau des modules à utiliser pour interpréter la portion de DOM
+          {strictDi:true} : Objet contenant une propriété qui indique à AngularJS de fonctionner à l'aide d'injections de dépendances strictes (notion que nous détaillerons plus tard).
+        **/
+
+      })();
+      //Fin de la fonction anonyme auto-exécutable
+    </script>
+  </body>
+</html>

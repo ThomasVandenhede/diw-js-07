@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+
+        var condition = true;
+        while (condition) {
+            var somme = 2 + 2;
+            console.log('ça fait ' + somme);
+            condition = false;
+        }
+
+        var compteur = 0;
+        while (compteur < 4) {
+            var somme = 2 + 2;
+            console.log('ça fait ' + somme);
+            compteur = compteur + 1;
+        }
+
+        var valeurATester = [123, '50', 'choucroute'];
+        while (isNaN(valeurATester) || (valeurATester % 2 ) == 0) {
+            console.log('boucle');
+            valeurATester = 1;
+        }
+</script>
+</head>
+<body>
+    
+</body>
+</html>

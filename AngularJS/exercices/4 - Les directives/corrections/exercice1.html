@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <title>AngularJS : Les Directives : Exercice 1</title>
+    <script>
+      // Énoncé
+      /* Les directives personnalisées */
+      /**************************************************************************************************
+        Avec AngularJS nous avons utilisé un ensemble de directives fournies. Il est également possible de créer ses propres directives. Celles-ci peuvent être des éléments HTML, des attributs de balise ou bien des classes CSS. La documentation officielle concernant les directive est disponible ici dans la documentation : https://docs.angularjs.org/guide/directive
+
+        Lorsqu'on crée une directive personnalisée, on utilise la méthode .directive(). Celle ci prend en argument 2 paramètres, le nom de la directive ainsi qu'une fonction qui retourne un objet décrivant la directive. Les propriétés de cet objet sont définies ici dans la documentation officielle: https://docs.angularjs.org/api/ng/service/$compile#directive-definition-object
+      **************************************************************************************************/
+      /*
+        1. Chargez AngularJS dans ce document. Le contexte applicatif d'AngularJS doit englober tout le document. Votre application s'appellera angularjsExercice1. Un tutoriel officiel sur le chargement d'AngularJS est disponible ici : https://docs.angularjs.org/tutorial/step_00
+      */
+
+      /*
+        2. Créez une directive personnalisée qui remplace son contenu par un titre <h4>.
+      */
+
+      /*
+        3. Créez une directive personnalisée qui remplace son contenu par un titre <h4> obtenu à partir d'un fichier externe.
+      */
+
+      /*
+        4. Créez une directive personnalisée qui possède un contrôleur qui définit une liste d'objet. La directive remplace son contenu par un affichage de la liste d'objets définie par le contrôleur.
+      */
+    </script>
+  </head>
+  <body>
+    <div>
+      <h1>Mes directives personnalisées !</h1>
+      <!-- on remarque que la directive définie dans AngularJS sous le nom maPremiereDirective doit être utilisée dans le code HTML sous le nom ma-premiere-directive -->
+      <h2>Première directive</h2>
+      <div ma-premiere-directive></div>
+      <!-- on remarque que la directive définie dans AngularJS sous le nom maDeuxiemeDirective doit être utilisée dans le code HTML sous le nom ma-deuxieme-directive -->
+      <h2>Deuxième directive</h2>
+      <div ma-deuxieme-directive></div>
+       <!-- on remarque que la directive définie dans AngularJS sous le nom maTroisiemeDirective doit être utilisée dans le code HTML sous le nom ma-troisieme-directive -->
+      <h2>Troisième directive</h2>
+      <div ma-troisieme-directive></div>
+
+    </div>
+    <!-- On charge le framework AngularJS dans le document -->
+    <script src="../lib/angular-1.6.1.min.js"></script>
+
+    <!-- On on écrit ou on charge son script JavaScript utilisant AngularJS -->
+    <script type="text/javascript">
+      //Bonne pratique : programmer en mode strict JavaScript (voir : https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Strict_mode)
+      'use strict';
+
+      //Bonne pratique : écrire son code dans une fonction anonyme auto-exécutable pour contrôler l'exposition des variables à l'objet global Window.
+      (function(){
+
+        /*
+          On créé un module AngularJS à l'aide de la méthode angular.module().
+          angular.module() est utilisée ici comme un "setter".
+          Voir : https://docs.angularjs.org/api/ng/function/angular.module
+        */
+        angular.module('angularjsExercice1', []);
+
+        /*
+          angular.module() est utilisée ici comme un "getter".
+          La méthode nous retourne une référence à l'objet de type angular.Module créé (voir : https://docs.angularjs.org/api/ng/type/angular.Module).
+          Nous utilisons la méthode .directive() de cet objet pour créer des directives.
+        */
+        angular.module('angularjsExercice1').directive('maPremiereDirective', [function() {
+          var objetDefinissantLaDirective = {
+            template: '<h3>Ceci est un titre défini dans une directive</h3>'
+          };
+          return objetDefinissantLaDirective;
+        }]);
+
+        angular.module('angularjsExercice1').directive('maDeuxiemeDirective', [function() {
+          //Attention si vous travaillez sans serveur, cette directive ne fonctionnera pas sur Chrome.
+          var objetDefinissantLaDirective = {
+            templateUrl: 'maDeuxiemeDirective.html'
+          };
+          return objetDefinissantLaDirective;
+        }]);
+
+        angular.module('angularjsExercice1').directive('maTroisiemeDirective', [function() {
+          var objetDefinissantLaDirective = {
+            controller: [function() {
+
+              this.inscrits = [{
+                nom: 'Durant',
+                prenom:'Albert',
+                age:'33'
+              }, {
+                nom: 'Dupont',
+                prenom:'Jeanne',
+                age:'27'
+              }, {
+                nom: 'Denis',
+                prenom:'Jude',
+                age:'37'
+              }];
+
+            }],
+            controllerAs:'monCtrl',
+            template:'<h3>Liste générée à l\'aide d\'une liste définie dans un contrôleur attaché à la directive</h3><ul><li ng-repeat="eleve in monCtrl.inscrits"> {{ eleve.prenom + \' \' + eleve.nom + \', \' + eleve.age + \' ans.\' }} </li></ul>'
+          };
+          return objetDefinissantLaDirective;
+
+        }]);
+
+        /*
+          On utilise le module AngularJS créé pour interpréter les expressions et directives AngularJS présentes dans le DOM à l'aide de la méthode angular.bootstrap().
+          Voir : https://docs.angularjs.org/api/ng/function/angular.bootstrap
+        */
+        angular.bootstrap(window.document, ['angularjsExercice1'], {strictDi:true});
+        /**
+          window.document : portion de DOM à interpréter.
+          ['angularjsExercice1'] : tableau des modules à utiliser pour interpréter la portion de DOM
+          {strictDi:true} : Objet contenant une propriété qui indique à AngularJS de fonctionner à l'aide d'injections de dépendances strictes (notion que nous détaillerons plus tard).
+        **/
+
+      })();
+      //Fin de la fonction anonyme auto-exécutable
+    </script>
+  </body>
+</html>

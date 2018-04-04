@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <title>AngularJS : Les Services : Exercice 3</title>
+    <script>
+      // Énoncé
+      /* Les injections de dépendances et les services*/
+      /**************************************************************************************************
+        AngularJS propose des méthodes permettant de créer des dépendances qu'on peut ensuite injecter dans les contrôleurs. Ces méthode sont la méthode .factory(), .service() et .provider().
+
+        Les Usines (i.e ""fonctions usine")
+        - Méthode .factory() :
+        Syntaxe : module.factory( 'nomDUsine', maFonctionUsine );
+        Resultat: Quand on déclare maFonctionUsine comme un argument à injecter dans un contrôleur, par exemple, dans le contrôleur nous aurons accès à la valeur retournée suite à l'exécution de la fonction usine à savoir : maFonctionUsine();
+
+        Les Services
+        - Méthode .service() :
+        Syntaxe : module.service( 'nomDuService', maFonctionConstructeur );
+        Résultat: Quand on déclare nomDuService comme argument à injecter dans un contrôleur, par exemple, dans le contrôleur nous aurons accès à une instance de la fonction constructeur à savoir : new maFonctionConstructeur();
+
+        Les Providers
+        - Méthode .provider() :
+        Syntaxe : module.provider( 'nomDuProvider', maFonctionConstructeur );
+        Quand on déclare nomDuProvider comme un argument injectable et si on a prévu une méthode nommée $get dans maFonctionConstructeur, on obtient la valeur de retour de (new maFonctionConstructeur()).$get().
+
+        Les fonctions constructeur utilisées avec la méthode .provider() peuvent être utilisées avec la méthode .config() au chargement du module.
+        Syntaxe : module.config(['nomDuProviderProvider', function(nomDuProviderProvider){});
+        Dans la fonction en argument nomDuProviderProvider est une instance de maFonctionConstructeur associée à nomDuProvider.
+
+      **************************************************************************************************/
+      /*
+        1. Chargez AngularJS dans ce document.
+      */
+
+      /*
+        2. Créer 2 modules :
+        - Créez 1 premier module AngularJS. Votre module s'appellera angularjsExercice3Module1. Il englobe la première div.
+        - Créez 1 second module AngularJS. Votre module s'appellera angularjsExercice3Module2. Il englobe la deuxième div.
+
+        Nous avons donc 2 modules AngularJS séparés.
+
+        Attention vous devez utiliser la méthode .bootstrap() de AngularJS pour démarrer les modules manuellement (i.e en JavaScript) et séparément (2 appels à la méthode, sur 2 portions du DOM distinctes). Voir la documentation officielle ici : https://docs.angularjs.org/api/ng/function/angular.bootstrap
+      */
+
+
+      /*
+        3. Créez un contrôleur dans chacun des 2 modules. Chaque contrôleur définit une propriété titre à la valeur différente. Pour chaque module affichez le titre provenant de leur contrôleur dans leurs portions respectives du document.
+      */
+
+      /*
+        4. Définissez un 3ème module séparé des 2 premiers mais ne le "bootstrappez" pas. Il nous servira à définir un fournisseur de services (un provider) qui sera utilisé dans le 2 autres modules.
+
+        Ce module s'appelle monModuleFournisseurDeService. Injectez le dans les 2 autres modules.
+
+        Dans ce module créez un fournisseur de service (provider). Ce fournisseur de service déclare une fonction constructeur qui définit :
+        - 1 VARIABLE qui contient un titre configurable;
+        - 1 VARIABLE qui contient un titre statique;
+        - 1 méthode qui prend en argument un texte et qui l'affecte à la VARIABLE titre configurable;
+        - 1 méthode nommée $get (c'est impératif), qui retourne un objet de 2 propriétés. La première contient la VARIABLE titre configurable et la deuxième la VARIABLE titre statique.
+
+        Injectez ce fournisseur de service dans chacun des contrôleurs de chacun des modules.
+      */
+
+      /*
+        5. Affectez le fournisseur de service injecté dans chacun des contrôleurs dans une propriété de chacun des contrôleur. Cette propriété s'appellera mesTitresFournis. Cette propriété contiendra la valeur de retour de la méthode .$get() du fournisseur de service. Affichez les titres statique et configurable contenus dans la propriété mesTitreFournis dans chacune des portions couverte par chacun des contrôleurs des 2 modules.
+      */
+
+      /*
+        6. Sur chacun des 2 modules, après leur initialisation, utilisez la méthode .config() documentée ici : https://docs.angularjs.org/guide/providers#provider-recipe pour exécuter la méthode du fournisseur de service qui prend en argument un texte et qui l'affecte à la VARIABLE titre configurable. Vous devez configurer 2 titres configurables différents pour le fournisseur de service pour chacun des 2 modules. ATTENTION, pour injecter votre fournisseur de service dans la méthode .config() vous devez le suffixer par "Provider".
+      */
+    </script>
+  </head>
+  <body>
+    <h1>Les services</h1>
+    <div id="angularjsExercice3Module1">
+      <h2>Premier Module</h2>
+      <div ng-controller="monControleur as monCtrl">
+        <h3>{{ monCtrl.titre }}</h3>
+        <h4>{{ monCtrl.mesTitresFournis.statique }}</h4>
+        <h4>{{ monCtrl.mesTitresFournis.configurable }}</h4>
+      </div>
+    </div>
+    <div id="angularjsExercice3Module2">
+      <h2>Deuxième Module</h2>
+      <div ng-controller="monControleur as monCtrl">
+        <h3>{{ monCtrl.titre }}</h3>
+        <h4>{{ monCtrl.mesTitresFournis.statique }}</h4>
+        <h4>{{ monCtrl.mesTitresFournis.configurable }}</h4>
+      </div>
+    </div>
+    <!-- On charge le framework AngularJS dans le document -->
+    <script src="../lib/angular-1.6.5.min.js"></script>
+
+    <!-- On on écrit ou on charge son script JavaScript utilisant AngularJS -->
+    <script>
+      //Bonne pratique : programmer en mode strict JavaScript (voir : https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Strict_mode)
+      'use strict';
+
+      //Bonne pratique : écrire son code dans une fonction anonyme auto-exécutable pour contrôler l'exposition des variables à l'objet global Window.
+      (function() {
+
+        /*
+          On créé un module AngularJS à l'aide de la méthode angular.module().
+          angular.module() est utilisée ici comme un "setter".
+          Voir : https://docs.angularjs.org/api/ng/function/angular.module
+        */
+        angular.module('monModuleFournisseurDeService', []);
+
+        /*
+          angular.module() est utilisée ici comme un "getter".
+          La méthode nous retourne une référence à l'objet de type angular.Module créé (voir : https://docs.angularjs.org/api/ng/type/angular.Module).
+          Nous utilisons la méthode .controller() de cet objet pour créer le contrôleur approprié.
+        */
+        angular.module('monModuleFournisseurDeService').provider('monFournisseurDeService', [function(){
+          this.titreStatique = 'Titre statique du fournisseur';
+          this.titreConfigurable = 'Titre configurable du fournisseur';
+          this.modifierTitreConfigurable = function(texte){
+            this.titreConfigurable = texte;
+          };
+          //La méthode .$get est obligatoire dans une fonction constructeur de provider. Si Angular ne la trouve pas, il émet une erreur.
+          this.$get = function() {
+            return {
+              statique: this.titreStatique,
+              configurable: this.titreConfigurable
+            };
+          };
+        }]);
+
+        /*
+          On créé un module AngularJS à l'aide de la méthode angular.module(). On spécifie le module fournisseur de service comme dépendance.
+          angular.module() est utilisée ici comme un "setter". Voir : https://docs.angularjs.org/api/ng/function/angular.module
+        */
+        angular.module('angularjsExercice3Module1', ['monModuleFournisseurDeService']);
+
+        /*
+          angular.module() est utilisée ici comme un "getter".
+          La méthode nous retourne une référence à l'objet de type angular.Module créé (voir : https://docs.angularjs.org/api/ng/type/angular.Module).
+        */
+
+        /*
+          Nous utilisons la méthode .config() de cet objet pour modifier modifier une des caractéristiques de l'objet obtenu à l'aide la
+          fonction constructeur créé pour monFournisseurDeService.
+        */
+        angular.module('angularjsExercice3Module1').config(['monFournisseurDeServiceProvider', function(monFournisseurDeServiceProvider){
+          monFournisseurDeServiceProvider.modifierTitreConfigurable('Titre configurable du fournisseur de service modifié par le module angularjsExercice3Module1');
+        }]);
+
+
+        /*
+          Nous utilisons la méthode .controller() de cet objet pour créer le contrôleur approprié.
+        */
+        angular.module('angularjsExercice3Module1').controller('monControleur', ['monFournisseurDeService', function(monFournisseurDeService){
+          this.titre = 'Titre provenant du contrôleur définit dans le module 1';
+          this.mesTitresFournis = monFournisseurDeService; //monFournisseurDeService contient la valeur de retour résultant de l'exécution de la méthode .$get() d'une nouvelle instance de la fonction constructeur définit précédemment.
+        }]);
+
+        /*
+          On créé un module AngularJS à l'aide de la méthode angular.module(). On spécifie le module fournisseur de service comme dépendance.
+          angular.module() est utilisée ici comme un "setter". Voir : https://docs.angularjs.org/api/ng/function/angular.module
+        */
+        angular.module('angularjsExercice3Module2', ['monModuleFournisseurDeService']);
+
+        /*
+          angular.module() est utilisée ici comme un "getter".
+          La méthode nous retourne une référence à l'objet de type angular.Module créé (voir : https://docs.angularjs.org/api/ng/type/angular.Module).
+        */
+
+        /*
+          Nous utilisons la méthode .config() de cet objet pour modifier modifier une des caractéristiques de l'objet obtenu à l'aide la
+          fonction constructeur créé pour monFournisseurDeService.
+        */
+        angular.module('angularjsExercice3Module2').config(['monFournisseurDeServiceProvider', function(monFournisseurDeServiceProvider){
+          monFournisseurDeServiceProvider.modifierTitreConfigurable('Titre configurable du fournisseur de service modifié par le module angularjsExercice3Module2');
+        }]);
+
+
+        /*
+          Nous utilisons la méthode .controller() de cet objet pour créer le contrôleur approprié.
+        */
+        angular.module('angularjsExercice3Module2').controller('monControleur', ['monFournisseurDeService', function(monFournisseurDeService){
+          this.titre = 'Titre provenant du contrôleur définit dans le module 2';
+          this.mesTitresFournis = monFournisseurDeService; //monFournisseurDeService contient la valeur de retour résultant de l'exécution de la méthode .$get() d'une nouvelle instance de la fonction constructeur définit précédemment.
+        }]);
+
+        /*
+          On utilise le module AngularJS créé pour interpréter les expressions et directives AngularJS présentes dans le DOM à l'aide de la méthode angular.bootstrap().
+          Voir : https://docs.angularjs.org/api/ng/function/angular.bootstrap
+        */
+        angular.bootstrap(window.document.getElementById('angularjsExercice3Module1'), ['angularjsExercice3Module1'], {strictDi:true});
+        /**
+          window.document.getElementById('angularjsExercice3Module1') : portion de DOM à interpréter.
+          ['angularjsExercice3Module2'] : tableau des modules à utiliser pour interpréter la portion de DOM
+          {strictDi:true} : Objet contenant une propriété qui indique à AngularJS de fonctionner à l'aide d'injections de dépendances strictes (notion que nous détaillerons plus tard).
+        **/
+        /*
+          On utilise le module AngularJS créé pour interpréter les expressions et directives AngularJS présentes dans le DOM à l'aide de la méthode angular.bootstrap().
+          Voir : https://docs.angularjs.org/api/ng/function/angular.bootstrap
+        */
+        angular.bootstrap(window.document.getElementById('angularjsExercice3Module2'), ['angularjsExercice3Module2'], {strictDi:true});
+        /**
+          window.document.getElementById('angularjsExercice3Module2') : portion de DOM à interpréter.
+          ['angularjsExercice3Module2'] : tableau des modules à utiliser pour interpréter la portion de DOM
+          {strictDi:true} : Objet contenant une propriété qui indique à AngularJS de fonctionner à l'aide d'injections de dépendances strictes (notion que nous détaillerons plus tard).
+        **/
+
+      })();
+      //Fin de la fonction anonyme auto-exécutable
+    </script>
+  </body>
+</html>

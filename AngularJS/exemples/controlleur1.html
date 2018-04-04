@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+  <!--<p>{{ 2 + 3 }}</p>
+
+  <p>{{ 5 > 3 }}</p>
+
+  <p>{{ calcul = 3 - 2 }}</p>
+
+  <p>{{ calcul }}</p>
+
+  <p>{{ calcul || false }}</p>
+
+  <p>{{ calcul = 9 }}</p>
+
+  <p>{{ calcul }}</p>-->
+
+  <div ng-controller="monController1">
+    {{ monController1.somme }}
+    {{ monController1.afficherNom() }}
+    <button type="button" ng-click="monController1.incrementer()">+</button>
+    {{ monController1.nombre }}
+
+    <div ng-controller="autreController">
+      {{ autreController.somme }}
+      {{ monController1.somme }}
+    </div>
+
+  </div>
+
+
+  <div ng-controller="autreController">
+    {{ autreController.somme }}
+    {{ somme }}
+
+    <div ng-controller="autreControllerALAncienne">
+      <p>--{{ somme }}--</p>
+      {{ sommeOriginale }}
+    </div>
+
+    <div ng-controller="monTroisiemeController as testCtrl">
+      {{ testCtrl.somme }}
+      **{{ autreController.somme }}**
+      <button type="button" ng-click="testCtrl.incrementer()">+</button>
+    </div>
+
+
+  </div>
+
+  <div ng-controller="monTroisiemeController as monTroisiemeCtrl">
+    {{ monTroisiemeCtrl.somme }}
+  </div>
+
+  <div ng-controller="monTroisiemeController as chocolatine">
+    {{ chocolatine.somme }}
+    <button type="button" ng-click="chocolatine.incrementer()">+</button>
+  </div>
+
+  <script src="./lib/angular.min.js"></script>
+  <script>
+
+    var refMonModule = angular.module('monModuleApp', []); // 2 arguments : Setter (on crée un module)
+
+    refMonModule.controller('monTroisiemeController', [function() {
+      this.somme = 5 + 3;
+      this.incrementer = function() {
+        this.somme++;
+      }
+    }]);
+
+    refMonModule.controller('autreController', ['$scope', function(contexte) {
+      contexte.somme = 77;
+      contexte.autreController = {};
+      contexte.autreController.somme = 3 + 10;
+    }]);
+
+    refMonModule.controller('autreControllerALAncienne', ['$scope', function(contexte) {
+      contexte.sommeOriginale = contexte.somme;
+      contexte.somme = 66;
+    }]);
+
+
+    refMonModule.controller('monController1', ['$scope', function(contexte) {
+      contexte.monController1 = {
+        somme: 2 + 2,
+        afficherNom: function() {
+          return 'Omar';
+        },
+        nombre: 1,
+        incrementer: function() {
+          contexte.monController1.nombre++;
+        }
+      }
+    }]);
+
+
+    angular.bootstrap(window.document, ['monModuleApp'], {strictDi: true});
+  </script>
+</body>
+</html>

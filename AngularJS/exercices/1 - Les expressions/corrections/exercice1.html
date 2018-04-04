@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <title>AngularJS : Les Expressions : Exercice 1</title>
+    <script>
+      // Énoncé
+      /* Les expressions triviales */
+      /*
+        1. Chargez AngularJS dans ce document. Le contexte applicatif d'AngularJS doit englober tout le document. Votre application s'appellera angularjsExercice1. Un tutoriel officiel sur le chargement d'AngularJS est disponible ici : https://docs.angularjs.org/tutorial/step_00. Vous pouvez vous aider du fichier exercice0.png fourni en annexe.
+      */
+
+      /*
+        2. Complétez les paragraphes de texte du document Web (répondez aux questions) avec l'EXPRESSION AngularJS qui convient. Le fichier exercice0.png contient la liste des expressions que vous pouvez utiliser. La documentation officielle concernant les expressions est disponible ici : https://docs.angularjs.org/guide/expression
+      */
+    </script>
+  </head>
+  <body>
+    <!-- Les symboles {{ et }} permettent de délimiter une expression. Un expression est un pseudo-code JavaScript qui sera interprété par AngularJS. La combinaison des symboles et de l'expression s'appelle "template". Par exemple : {{ 1 + 1 }} est un template; 1 + 1 est l'expression à évaluer -->
+    <p>Que donne la somme de 36344.789 et 5422.995432 ?</p>
+    <p>{{ 36344.789 + 5422.995432 }}</p>
+
+    <p>Que donne &laquo; Bonjour &raquo; et &laquo; le Monde &raquo; ?</p>
+    <p>{{ '&laquo; Bonjour &raquo;' + '&laquo; le Monde &raquo;' }}</p>
+
+    <p>Quel est le reste de la division entière de 4321 par 1234 ?</p>
+    <p>{{ 4321 % 1234 }}</p>
+
+    <p>Est-il vrai que 0.000005 est strictement supérieur à 0.00005 ?</p>
+    <p>{{ 0.000005 > 0.00005 }}</p>
+
+    <p>Que donne l'équation ((3x + 2) - (43x * (9y + 6))) / (2y - 7) avec x = 4 et y = 19 (vous devez commencer par déclarer les 2 variables) ?</p>
+    <p>{{ x = 4; y = 19; ((3 * x + 2) - (43 * x * (9 * y + 6))) / (2 * y - 7) }}</p>
+    <!-- Attention ! : Même si les expressions ressemblent à du JavaScript, ce n'est PAS du JavaScript. C'est un pseudo-code qui sera évalué par AngularJS -->
+
+    <!-- On charge le framework AngularJS dans le document -->
+    <script src="../lib/angular-1.6.5.min.js"></script>
+
+    <!-- On on écrit ou on charge son script JavaScript utilisant AngularJS -->
+    <script>
+      // Bonne pratique : programmer en mode strict JavaScript (voir : https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Strict_mode)
+      'use strict';
+
+      // Bonne pratique : écrire son code dans une fonction anonyme auto-exécutable pour contrôler l'exposition des variables à l'objet global Window.
+      (function() {
+
+        /*
+          On créé un module AngularJS à l'aide de la méthode angular.module().
+          angular.module() est utilisée ici comme un "setter".
+          Voir : https://docs.angularjs.org/api/ng/function/angular.module
+        */
+        angular.module('angularjsExercice1', []);
+
+        /*
+          On utilise le module AngularJS créé pour interpréter les expressions et directives AngularJS présentes dans le DOM à l'aide de la méthode angular.bootstrap().
+          Voir : https://docs.angularjs.org/api/ng/function/angular.bootstrap
+        */
+        angular.bootstrap(window.document, ['angularjsExercice1'], {strictDi:true});
+        /**
+          window.document : portion de DOM à interpréter.
+          ['angularjsExercice1'] : tableau des modules à utiliser pour interpréter la portion de DOM
+          {strictDi:true} : Objet contenant une propriété qui indique à AngularJS de fonctionner à l'aide d'injections de dépendances strictes (notion que nous détaillerons plus tard).
+        **/
+
+      })(); // IIFE
+    </script>
+  </body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+
+        var maFonction = function(message) {
+            console.log(arguments);
+            var i = 0;
+            while (arguments[i]) {
+                alert(arguments[i]);
+                i++;
+            }
+            alert(arguments[0] + arguments[1]);
+        };
+
+        maFonction('Bonne sieste à tous', '123123123', true, ['hello', true]);
+
+        var addition = function() {
+            console.log(arguments);
+            return arguments[0] + arguments[4];
+        };
+        alert(addition(2, 3, null, [], 4));
+
+        var concat3mots = function(tableauMots) {
+            return tableauMots[0] + ' ' + tableauMots[1] + ' ' + tableauMots[2];
+        };
+        alert(concat3mots(['C\'est', 'bientôt', 'le week-end !']));
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

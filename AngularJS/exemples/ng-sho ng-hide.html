@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+  <div ng-show="true">Bonjour</div>
+
+  <div ng-hide="true">caché</div>
+
+  <div ng-hide="1 > 3">Affiché !</div>
+
+  <div ng-init="test = false">
+    <p ng-if="test">Hello World!</p>
+  </div>
+
+
+  <script src="./lib/angular.min.js"></script>
+  <script>
+    angular.module('monModule', []);
+    angular.bootstrap(window.document, ['monModule'], {strictDi: true});
+  </script>
+</body>
+</html>

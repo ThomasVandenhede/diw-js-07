@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <script src="jquery.js"></script>
+  <script>
+    $(function() {
+      var balayage = function(images) {
+        $(images).each(function(index,element){
+          $(element).addClass('img' + (index + 1));
+        });
+      };
+      balayage('#petites img');
+      balayage('#grandes img');
+      $('#petites img').click(function() {
+        $('#grandes img').hide();
+        var laClass = $(this).attr('class');
+        $('#grandes .' + laClass).show();
+      });
+    });
+  </script>
+  <title>Exemple 7</title>
+  <style>
+    div{
+      text-align: center;
+    }
+    #grandes img{
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Exemple 7</h1>
+  <div id="petites">
+    <img src="etoile1.jpg" alt="étoile">
+    <img src="etoile2.jpg" alt="étoile">
+    <img src="etoile3.jpg" alt="étoile">
+  </div>
+  <div id="grandes">
+    <img src="etoile1g.jpg" alt="étoile">
+    <img src="etoile2g.jpg" alt="étoile">
+    <img src="etoile3g.jpg" alt="étoile">
+  </div>
+</body>
+</html>

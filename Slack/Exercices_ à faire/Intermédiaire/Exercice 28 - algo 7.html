@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8"/>
+    <title>JavaScript : Exercice 28 - algo 7</title>
+    <script type="text/javascript">
+      /*********************************
+      ************ EXERCICE ************
+      **********************************
+        Dans l'exercice précédent, le nombre de saisies de l'utilisateur est écrit dans le code.
+
+        Reprenez le code de l'exercice précédent. Après chaque saisie, demandez à l'utilisateur s'il souhaite faire une nouvelle saisie.
+        Quand il répond par la négative, affichez successivement toutes ses saisies dans des boîte de dialogue
+
+        Utilisez l'attribut d'évènement onload, la fonction prompt(), une boucle for, des boucles while et la fonction alert().
+      */
+
+      
+      var saisieTab = function(message) {
+        var obligation = prompt(message);
+          while(!isNaN(obligation)) {
+            obligation = prompt(message);
+        };
+        return obligation;
+      }
+
+        
+      var tableau = function(){
+        var reponseTab = [];
+
+        for (var i = 0; i < 4; i++) {
+            reponseTab[i] = saisieTab(i + ' Veuillez saisir un texte');
+            reponseTab[i] = confirm('Souhaitez-vous faire une nouvelle saisie');
+            
+          }
+         
+        
+        //Demande utilisateur : Souhaitez-vous faire une nouvelle saisie. 
+        while(reponseTab[i]=== null){
+           alert(reponseTab[i]);
+          }
+         
+        };
+
+
+        /*for (var i = 0; reponseTab[i]; i++) {
+          alert(reponseTab[i]);
+        }*/
+
+        
+    </script>
+  </head>
+  <body onload="tableau()">
+    <h1>JavaScript : Exercice 28 - algo 7</h1>
+    <p>Premier paragraphe</p>
+    <p>Deuxième paragraphe</p>
+    <noscript>
+      <p>Veuillez activer JavaScript</p>
+    </noscript>
+  </body>
+</html>

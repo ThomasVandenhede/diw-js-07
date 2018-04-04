@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div ng-hide="true">Caché</div>
+  <div ng-show="3 > 6">Affiché</div>
+
+  <div ng-if="true" ng-init="cond = 3 > 6">
+    <p ng-hide="cond">Hello World!</p>
+  </div>
+
+  <ul ng-init="tableauDeNombres = ['un', 'deux', 'trois']">
+    <li ng-repeat="nombre in tableauDeNombres">{{ nombre }}</li>
+  </ul>
+
+  <div ng-init="autresNombres = [{texte: 'un', num: 1}, {texte: 'deux', num: 2}, {texte: 'trois', num: 3}]">
+
+    <article ng-repeat="objNombre in autresNombres">
+      <h1>{{objNombre.num}}</h1>
+      <p>{{ objNombre.texte }}</p>
+    </article>
+
+  </div>
+
+
+  <header ng-repeat-start="objNombre in autresNombres">
+    Header {{ objNombre.num }}
+  </header>
+  <div class="body">
+    Body {{ objNombre.texte }}
+  </div>
+  <footer ng-repeat-end>
+    Footer {{ objNombre.texte }}
+  </footer>
+
+
+
+  <div ng-init="imgSrc = 'google.png'"></div>
+  <img src="imgSrc">
+
+
+
+  <script src="./lib/angular.min.js"></script>
+  <script>
+    angular.module('monModule', []);
+    angular.bootstrap(window.document, ['monModule'], {strictDi: true});
+  </script>
+
+</body>
+</html>

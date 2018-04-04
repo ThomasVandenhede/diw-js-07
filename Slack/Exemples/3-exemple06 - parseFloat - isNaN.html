@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        // parseFloat renvoie la partie numérique au début d'une chaîne de caractères, s'il en trouve une. Sinon, retourne NaN
+        var valeurStyle = '8px';
+        var valeurStyleNombre = parseFloat(valeurStyle);
+        alert(valeurStyleNombre);
+        var nouvelleValeur = valeurStyleNombre * 2;
+        alert(nouvelleValeur);
+        var valeurAttribut = nouvelleValeur + 'px';
+        alert(valeurAttribut);
+
+        // parseInt renvoie uniquement la partie entière
+        alert(parseInt('05')); // donne 5
+        alert(parseInt('5.1ghkj')); // donne 5
+        
+        // isNaN(valeur) retourne true si la valeur passée en argument vaut NaN, sinon, retourne false.
+        isNaN('test'); // true
+        isNaN(4); // false
+        isNaN(parseFloat('12px')); // false
+
+        // Attention aux conversions implicites
+        isNaN(''); // false
+        isNaN(true); // false
+        isNaN(false); // false
+
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

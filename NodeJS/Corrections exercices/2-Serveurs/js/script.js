@@ -1,0 +1,1 @@
+window.alert('Ceci est un script qui vient d\'être téléchargé par le navigateur Internet !');

@@ -1,0 +1,6 @@
+<div>
+  <h2>Météo à Paris</h2>
+  <p>ville : {{ monCtrl.ville }}</p>
+  <p>température : {{ monCtrl.temperature }}</p>
+  <p ng-if="monCtrl.httpError != ''">{{ monCtrl.httpError }}</p>
+</div>

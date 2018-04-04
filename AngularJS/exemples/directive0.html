@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+  <galette-des-rois></galette-des-rois>
+
+  <article petit-dejeuner></article>
+  <petit-dejeuner></petit-dejeuner>
+
+
+  <section apero></section>
+
+  <section class="apero"></section>
+
+
+  <script src="./lib/angular.min.js"></script>
+  <script>
+    var monModuleApp = angular.module('monApplication', []);
+
+    monModuleApp.directive('petitDejeuner', function() {
+      var objetDefinissantMaDirective = {
+        restrict: 'AE',
+        template: '<h1>Un petit-déjeûner complet</h1><ul><li>Oeuf</li><li>Bacon</li><li>Café</li></ul>'
+      };
+      return objetDefinissantMaDirective;
+    });
+
+    monModuleApp.directive('apero', function() {
+      return {
+        restrict: 'AC',
+        templateUrl: './partials/apero.html'
+      };
+    });
+
+    monModuleApp.directive('galetteDesRois', function() {
+      return {
+        restrict: 'E',
+        templateUrl: './partials/galette-des-rois.html',
+        controller: [function() {
+          this.roi = 'Ronald',
+          this.acclamerLeRoi = function() {
+            return 'Vive le roi !'
+          }
+        }],
+        controllerAs: 'galetteCtrl'
+      };
+    });
+
+
+    angular.bootstrap(window.document, ['monApplication'], {strictDi: true});
+  </script>
+
+</body>
+</html>

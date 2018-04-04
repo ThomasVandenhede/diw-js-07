@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        var fonctionConcat = function() {
+            return 'Hello';
+        };
+
+        var faireQuelqueChose = function(fonc) {
+            var texteObtenu = fonc();
+            alert(texteObtenu);
+        };
+
+        faireQuelqueChose(fonctionConcat);
+
+
+
+        var carre = function(nombre) {
+            return nombre * nombre;
+        };
+        var cube = function(nombre) {
+            return nombre * nombre * nombre;
+        };
+
+
+        var faireAutreChose = function(fonc, arg1) {
+            var resultat = fonc(arg1);
+            alert(resultat);
+        };
+
+        faireAutreChose(carre, 5);
+        faireAutreChose(cube, 5);
+        faireAutreChose(carre, 11);
+        faireAutreChose(cube, 11);
+
+        faireAutreChose(function(nombre) {
+            return nombre + nombre;
+        }, 40);
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

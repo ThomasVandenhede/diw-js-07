@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Websocket natif (Firefox)</title>
+    <script>
+        var ws = new WebSocket('ws://127.0.0.1:8888', 'diwjs');
+
+        ws.addEventListener('open', function(event){
+            var monBouton = document.getElementById('btn1');
+            monBouton.addEventListener('click', function(event){
+                ws.send('Bonjour les DIW JS 07');
+            });
+        })
+    </script>
+</head>
+<body>
+    <h1>Websocket natif (Firefox)</h1>
+    <button type"button" id="btn1">Envoyer un message en websocket</button>
+</body>
+</html>

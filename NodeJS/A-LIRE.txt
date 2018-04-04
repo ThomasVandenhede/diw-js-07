@@ -1,0 +1,40 @@
+Audit de système : 
+
+Damn vulnerable web application (DVWA)
+Owasp
+openVAS
+kali linux
+Arachni
+
+Module pour apache ou nginx
+Phusion passenger
+
+Architecture serveur :
+
+Apache ou nginx + node JS
+
+Outil gratuit pour du SSL
+
+Let's encrypt
+
+Modules Node :
+
+Winston (log server)
+Mongoose (surcouche au module mongoDB)
+Loopback
+Electron (app ordi)
+Cordova (app mobile)
+Passport (gestion authentification)
+Helmet (sécurité)
+Request
+Lodash (fonction utilitaire)
+
+Test utilisateur
+phantom.js
+
+Developpement front end :
+Webpack
+
+
+
+

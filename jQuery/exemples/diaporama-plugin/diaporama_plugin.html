@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Diaporama en plugin</title>
+  <script src="jquery.js"></script>
+  <script src="diaporama.js"></script>
+  <script>
+    $(function() {
+      $('#cible1').diaporama().css('margin-top','60px');
+      $('#cible2').diaporama({
+        duree: 3000,
+        transition:300
+      }).css('margin-top','40px');
+    })
+  </script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Diaporama en plugin</h1>
+  <div id="cible1">
+    <ul>
+      <li><img src="01.jpg" alt=""></li>
+      <li><img src="02.jpg" alt=""></li>
+      <li><img src="03.jpg" alt=""></li>
+      <li><img src="04.jpg" alt=""></li>
+      <li><img src="05.jpg" alt=""></li>
+      <li><img src="06.jpg" alt=""></li>
+    </ul>
+  </div>
+  <div id="cible2">
+    <ul>
+      <li><img src="01.jpg" alt=""></li>
+      <li><img src="02.jpg" alt=""></li>
+      <li><img src="03.jpg" alt=""></li>
+      <li><img src="04.jpg" alt=""></li>
+      <li><img src="05.jpg" alt=""></li>
+      <li><img src="06.jpg" alt=""></li>
+    </ul>
+  </div>
+</body>
+</html>

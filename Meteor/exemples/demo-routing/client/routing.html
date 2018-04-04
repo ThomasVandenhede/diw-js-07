@@ -1,0 +1,18 @@
+<template name="routing">
+  <h1>Meteor avec routage</h1>
+
+  <nav>
+    <ul>
+      <li><a href="{{pathFor route='page-home'}}">Accueil</a></li>
+      {{#if currentUser}}
+      <li><a href="{{pathFor route='page-chat'}}">Chat</a></li>
+      <li><a href="#" id="logout">Déconnexion</a></li>
+      {{else}}
+      <li><a href="{{pathFor route='page-login'}}">Connexion</a></li>
+      <li><a href="{{pathFor route='page-signup'}}">Créer un compte</a></li>
+      {{/if}}
+    </ul>
+  </nav>
+
+  {{>yield}}
+</template>

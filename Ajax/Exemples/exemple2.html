@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./lib/jquery-3.3.1.min.js"></script>
+  <script>
+    $(document).ready(function() {
+
+      console.log('ready');
+
+      $('#form1').on('submit', function(event) {
+        console.log('submit');
+        event.preventDefault();
+        $.ajax({
+          url: 'https://www.google.fr/',
+          method: 'GET',
+          data: {
+            q: $('#q').val()
+          },
+          success: function(donnees) {
+            console.log(donnees);
+          },
+          error: function(jQxhr) {
+            console.log(jQxhr);
+          }
+        });
+      })
+
+      $('#form2').on('submit', function(event) {
+        console.log('submit form2');
+        event.preventDefault();
+
+        $.ajax({
+          url: 'https://httpbin.org/get',
+          method: 'GET',
+          dataType: 'json',
+          data: {
+            choucroute: $('#mon-champ').val()
+          },
+          success: function(donnees) {
+            console.log(donnees);
+          },
+          error: function(jQxhr) {
+            console.log(jQxhr);
+          }
+        });
+
+      })
+
+
+    });
+  </script>
+</head>
+<body>
+
+  <form action="https://www.google.fr/" method="get" id="form1">
+    <input type="text" name="q" id="q">
+  </form>
+
+
+  <form action="https://www.google.fr/" method="POST" id="form2">
+    <input type="text" name="bar" id="mon-champ">
+  </form>
+    
+
+</body>
+</html>

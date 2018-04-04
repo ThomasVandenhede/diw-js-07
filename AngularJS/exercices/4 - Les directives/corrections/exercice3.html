@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <title>AngularJS : Les Directives : Exercice 3</title>
+    <script>
+      // Énoncé
+      /* Les composants (« component ») */
+      /**************************************************************************************************
+        Un composant est un type particulier de directive avec une syntaxe simplifiée
+        Pour créer un composant persnnalisé, on utilise la méthode .component(). Celle ci prend en argument 2 paramètres, le nom du composant ainsi qu'un objet décrivant le composant. Les propriétés de cet objet sont définies ici dans la documentation officielle: https://docs.angularjs.org/api/ng/service/$compile#directive-definition-object
+      **************************************************************************************************/
+      /*
+        1. Chargez AngularJS dans ce document. Le contexte applicatif d'AngularJS doit englober tout le document. Votre application s'appellera angularjsExercice1. Un tutoriel officiel sur le chargement d'AngularJS est disponible ici : https://docs.angularjs.org/tutorial/step_00
+      */
+
+      /*
+        2. Créez une directive personnalisée qui remplace son contenu par un titre <h4>.
+      */
+
+      /*
+        3. Créez une directive personnalisée qui remplace son contenu par un titre <h4> obtenu à partir d'un fichier externe.
+      */
+
+      /*
+        4. Créez une directive personnalisée qui possède un contrôleur qui définit une liste d'objet. La directive remplace son contenu par un affichage de la liste d'objets définie par le contrôleur.
+      */
+    </script>
+  </head>
+  <body>
+    <div>
+      <h1>Mes directives sous forme de composants</h1>
+
+      <h2>Premier composant</h2>
+      <mon-premier-component></mon-premier-component>
+
+      <h2>Deuxième composant</h2>
+      <mon-deuxieme-component></mon-deuxieme-component>
+
+      <h2>Troisième composant</h2>
+      <mon-troisieme-component></mon-troisieme-component>
+
+    </div>
+    <!-- On charge le framework AngularJS dans le document -->
+    <script src="../lib/angular-1.6.1.min.js"></script>
+
+    <!-- On on écrit ou on charge son script JavaScript utilisant AngularJS -->
+    <script type="text/javascript">
+      //Bonne pratique : programmer en mode strict JavaScript (voir : https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Strict_mode)
+      'use strict';
+
+      //Bonne pratique : écrire son code dans une fonction anonyme auto-exécutable pour contrôler l'exposition des variables à l'objet global Window.
+      (function() {
+
+        /*
+          On créé un module AngularJS à l'aide de la méthode angular.module().
+          angular.module() est utilisée ici comme un "setter".
+          Voir : https://docs.angularjs.org/api/ng/function/angular.module
+        */
+        angular.module('angularjsExercice1', []);
+
+
+        angular.module('angularjsExercice1')
+        .component('monPremierComponent', {
+          template: '<h3>Template défini dans le template d\'un composant</h3>'
+        });
+
+
+        // controllerAs est défini par défaut comme '$ctrl'
+        angular.module('angularjsExercice1')
+        .component('monDeuxiemeComponent', {
+          template: '<h3>Liste générée à l\'aide d\'une liste définie dans un contrôleur attaché au composant</h3><ul><li ng-repeat="eleve in $ctrl.inscrits"> {{ eleve.prenom + \' \' + eleve.nom + \', \' + eleve.age + \' ans.\' }} </li></ul>',
+
+          controller: [function () {
+            this.inscrits = [{
+              nom: 'Durant',
+              prenom:'Albert',
+              age:'33'
+            }, {
+              nom: 'Dupont',
+              prenom:'Jeanne',
+              age:'27'
+            }, {
+              nom: 'Denis',
+              prenom:'Jude',
+              age:'37'
+            }];
+          }]
+        });
+
+        angular.module('angularjsExercice1')
+        .component('monTroisiemeComponent', {
+          template: '<h3>Compteur : <span ng-bind="ctrlAvecUnAutreNom.count"></span></h3><p><button type="button" ng-click="ctrlAvecUnAutreNom.decrement();">-</button><button type="button" ng-click="ctrlAvecUnAutreNom.increment();">+</button></p>',
+          controllerAs: 'ctrlAvecUnAutreNom',
+          controller: [function () {
+            this.count = 0;
+            this.increment = function() {
+              this.count++;
+            };
+            this.decrement = function() {
+              this.count--;
+            };
+          }]
+        });
+
+        /*
+          On utilise le module AngularJS créé pour interpréter les expressions et directives AngularJS présentes dans le DOM à l'aide de la méthode angular.bootstrap().
+          Voir : https://docs.angularjs.org/api/ng/function/angular.bootstrap
+        */
+        angular.bootstrap(window.document, ['angularjsExercice1'], {strictDi:true});
+        /**
+          window.document : portion de DOM à interpréter.
+          ['angularjsExercice1'] : tableau des modules à utiliser pour interpréter la portion de DOM
+          {strictDi:true} : Objet contenant une propriété qui indique à AngularJS de fonctionner à l'aide d'injections de dépendances strictes (notion que nous détaillerons plus tard).
+        **/
+
+      })();
+      //Fin de la fonction anonyme auto-exécutable
+    </script>
+  </body>
+</html>

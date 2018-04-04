@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+  <div ng-controller="monControleurJson as monCtrlJson">
+    <p>Nombre de restaurant : {{ monCtrlJson.count }}</p>
+    <div ng-repeat="resto in monCtrlJson.restaurants">
+      <h3>{{ resto.name }}</h3>
+      <p>quartier: <strong>{{ resto.borough }}</strong>, cuisine: <strong>{{ resto.cuisine }}</strong> </p>
+    </div>
+  </div>
+
+  <script src="./lib/angular.min.js"></script>
+
+<script>
+
+    angular.module('monModuleApp', [])
+    .controller('monControleurJson', ['$http', function(serviceHttp) {
+      this.count = '***';
+      this.restaurants = [];
+
+      var that = this;
+      serviceHttp.get('http://api.virtuoworks.com/json/v1/Restaurants/count')
+      .then(function(jsonData) {
+        console.log(jsonData);
+        that.count = jsonData.data.count;
+      })
+      .catch(function(error) {
+        console.log(error);
+      })
+
+      serviceHttp({
+        method: 'GET',
+        url: 'http://api.virtuoworks.com/json/v1/Restaurants?filter={"limit":10}'
+      })
+      .then(function(jsonData) {
+        console.log(jsonData.data);
+        that.restaurants = jsonData.data;
+        // that.count = jsonData.data.count;
+      })
+      .catch(function(error) {
+        console.log(error);
+      })
+
+    }]);
+
+    angular.module('monModuleApp')
+    .config(['$sceDelegateProvider', function($sceDelegateProvider){
+      $sceDelegateProvider.resourceUrlWhitelist([
+        'self', //autorise toutes les requête vers et en provenance du même domaine
+        'http://*.virtuoworks.com/**' //autorise toutes les requête vers et en provenance du domaine jsontest.com
+      ])
+    }]);
+
+    angular.bootstrap(window.document, ['monModuleApp'], {strictDi: true});
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script src="jquery.js"></script>
+  <script>
+    $(function() {
+      $('div').attr('clique','0');
+      $('div').click(function() {
+        //récupérer l'attribut
+        //incrémenter l'attribut
+        var valeur = parseFloat($(this).attr('clique')) + 1;
+        //replacer la nouvelle valeur et l'indiquer dans la div
+        $(this).html(valeur).attr('clique',valeur);
+      });
+    });
+  </script>
+  <title>Exemple 4</title>
+  <style>
+    body{
+      text-align: center;
+    }
+    div{
+      display: inline-block;
+      vertical-align: top;
+      width: 40%;
+      height: 150px;
+      color: white;
+      font-size: 3em;
+    }
+    div:first-child{
+      background-color: red;
+    }
+    div:last-child{
+      background-color: blue;
+    }
+  </style>
+</head>
+<body>
+  <div></div>
+  <div></div>
+</body>
+</html>

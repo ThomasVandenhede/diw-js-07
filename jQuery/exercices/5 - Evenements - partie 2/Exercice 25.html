@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>jQuery : Exercice 25</title>
+		<link rel="stylesheet" href="../src/styles1.css" type="text/css"/>
+		<script type="text/javascript" src="../jquery-1.11.3.js"></script>
+		<script type="text/javascript">
+      /*********************************
+      ***********PRESENTATION***********
+      **********************************
+      jQuery permet une gestion avancée des événements. Il est ainsi possible d'ajouter plusieurs gestions d'événements à un élément en une seule ligne d'écriture ou de supprimer une ou plusieurs gestion d'événements.
+      Pour ce faire, on utilise les méthodes on() et off().
+
+      Par exemple, pour gérer le survol d'un élément, nous pouvons utiliser la méthode $('lmt').mousemouve(function(){}). Cette méthode est la version raccourcie de $('lmt')..on('mousemouve',function(){}).
+
+      Pour supprimer cette gestion d'événement, on écrit : $('lmt').off('mousemouve').
+
+      On peut également ajouter la gestion d'un événement pour une unique action grâce à la méthode one().
+      */
+
+      /**********************************
+      *************EXERCICES*************
+      ***********************************
+      ** 1 **
+        Créez une page html contenant trois boutons, trois images accompagnée chacune de sa miniature. Les images et les miniatures sont positionnées en absolute et masquées.
+        Chaque bouton est lié à un couple image/miniature.
+
+        À la fin du chargement du document, prévoyez le script suivant :
+        _ Au survol d'un bouton, la miniature correspondante devient visible.
+        _ Au clic sur bouton, la miniature correspondante est masquée et l'image correspondante devient visible durant deux secondes.
+        _ Quand le survol du bouton cesse, la miniature et l'image correspondantes sont masquées.
+
+        Utilisez les méthodes on(), css() et setTimeout().
+      */
+
+      /*
+      ** 2 **
+        Ajoutez une case à cocher.
+        Si la case est décochée, les miniatures sont toujours invisibles et le survol d'un bouton affiche l'image correspondante.
+        Si la case est cochée, le comportement précédent est rétabli.
+
+        Utilisez les méthodes change(), on(), off() et css().
+      */
+    </script>
+	</head>
+	<body>
+
+		<noscript>
+			<p>Veuillez activer JavaScript</p>
+		</noscript>
+	</body>
+</html>

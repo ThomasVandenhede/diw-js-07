@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        var maVariable = 'Bonjour'; // variable globale
+
+        var maFonctionAddition = function() {
+            var resultat = 3 + 3; // variable locale
+            alert(maVariable);
+            maVariable = 'Au revoir';
+
+            /*var functionInterne = function() {
+                alert(resultat);
+            };*/
+            
+            alert(resultat);
+            //return functionInterne;
+        };
+        /*var res = maFonctionAddition();
+        res();*/
+
+        var maFonctionMultiplication = function() {
+            var resultat = 3 * 3; // variable locale
+            var maVariable = 'Ni l un ni l autre';
+            alert(maVariable);
+            alert(resultat);
+        };
+
+        maFonctionMultiplication();
+        maFonctionAddition();
+
+        //alert(resultat);
+        //alert(calcul);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

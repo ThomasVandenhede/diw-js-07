@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8"/>
+    <title>JavaScript : Exercice 31 - open 3</title>
+    <script type="text/javascript">
+      /*********************************
+      ************ EXERCICE ************
+      **********************************
+        Réalisez le programme (algorithme) suivant :
+        Quand l'utilisateur sur le premier paragraphe, une boîte de dialogue lui demande s'il souhaite aller sur Google :
+        - S'il clique sur oui, ouvrez une fenêtre vers Google.
+        - Sinon affichez une boîte de dialogue avec un champ de saisie avec le texte : « Veuillez saisir une URL ».
+          - Si l'utilisateur saisit un texte, ce texte est utilisé comme URL pour ouvrir une nouvelle fenêtre.
+          - Sinon un message s'affiche dans une boîte de dialogue avec le texte : « Tant pis ! ».
+      */
+
+      var boiteDial = function(message){
+        var message = 'Souhaitez vous aller sur Google ?';
+        var message2 = 'Tant pis !';
+        var boite = confirm(message)
+          if(!boite == null || !boite == ''){
+            open('http://www.google.com','Gooble', 'directories=no,menubar=no');
+          } else ; {
+            var reponseBoite = prompt('Veuillez saisir une URL');
+          }if(isNaN(reponseBoite)){
+            open(reponseBoite);
+          }else{
+            prompt(message2);
+          }
+      }
+          
+     
+
+
+    </script>
+  </head>
+  <body>
+    <h1>JavaScript : Exercice 31 - open 3</h1>
+    <p onclick="boiteDial()">Premier paragraphe</p>
+    <p>Deuxième paragraphe</p>
+    <noscript>
+      <p>Veuillez activer JavaScript</p>
+    </noscript>
+  </body>
+</html>

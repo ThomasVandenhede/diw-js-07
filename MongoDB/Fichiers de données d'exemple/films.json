@@ -1,0 +1,13 @@
+{"_id":{"$oid":"5a7033405bc974f62033fc50"},"titre":"Rambo","annee":1982.0}
+{"_id":{"$oid":"5a70338f5bc974f62033fc51"},"titre":"Rambo II: La mission","annee":1985.0}
+{"_id":{"$oid":"5a70338f5bc974f62033fc52"},"titre":"Rambo III","annee":1988.0}
+{"_id":{"$oid":"5a70338f5bc974f62033fc53"},"titre":"Terminator","annee":1984.0}
+{"_id":{"$oid":"5a70338f5bc974f62033fc54"},"titre":"Retour vers le futur","annee":1985.0}
+{"_id":{"$oid":"5a7033d55bc974f62033fc55"},"titre":"Fight Club","annee":1999.0}
+{"_id":{"$oid":"5a70340e5bc974f62033fc56"},"titre":"Alien - Le 8ème passager","annee":1979.0}
+{"_id":{"$oid":"5a70340e5bc974f62033fc57"},"titre":"Aliens - Le retour","annee":1986.0}
+{"_id":{"$oid":"5a70340e5bc974f62033fc58"},"titre":"Terminator 2 - Le jugement dernier","annee":1991.0}
+{"_id":{"$oid":"5a70340e5bc974f62033fc59"},"titre":"Dune","annee":1984.0}
+{"_id":{"$oid":"5a70340e5bc974f62033fc5a"},"titre":"S.O.S. fantômes","annee":1984.0}
+{"_id":{"$oid":"5a70340e5bc974f62033fc5b"},"titre":"Retour vers le futur 2","annee":1989.0}
+{"_id":{"$oid":"5a70340e5bc974f62033fc5c"},"titre":"Retour vers le futur: 3e partie","annee":1990.0}

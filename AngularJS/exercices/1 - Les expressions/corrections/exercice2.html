@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <title>AngularJS : Les Expressions : Exercice 2</title>
+    <!-- On charge le framework AngularJS dans le document -->
+    <script src="../lib/angular-1.6.5.min.js"></script>
+    <script>
+      // Énoncé
+      /* La directive ng-init */
+      /**************************************************************************************************
+        La directive ng-init (attribut de balise non standard introduit par AngularJS) permet d'initialiser des propriétés dans un contexte. Ici nous n'aurons qu'un seul contexte : l'application. La directive ng-init prend pour valeur une expression. La documentation officielle de la directive ng-init est disponible ici : https://docs.angularjs.org/api/ng/directive/ngInit.
+      **************************************************************************************************/
+
+      /*
+        1. Chargez AngularJS dans ce document. Le contexte applicatif d'AngularJS doit englober tout le document. Votre application s'appellera angularjsExercice2. Un tutoriel officiel sur le chargement d'AngularJS est disponible ici : https://docs.angularjs.org/tutorial/step_00
+      */
+
+      /*
+        2. À l'aide d'une expression et sur une div, initialisez une variable (qui, on le verra plus tard, est une propriété du contexte) promotions qui contient 5 éléments qui sont les 5 dernières années (2013 à 2017).
+      */
+
+      /*
+        3. À l'aide d'une expression affichez votre année de promotion dans le paragraphe à l'intérieur de la div.
+      */
+
+      /*
+        4. À l'aide d'une expression et sur une div, initialisez une variable (propriété du contexte) nommée classe. Cette variable « classe » est un objet. Les caractéristiques de votre objet « classe » sont :
+        - Son nom, qui est une chaîne de caractère;
+        - Sa spécialité, qui est une chaîne de caractère;
+        - Son nombre d'inscrits, qui est un nombre.
+      */
+
+      /*
+        5. À l'aide d'une expression, affichez à l'intérieur de la div le nom de votre classe avec sa spécialité sur une même ligne. Affichez sur une autre ligne le nombre d'inscrits de votre classe.
+      */
+    </script>
+  </head>
+  <body>
+    <div ng-init="promotions = [2013, 2014, 2015, 2016, 2017]" class="ng-cloak">
+      <h4>Promotion</h4>
+      <p>Quelle est ma promotion ?</p>
+      <p>{{ promotions[4] }}</p>
+    </div>
+    <div ng-init="classe = {nom: 'DIW', specialite: 'JavaScript', nbInscrits: 20}" ng-cloak>
+      <h4>Classe</h4>
+      <p>Quelle est l'intitulé de ma formation ? </p>
+      <p>{{ classe.nom + ' ' + classe.specialite }}</p>
+      <p>Quel est le nombre d'inscrits dans ma formation ?</p>
+      <p>{{ classe.nbInscrits }}</p>
+    </div>
+
+    <!-- On on écrit ou on charge son script JavaScript utilisant AngularJS -->
+    <script>
+      // Bonne pratique : programmer en mode strict JavaScript (voir : https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Strict_mode)
+      'use strict';
+
+      // Bonne pratique : écrire son code dans une fonction anonyme auto-exécutable pour contrôler l'exposition des variables à l'objet global Window.
+      (function() {
+
+        /*
+          On créé un module AngularJS à l'aide de la méthode angular.module().
+          angular.module() est utilisée ici comme un "setter".
+          Voir : https://docs.angularjs.org/api/ng/function/angular.module
+        */
+        angular.module('angularjsExercice2', []);
+
+        /*
+          On utilise le module AngularJS créé pour interpréter les expressions et directives AngularJS présentes dans le DOM à l'aide de la méthode angular.bootstrap().
+          Voir : https://docs.angularjs.org/api/ng/function/angular.bootstrap
+        */
+        angular.bootstrap(window.document, ['angularjsExercice2'], {strictDi:true});
+        /**
+          window.document : portion de DOM à interpréter.
+          ['angularjsExercice2'] : tableau des modules à utiliser pour interpréter la portion de DOM
+          {strictDi:true} : Objet contenant une propriété qui indique à AngularJS de fonctionner à l'aide d'injections de dépendances strictes (notion que nous détaillerons plus tard).
+        **/
+
+      })(); // IIFE
+    </script>
+  </body>
+</html>

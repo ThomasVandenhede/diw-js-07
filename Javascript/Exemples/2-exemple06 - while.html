@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+
+        alert('début');
+
+        var conditionBoucle = true;
+        while (conditionBoucle) {
+            conditionBoucle = false;
+            alert('Condition vérifiée, la boucle continue');
+        }
+
+        var compteur = 0;
+        while (compteur < 3) {
+
+            // compteur = compteur + 1;
+            // compteur += 1;
+            compteur++; // ajoute 1 à la valeur actuelle
+            alert('tour de boucle' + compteur);
+        }
+
+        var texte = 'bonjour';
+        texte += ' à tous'; // texte contient "bonjour à tous"
+
+        var tableau = ['Java', 'JavaScript', 'Ruby', 'Python', 'PHP'];
+        var i = 0;
+        while (i < 5) {
+            alert(tableau[i]);
+            i++;
+        }
+
+        alert('fin');
+    </script>
+       
+</head>
+<body>
+    
+</body>
+</html>

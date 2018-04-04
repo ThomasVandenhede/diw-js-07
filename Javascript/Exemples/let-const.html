@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        var test = true;
+
+        // les mots-clés "let" et "const" ont une portée bloc et non fonction
+        function temp() {
+
+        }
+
+        while (false) {
+
+        }
+
+        {
+            let nombreX = 9;
+        }
+        // console.log(nombreX);
+
+        if (test) {
+            let nombre = 2;
+            nombre += 2;
+            console.log('nombre vaut ' + nombre + ' dans le bloc');
+
+            const nombreConst = 12;
+            nombreConst += 5; // <== Erreur
+
+            // console.log('nombreConst vaut ' + nombreConst + ' dans le bloc');
+        } else {
+            let nombre = 10;
+        }
+
+        // console.log(nombre);
+        // console.log(nombreConst);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

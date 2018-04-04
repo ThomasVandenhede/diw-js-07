@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<!-- saved from url=(0085)https://learning.virtuoworks.com/pluginfile.php/454/mod_resource/content/4/cours.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>MeteorJS : Introduction à la plate-forme</title>
+    <link rel="stylesheet" href="./prism.css" type="text/css">
+    <link rel="stylesheet" href="./style.css" type="text/css">
+    <link type="image/x-icon" rel="icon" href="https://learning.virtuoworks.com/pluginfile.php/454/mod_resource/content/4/img/favicon.png">
+    <link type="image/x-icon" rel="shortcut icon" href="https://learning.virtuoworks.com/pluginfile.php/454/mod_resource/content/4/img/favicon.png">
+    <script src="./prism.js.téléchargement"></script>
+  </head>
+  <body>
+    <header>
+      <h1>MeteorJS : Introduction à la plate-forme</h1>
+      <div class="copyright">
+        <p>MeteorJS : Introduction à la plate-forme - Sami Radi - <a target="_blank" href="http://www.virtuoworks.com/" title="VirtuoWorks">VirtuoWorks®</a> - tous droits réservés©</p>
+      </div>
+      <div class="page-break"></div>
+      <h2>Sommaire</h2>
+      <nav>
+        <ol>
+          <li><p><a href="https://learning.virtuoworks.com/pluginfile.php/454/mod_resource/content/4/cours.html#/chapitre-1">La plate-forme Meteor JS</a></p>
+            <ol>
+              <li><p><a href="https://learning.virtuoworks.com/pluginfile.php/454/mod_resource/content/4/cours.html#/chapitre-1/partie-1">Présentation de Meteor JS</a></p></li>
+              <li><p><a href="https://learning.virtuoworks.com/pluginfile.php/454/mod_resource/content/4/cours.html#/chapitre-1/partie-3">Installation de Meteor JS</a></p></li>
+              <li><p><a href="https://learning.virtuoworks.com/pluginfile.php/454/mod_resource/content/4/cours.html#/chapitre-1/partie-2">Les commandes Meteor JS</a></p></li>
+              <li><p><a href="https://learning.virtuoworks.com/pluginfile.php/454/mod_resource/content/4/cours.html#/chapitre-1/partie-4">La structure d'une application Meteor JS</a></p></li>
+            </ol>
+          </li>
+          <li><p><a href="https://learning.virtuoworks.com/pluginfile.php/454/mod_resource/content/4/cours.html#/chapitre-2">Développer une application Meteor JS</a></p>
+            <ol>
+              <li><p><a href="https://learning.virtuoworks.com/pluginfile.php/454/mod_resource/content/4/cours.html#/chapitre-2/partie-1">Notion de SPA (Single Page Application)</a></p></li>
+              <li><p><a href="https://learning.virtuoworks.com/pluginfile.php/454/mod_resource/content/4/cours.html#/chapitre-2/partie-2">Le « moteur de template » Spacebars</a></p></li>
+              <li><p><a href="https://learning.virtuoworks.com/pluginfile.php/454/mod_resource/content/4/cours.html#/chapitre-2/partie-3">Le « moteur de événementiel » Blaze</a></p></li>
+              <li><p><a href="https://learning.virtuoworks.com/pluginfile.php/454/mod_resource/content/4/cours.html#/chapitre-2/partie-4">Gérer la persistance des données avec MongoDB et Minimongo</a></p></li>
+              <li><p><a href="https://learning.virtuoworks.com/pluginfile.php/454/mod_resource/content/4/cours.html#/chapitre-2/partie-5">Créer et gérer des « routes » avec iron:router</a></p></li>  
+            </ol>
+          </li>
+        </ol>
+      </nav>
+    </header>
+    <section class="chapitre chapitre-1" id="/chapitre-1">
+      <header>
+        <h3>2. La plate-forme Meteor JS</h3>
+        <nav>
+          <ol>
+            <li><p><a href="https://learning.virtuoworks.com/pluginfile.php/454/mod_resource/content/4/cours.html#/chapitre-1/partie-1">Présentation de Meteor JS</a></p></li>
+            <li><p><a href="https://learning.virtuoworks.com/pluginfile.php/454/mod_resource/content/4/cours.html#/chapitre-1/partie-3">Installation de Meteor JS</a></p></li>
+            <li><p><a href="https://learning.virtuoworks.com/pluginfile.php/454/mod_resource/content/4/cours.html#/chapitre-1/partie-2">Les commandes Meteor JS</a></p></li>
+            <li><p><a href="https://learning.virtuoworks.com/pluginfile.php/454/mod_resource/content/4/cours.html#/chapitre-1/partie-4">La structure d'une application Meteor JS</a></p></li>
+          </ol>
+        </nav>
+      </header>
+      <section class="partie partie-1 chapitre-1-partie-1" id="/chapitre-1/partie-1">
+        <h4>1.1. Présentation de Meteor JS</h4>
+        <p><a target="_blank" href="https://www.meteor.com/" title="site officiel de Meteor JS">Meteor JS</a> est une plate-forme de développement « full-stack » JavaScript.
+        </p><p>Meteor JS est documenté :</p>
+        <ul>
+          <li>Sur le <a target="_blank" href="https://www.meteor.com/" title="site officiel de Meteor JS">site officiel de Meteor JS</a>;
+          </li><li>Sur le <a target="_blank" href="http://www.meteorpedia.com/" title="site Meteorpedia">site Meteorpedia</a>;</li>
+          <li>...</li>
+        </ul>
+        <p>La plate-forme Meteor JS contient :</p>
+        <ul>
+          <li>
+            <p>Un outil utilisable en ligne de commande pour :</p>
+            <ul>
+              <li>Générer un <b>squelette</b> d'application;</li>
+              <li>Démarrer un <b>serveur</b> applicatif de test;</li>
+              <li>Installer des <b>modules complémentaires</b> pour Meteor JS;</li>
+              <li>Gérer un système de gestion de <b>bases de données</b> de test;</li>
+              <li>Déployer son application vers <b>différents</b> formats/plate-formes.</li>
+            </ul>
+          </li>
+          <li>
+            <p>Un ensemble de systèmes serveur :</p>
+            <ul>
+              <li>L'interpréteur <b>Node JS</b> (version 0.10.45);</li>
+              <li>Le système de gestion de base de données <b>MongoDB</b> (version 2.6.7);</li>
+              <li>Un ensemble de modules complémentaires de Node JS;</li>
+              <li>Un ensemble de modules complémentaires de Meteor JS.</li>
+            </ul>
+          </li>
+          <li>
+            <p>Un ensemble de « frameworks » JavaScript client :</p>
+            <ul>
+              <li>jQuery pour la gestion du DOM, documenté <a target="_blank" href="https://jquery.com/" title="documentation officielle de jQuery">ici</a>;</li>
+              <li>Underscore pour un ensemble de fonctions utilitaires, documenté <a target="_blank" href="http://underscorejs.org/" title="documentation officielle de underscore">ici</a>;</li>
+              <li>Cordova pour la gestion des fonctionnalités spécifiques au terminaux mobiles, documenté <a target="_blank" href="https://cordova.apache.org/" title="documentation officielle de cordova">ici</a>;</li>
+              <li>Spacebars (spécifique à Meteor JS), documenté <a target="_blank" href="https://atmospherejs.com/meteor/spacebars" title="documentation officielle de spacebars">ici</a>, qui est un moteur de template coté client inspiré de <a target="_blank" title="site officiel de Handlebars" href="http://handlebarsjs.com/">Handlebars</a>;</li>
+              <li>Blaze (spécifique à Meteor JS), documenté <a target="_blank" href="https://atmospherejs.com/meteor/blaze" title="documentation officielle de blaze">ici</a>, qui est un moteur de gestion d'évènement totalement intégré avec Spacebars;</li>
+              <li>Minimongo (spécifique à Meteor JS) documenté <a target="_blank" href="https://atmospherejs.com/meteor/minimongo" title="documentation officielle de minimongo">ici</a>, qui offre une émulation de Mongo DB dans l'espace de stockage local du navigateur Internet;</li>
+              <li>et d'autres... .</li>
+            </ul>
+          </li>
+          <li><p>... <b>et le code HTML5/CSS3/JS de l'application à créer !</b></p></li>
+        </ul> 
+        <p>On pourrait schématiser la structure de Meteor JS comme suit :</p>
+        <div class="resource">
+          <object type="image/svg+xml" data="./meteor.svg" width="650" height="400" border="0">Votre navigateur Internet ne supporte pas le format SVG</object>
+        </div>
+        <p>Il s'agira de développer une application HTML5/CSS3/JavaScript au sein de Meteor JS en utilisant les outils (systèmes, « frameworks » et autres) mis à disposition par Meteor JS. Puis d'utiliser l'outil en ligne de commande de déploiement de Meteor JS pour <b>générer</b> une application pour la plate-forme cible qui se composera :</p>
+        <ul>
+          <li>coté serveur du serveur JavaScript basé sur Node JS et de la base de données MongoDB;</li>
+          <li>coté client du code HTML5/CSS3/JavaScript pour le navigateur Internet ou l'application mobile hybride correspondant à la plate-forme cible souhaitée (Android, iOS, ...).</li>
+        </ul>
+        <p>On pourrait schématiser ce mécanisme comme suit :</p>
+        <div class="resource">
+          <object type="image/svg+xml" data="./meteor-build.svg" width="900" height="700" border="0">Votre navigateur Internet ne supporte pas le format SVG</object>
+        </div>
+        <p>On parle de « <b>build</b> » (en anglais) pour qualifier le fait de générer, à partir d'un code source fonctionnant sous Meteor JS, une application pour une plate-forme cible.</p>
+      </section>
+      <section class="partie partie-2 chapitre-1-partie-2" id="/chapitre-1/partie-2">
+        <h4>1.2. Installation de Meteor JS</h4>
+        <p>Meteor JS est téléchargeable <a target="_blank" href="https://www.meteor.com/install" title="page de téléchargement de Meteor JS">ici</a>. Meteor JS peut être installé sur Linux, Mac OS et Windows.</p>
+        <p>Si Meteor JS est installé sur Windows, le dossier d'installation par défaut est le dossier :</p>
+        <ul>
+          <li><p><code class="code">C:\Users\[utilisateur]\AppData\Local\.meteor</code>.</p></li>
+        </ul>
+        <p>Une fois Meteor JS installé, on peut, à partir d'un terminal, afficher la version de Meteor JS installée en tapant :</p>
+        <pre class=" language-bash" data-language="Bash">          <code class=" language-bash">
+            <span class="token comment" spellcheck="true"># Pour afficher la version de Meteor JS installée</span>
+            meteor <span class="token operator">--</span>version
+          </code>
+        </pre>
+        <p>Ou afficher la liste des utilitaires disponibles</p>
+        <pre class=" language-bash" data-language="Bash">          <code class=" language-bash">
+            <span class="token comment" spellcheck="true"># Pour afficher la liste des commandes disponibles</span>
+            meteor <span class="token operator">--</span><span class="token function">help</span>
+          </code>
+        </pre>
+        <p>Meteor JS peut être enrichi de modules complémentaires (appelés « packages ») dont on peut consulter les caractéristiques sur le site <a target="_blank" href="https://atmospherejs.com/" title="site des packages de Meteor JS">Atmosphere JS</a>.</p>
+      </section>
+      <section class="partie partie-3 chapitre-1-partie-3" id="/chapitre-1/partie-3">
+        <h4>1.3. Les commandes Meteor JS</h4>
+          <nav>
+            <ol>
+              <li><p><a href="https://learning.virtuoworks.com/pluginfile.php/454/mod_resource/content/4/cours.html#/chapitre-1/partie-3/sous-partie-1">Créer un nouveau projet</a></p></li>
+              <li><p><a href="https://learning.virtuoworks.com/pluginfile.php/454/mod_resource/content/4/cours.html#/chapitre-1/partie-3/sous-partie-2">Démarrer une application</a></p></li>
+              <li><p><a href="https://learning.virtuoworks.com/pluginfile.php/454/mod_resource/content/4/cours.html#/chapitre-1/partie-3/sous-partie-3">Accéder à l'instance MongoDB du projet</a></p></li>
+              <li><p><a href="https://learning.virtuoworks.com/pluginfile.php/454/mod_resource/content/4/cours.html#/chapitre-1/partie-3/sous-partie-4">Lister, ajouter ou supprimer un « package »</a></p></li>
+              <li><p><a href="https://learning.virtuoworks.com/pluginfile.php/454/mod_resource/content/4/cours.html#/chapitre-1/partie-3/sous-partie-5">Créer une nouvelle plate-forme cible et générer le code source du projet</a></p></li>  
+            </ol>
+          </nav>
+        
+        <section class="sous-partie sous-partie-1 chapitre-1-partie-3-sous-partie-1" id="/chapitre-1/partie-3/sous-partie-1">
+          <h5>1.3.1 Créer un nouveau projet</h5>
+          <pre class=" language-bash" data-language="Bash">            <code class=" language-bash">
+              <span class="token comment" spellcheck="true"># Pour créer un nouveau projet sur Linux/MacOS dans un dossier :</span>
+              meteor create <span class="token punctuation">[</span>nom <span class="token function">du</span> dossier pour le projet<span class="token punctuation">]</span>
+            </code>
+          </pre>
+          <p>Cette commande crée un dossier portant le nom spécifié et contient un ensemble fichiers qui servent d'amorce au nouveau projet.</p>
+          <p><b>ATTENTION</b> les projets créés à partir de la version 1.3.3.1 de Meteor JS <b>ne fonctionnent pas</b> sur Windows. Pour créer un projet sur Windows, on utilisera la commande suivante :</p>
+          <pre class=" language-bash" data-language="Bash">            <code class=" language-bash">
+              <span class="token comment" spellcheck="true"># Pour créer un nouveau projet sur Windows dans un dossier :</span>
+              meteor create <span class="token operator">--</span>release <span class="token number">1.3</span><span class="token punctuation">.</span>2<span class="token punctuation">.</span>4 <span class="token punctuation">[</span>nom <span class="token function">du</span> dossier pour le projet<span class="token punctuation">]</span>
+            </code>
+          </pre>
+          <p>Cette commande nous permet de créer un nouveau projet basé sur la version 1.3.2.4 de Meteor JS.</p>
+          <p>Par exemple, si on utilise la commande de création comme suit :</p>
+          <pre class=" language-bash" data-language="Bash">            <code class=" language-bash">
+              <span class="token comment" spellcheck="true"># Pour créer un nouveau projet sur Linux/MacOS dans le dossier nouveauProjet :</span>
+              meteor create nouveauProjet
+            </code>
+          </pre>
+          <p>Ou, pour Windows :</p>
+          <pre class=" language-bash" data-language="Bash">            <code class=" language-bash">
+              <span class="token comment" spellcheck="true"># Pour créer un nouveau projet sur Windows dans le dossier nouveauProjet :</span>
+              meteor create <span class="token operator">--</span>release <span class="token number">1.3</span><span class="token punctuation">.</span>2<span class="token punctuation">.</span>4 nouveauProjet
+            </code>
+          </pre>
+          <p>On obtient l'arborescence de fichiers suivante :</p>
+          <pre class=" language-bash" data-language="Bash">            <code class=" language-bash">
+              <span class="token punctuation">.</span>\nouveauProjet
+                <span class="token operator">|</span>__ <span class="token punctuation">.</span>meteor            <span class="token comment" spellcheck="true"># dossier contenant les différentes configurations du projet.</span>
+                <span class="token operator">|</span>__ client             <span class="token comment" spellcheck="true"># dossier contenant les fichiers concernant le client uniquement.</span>
+                    <span class="token operator">|</span>__ main<span class="token punctuation">.</span>css       <span class="token comment" spellcheck="true"># fichier contenant le code CSS3 du projet.</span>
+                    <span class="token operator">|</span>__ main<span class="token punctuation">.</span>html      <span class="token comment" spellcheck="true"># fichier contenant le code des templates Spacebars et HTML5 du projet.</span>
+                    <span class="token operator">|</span>__ main<span class="token punctuation">.</span>js        <span class="token comment" spellcheck="true"># fichier contenant le code JavaScript client uniquement.</span>
+                <span class="token operator">|</span>__ server             <span class="token comment" spellcheck="true"># dossier contenant les fichiers concernant le serveur uniquement.</span>
+                    <span class="token operator">|</span>__ main<span class="token punctuation">.</span>js        <span class="token comment" spellcheck="true"># fichier contenant le code JavaScript serveur uniquement.</span>
+                <span class="token operator">|</span>__ package<span class="token punctuation">.</span>json       <span class="token comment" spellcheck="true"># fichier de configuration des dépendances.</span>
+                <span class="token operator">|</span>__ <span class="token punctuation">.</span>gitignore         <span class="token comment" spellcheck="true"># fichier contenant la liste des fichiers et dossiers que GIT doit ignorer (si on utilise GIT pour la gestion des fichiers source).</span>
+            </code>
+          </pre>
+          <p>On peut également créer un nouveau projet à partir de modèles pré-existants. Pour créer un nouveau projet à partir d'un modèle pré-existant, on peut taper la commande :</p>
+          <pre class=" language-bash" data-language="Bash">            <code class=" language-bash">
+              <span class="token comment" spellcheck="true"># Pour créer un projet basé sur modèle pré-existant sur Linux/MacOS :</span>
+              meteor create <span class="token punctuation">[</span>nom <span class="token function">du</span> modèle <span class="token function">pr</span>é<span class="token operator">-</span>existant<span class="token punctuation">]</span>
+            </code>
+          </pre>
+          <p>Ou, pour Windows :</p>
+          <pre class=" language-bash" data-language="Bash">            <code class=" language-bash">
+              <span class="token comment" spellcheck="true"># Pour créer un projet basé sur modèle pré-existant sur Windows :</span>
+              meteor <span class="token operator">--</span>release <span class="token number">1.3</span><span class="token punctuation">.</span>2<span class="token punctuation">.</span>4 create <span class="token punctuation">[</span>nom <span class="token function">du</span> modèle <span class="token function">pr</span>é<span class="token operator">-</span>existant<span class="token punctuation">]</span>
+            </code>
+          </pre>
+          <p>On peut consulter la liste des modèles pré-existants en tapant :</p>
+          <pre class=" language-bash" data-language="Bash">            <code class=" language-bash">
+              <span class="token comment" spellcheck="true"># Pour lister les modèle de création de projet sur Linux/MacOS :</span>
+              meteor create <span class="token operator">--</span>list
+            </code>
+          </pre>
+          <p>Ou, pour Windows :</p>
+          <pre class=" language-bash" data-language="Bash">            <code class=" language-bash">
+              <span class="token comment" spellcheck="true"># Pour créer un projet basé sur modèle pré-existant sur Windows :</span>
+              meteor <span class="token operator">--</span>release <span class="token number">1.3</span><span class="token punctuation">.</span>2<span class="token punctuation">.</span>4 create <span class="token operator">--</span>list
+            </code>
+          </pre>
+        </section>
+        <section class="sous-partie sous-partie-2 chapitre-1-partie-3-sous-partie-2" id="/chapitre-1/partie-3/sous-partie-2">
+          <h5>1.3.2 Démarrer une application</h5>
+          <p>Pour démarrer un serveur applicatif de test pour un projet nouvellement créé, il faut se positionner à la racine du dossier du projet et taper la commande <code class="code">meteor run</code>. Par exemple :</p>
+          <pre class=" language-bash" data-language="Bash">            <code class=" language-bash">
+              <span class="token comment" spellcheck="true"># On se positionne à la racine du dossier contenant le projet :</span>
+              <span class="token function">cd</span> nouveauProjet
+              <span class="token comment" spellcheck="true"># On tape :</span>
+              meteor run
+            </code>
+          </pre>
+          <p>Lorsqu'un serveur applicatif de test est démarré, on peut le joindre  à l'URL :</p>
+          <ul>
+            <li>http://localhost:3000</li>
+          </ul>
+        </section>
+        <section class="sous-partie sous-partie-3 chapitre-1-partie-3-sous-partie-3" id="/chapitre-1/partie-3/sous-partie-3">
+          <h5>1.3.3 Accéder à l'instance MongoDB du projet</h5>
+          <p>Pour accéder au système de gestion de base de données MongoDB associé au projet, il faut ouvrir un autre terminal et, <b>toujours en étant positionné à la racine du projet</b>, taper la commande :</p>
+          <pre class=" language-bash" data-language="Bash">            <code class=" language-bash">
+              <span class="token comment" spellcheck="true"># Pour accéder à l'instance de MongoDB du projet, on tape (à la racine d'un projet démarré) :</span>
+              meteor mongo
+            </code>
+          </pre>
+          <p>Le terminal client Mongo affiché s'utilise comme n'importe quel terminal Mongo (documenté <a target="_blank" href="https://docs.mongodb.org/manual/reference/mongo-shell/" title="documentation officielle du shell Mongo">ici</a>).</p>
+        </section>
+        <section class="sous-partie sous-partie-4 chapitre-1-partie-3-sous-partie-4" id="/chapitre-1/partie-3/sous-partie-4">
+          <h5>1.3.4 Lister, ajouter ou supprimer un « package »</h5>
+          <p>Pour lister les « packages » (modules complémentaires) installés pour un projet, on doit taper la commande :</p>
+          <pre class=" language-bash" data-language="Bash">            <code class=" language-bash">
+              <span class="token comment" spellcheck="true"># Pour lister les packages installés pour un projet, on tape (à la racine d'un projet) :</span>
+              meteor list
+            </code>
+          </pre>
+          <p>On peut ajouter des « packages » provenant du site Internet <a target="_blank" href="https://atmospherejs.com/" title="site Atmosphere JS des packages de Meteor JS">Atmosphere JS</a> à un projet. Par exemple, pour ajouter le package <a target="_blank" href="https://atmospherejs.com/iron/router" title="page du package iron:router sur Atmosphere JS">iron:router</a> à notre nouveau projet, on doit taper la commande :</p>
+          <pre class=" language-bash" data-language="Bash">            <code class=" language-bash">
+              <span class="token comment" spellcheck="true"># Pour ajouter un package, on tape (à la racine d'un projet) :</span>
+              meteor add iron<span class="token punctuation">:</span>router
+            </code>
+          </pre>
+          <p>A contrario, pour supprimer un « package », on doit taper la commande :</p>
+          <pre class=" language-bash" data-language="Bash">            <code class=" language-bash">
+              <span class="token comment" spellcheck="true"># Pour supprimer le package insecure, on tape (à la racine d'un projet) :</span>
+              meteor remove insecure
+            </code>
+          </pre>
+        </section>
+        <section class="sous-partie sous-partie-5 chapitre-1-partie-3-sous-partie-5" id="/chapitre-1/partie-3/sous-partie-5">
+          <h5>1.3.5 Créer une nouvelle plate-forme cible et générer le code source du projet</h5>
+          <p>Avant de générer le code source du projet pour une ou plusieurs plate-formes cible, il faut générer des configurations propres à chaque plate-forme cible. Pour ajouter une nouvelle plate-forme cible pour notre projet on doit taper :</p>
+          <pre class=" language-bash" data-language="Bash">            <code class=" language-bash">
+              <span class="token comment" spellcheck="true"># Pour lister les plate-forme cible du projet, on tape (à la racine d'un projet) :</span>
+              meteor list<span class="token operator">-</span>platforms
+              <span class="token comment" spellcheck="true"># Pour ajouter une nouvelle plate-forme cible, on peut taper :</span>
+              meteor add<span class="token operator">-</span>platform <span class="token punctuation">[</span>nom de la plate<span class="token operator">-</span>forme cible<span class="token punctuation">]</span>
+            </code>
+          </pre>
+          <p><b>ATTENTION</b>, vous ne pouvez pas ajouter la plate-forme Android si vous n'avez pas installé l'<a target="_blank" href="http://developer.android.com/sdk/index.html" title="page officielle de téléchargement d&#39;Android Studio">Android Studio</a> et ses dépendances. De même, vous ne pouvez pas ajouter la plate-forme iOS si vous n'avez pas un Mac avec Mac OS et l'environnement de développement <a target="_blank" href="https://developer.apple.com/xcode/download/" title="page de officielle de téléchargement de xCode">xCode</a>.</p>
+          <p>De base, tous les projets créés avec Meteor JS ont déjà 2 plate-formes cible installées : <code class="code">browser</code> et <code class="code">server</code>. Pour générer le projet pour ces plate-formes cible, on peut taper :</p>
+          <pre class=" language-bash" data-language="Bash">            <code class=" language-bash">
+              <span class="token comment" spellcheck="true"># Pour générer un projet pour une plate-forme cible, on tape (à la racine d'un projet) :</span>
+
+              <span class="token comment" spellcheck="true"># Pour générer le code coté serveur pour Node JS et le code coté client pour le navigateur Internet :</span>
+              meteor build <span class="token punctuation">[</span>chemin vers le dossier dans lequel le projet sera généré<span class="token punctuation">]</span>
+            </code>
+          </pre>
+          <p>Le code généré est obtenu sous la forme d'une archive en format <code class="code">.tar.gz</code>. Lorsqu'on génère le code coté serveur, l'archive contient l'ensemble des fichiers nécessaires à Node JS pour faire fonctionner cette application.</p>
+          <p>Le fichier principal à utiliser avec Node JS est le fichier <code class="code">main.js</code> contenu dans le dossier <code class="code">bundle</code>.</p>
+          <p>Avant de pouvoir démarrer le programme <code class="code">main.js</code> il faut :</p>
+          <ul>
+            <li>Mettre à jour les dépendances de Node JS en utilisant la commande <code class="code">npm update</code> à partir du dossier <code class="code">programs\server</code>;</li>
+            <li>Définir une variable d'environnement <code class="code">ROOT_URL</code> contenant l'URL de connexion à l'application. Par exemple : <code class="code">ROOT_URL=http://www.nouveauprojet.com</code>;</li>
+            <li>Si l'application utilise une base de données, définir une variable d'environnement <code class="code">MONGO_URL</code> contenant l'URL de connexion au serveur MongoDB. Par exemple : <code class="code">MONGO_URL=mongodb://&lt;username&gt;:&lt;password&gt;@[ip][:port]/&lt;base de données&gt;</code>;</li>
+            <li>D'autres variables d'environnement (optionnelles pour la plupart) peuvent être définies (comme le PORT qui par défaut est 3000). Leur liste exhaustive peut être consultée sur <a target="_blank" href="http://www.meteorpedia.com/read/Environment_Variables" title="Les variables d&#39;environnement sur Meteorpedia">cette page de Meteorpedia</a>.</li>
+          </ul>
+          <p>Les informations ci-dessus sont également détaillées un fichier <code class="code">README</code> à la racine du dossier.</p>
+          <p>Pour définir une variable d'environnement sur Windows, on peut écrire à partir du terminal :</p>
+          <pre class=" language-bash" data-language="Bash">            <code class=" language-bash">
+              <span class="token comment" spellcheck="true"># Définir une variable d'environnement temporaire (valable uniquement pour cette session)</span>
+              <span class="token keyword">set</span> ROOT_URL<span class="token operator">=</span>http<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>localhost
+              
+              <span class="token comment" spellcheck="true"># Afficher une variable d'environnement</span>
+              <span class="token keyword">echo</span> <span class="token operator">%</span>ROOT_URL<span class="token operator">%</span>
+            </code>
+          </pre>
+          <p>On peut également définir des variables d'environnement dans les paramétres systèmes avancés de Windows si on souhaite définir des variables d'environnement permanentes.</p>
+          <p>Et sur linux/Mac OS, on peut écrire à partir du terminal :</p>
+          <pre class=" language-bash" data-language="Bash">            <code class=" language-bash">
+              <span class="token comment" spellcheck="true"># Définir une variable d'environnement temporaire (valable uniquement pour cette session)</span>
+              <span class="token keyword">set</span> ROOT_URL<span class="token operator">=</span><span class="token string">'http://localhost'</span>
+              
+              <span class="token comment" spellcheck="true"># Afficher une variable d'environnement</span>
+              <span class="token keyword">echo</span> <span class="token property">$ROOT_URL</span>
+            </code>
+          </pre>
+          <p>On peut également définir des variables d'environnement dans le fichier <code class="code">~/.bashrc</code> du dossier utilisateur du système si on souhaite définir des variables d'environnement permanentes.</p>
+        </section>
+      </section>
+      <section class="partie partie-4 chapitre-1-partie-4" id="/chapitre-1/partie-4">
+        <h4>1.4. La structure d'une application Meteor JS</h4>
+        <p>Le système de fichiers d'un application Meteor JS se comporte de façon particulière selon les emplacements des fichiers et/ou les noms de dossier utilisés.</p>
+        <p>Les caractéristiques de la structure du système de fichier d'une application Meteor JS sont documentées <a target="_blank" title="Système de fichiers d&#39;une application Meteor JS" href="http://docs.meteor.com/#/full/structuringyourapp">ici</a>.</p>
+        <p>De base, les fichiers JavaScript à la racine du système de fichiers d'une application seront exécutés <b>coté serveur et coté client</b>. On peut, cependant, créer certains dossiers avec des noms particuliers pour altérer ce comportement par défaut.</p>
+        <p>En résumé :</p>
+        <code class=" language-bash">
+          <span class="token punctuation">.</span>\nouveauProjet
+            <span class="token operator">|</span>__ <span class="token punctuation">.</span>meteor            <span class="token comment" spellcheck="true"># dossier : Tous les dossiers préfixés par un « . » sont ignorés par Meteor.</span>
+            <span class="token operator">|</span>__ packages           <span class="token comment" spellcheck="true"># dossier : Ce dossier peut contenir un sous dossier par fonctionnalité. Le code de chaque fonctionnalité n'aura pas directement accès au code des autres fonctionnalités.</span>
+            <span class="token operator">|</span>__ node_modules       <span class="token comment" spellcheck="true"># dossier : Ce dossier peut contenir des modules de Node JS. Attention, les modules ne sont pas automatiquement disponibles via require() dans le code</span>
+            <span class="token operator">|</span>__ client             <span class="token comment" spellcheck="true"># dossier : Le code contenu dans ce dossier ne sera envoyé qu'aux clients. C'est ici qu'on pourra placer le code JavaScript client, le code des templates HTML, des CSS à minifier ...</span>
+                <span class="token operator">|</span>__ compatibility  <span class="token comment" spellcheck="true"># dossier : Le code contenu dans ce dossier sera envoyé aux clients en priorité avant tous les autres.</span>
+            <span class="token operator">|</span>__ server             <span class="token comment" spellcheck="true"># dossier : Le code contenu dans ce dossier ne sera pas envoyé aux clients. Il ne sera exécuté que coté serveur.</span>
+            <span class="token operator">|</span>__ public             <span class="token comment" spellcheck="true"># dossier : Les fichiers contenus dans ce dossier sont envoyés tel quel au client sans être exécutés. C'est ici qu'on place les fichiers images, fichiers texte, etc...</span>
+            <span class="token operator">|</span>__ private            <span class="token comment" spellcheck="true"># dossier : Les fichiers contenus dans ce dossier ne sont pas envoyés au client, ne sont pas exécutés automatiquement coté serveur mais peuvent être utilisés/exécutés manuellement à partir d'autres codes exécutés coté serveur.</span>
+            <span class="token operator">|</span>__ tests              <span class="token comment" spellcheck="true"># dossier : Les fichiers contenus dans ce dossier ne sont pas envoyés au client et ne sont pas exécutés coté serveur. C'est dans ce dossier qu'on positionne les fichiers de tests unitaires.</span>
+            <span class="token operator">|</span>__ nouveauProjet<span class="token punctuation">.</span>js   <span class="token comment" spellcheck="true"># fichier : Ce fichier sera exécuté coté serveur et coté client.</span>
+        </code>
+        <p>Les fichiers sont envoyés/exécutés par ordre de priorité :</p>
+        <ol>
+          <li><p>Les templates HTML à la racine;</p></li>
+          <li><p>Les fichiers préfixés par <code class="code">main.</code> sont chargés en dernier;</p></li>
+          <li><p>Les fichiers qui seraient dans n'importe quel dossier <code class="code">\lib</code>;</p></li>
+          <li><p>Les fichiers par ordre du plus profond dans l'arborescence au moins profond;</p></li>
+          <li><p>Tous les fichiers par ordre alphabétique.</p></li>
+        </ol>
+      </section>
+    </section>
+    <section class="chapitre chapitre-2" id="/chapitre-2">
+      <header>
+        <h3>2. Développer une application Meteor JS</h3>
+        <nav>
+          <ol>
+            <li><p><a href="https://learning.virtuoworks.com/pluginfile.php/454/mod_resource/content/4/cours.html#/chapitre-2/partie-1">Notion de SPA (Single Page Application)</a></p></li>
+            <li><p><a href="https://learning.virtuoworks.com/pluginfile.php/454/mod_resource/content/4/cours.html#/chapitre-2/partie-2">Le « moteur de template » Spacebars</a></p></li>
+            <li><p><a href="https://learning.virtuoworks.com/pluginfile.php/454/mod_resource/content/4/cours.html#/chapitre-2/partie-3">Le « moteur événementiel » Blaze</a></p></li>
+            <li><p><a href="https://learning.virtuoworks.com/pluginfile.php/454/mod_resource/content/4/cours.html#/chapitre-2/partie-4">Gérer la persistance des données avec MongoDB et Minimongo</a></p></li>
+            <li><p><a href="https://learning.virtuoworks.com/pluginfile.php/454/mod_resource/content/4/cours.html#/chapitre-2/partie-5">Créer et gérer des « routes » avec iron:router</a></p></li>
+          </ol>
+        </nav>
+      </header>
+      <section class="partie partie-1 chapitre-2-partie-1" id="/chapitre-2/partie-1">
+        <h4>2.1. Notion de SPA (Single Page Application)</h4>
+        <p>Un des principes fondamentaux du développement d'applications sous Meteor JS est de créer des applications qui sont entièrement constituées d'un seul et unique document HTML. Ce type d'application est nommé « SPA (Single Page Application) » en anglais.</p>
+        <p>Ce choix est lié au fait de permettre, à partir d'une application développée sous Meteor JS, d'obtenir une application mobile hybride. Une application mobile hybride est une application mobile qui, lorsqu'elle est lancée, affiche un seul et unique document HTML en plein écran.</p>
+        <p>On a donc l'illusion d'avoir démarré une « véritable » application native alors qu'en réalité, il s'agit d'un document HTML en plein écran. Ce principe de fonctionnement implique qu'une application hybride ne peut pas être composée de plusieurs documents HTML.</p>
+        <p>Pour donner l'illusion de plusieurs écrans distincts, le document HTML comportera plusieurs sections qui seront :</p>
+        <ul>
+          <li><p>cachées ou affichées selon les besoins et/ou actions de l'utilisateur;</p></li>
+          <li><p>enrichies de façon asynchrone à l'aide de requêtes AJAX avec des contenus provenant de sources extérieures.</p></li>
+        </ul>
+        <p>Ce type de fonctionnement sera rendu possible grâce à l'utilisation de scripts JavaScript et de « frameworks » appropriés</p>
+      </section>
+      <section class="partie partie-2 chapitre-2-partie-2" id="/chapitre-2/partie-2">
+        <h4>2.2. Le « moteur de template » Spacebars</h4>
+        <p>Le « moteur de template » Spacebars est un moteur au fonctionnement comparable au moteur Jade pour Node JS. Spacebars est inspiré du moteur Handlebars. Il s'agit d'un « moteur de template » qui peut être utilisé coté serveur et, aussi, coté client. Pour apprendre à utiliser Spacebars, vous pouvez vous aider :</p>
+        <ul>
+          <li><p>du <a target="_blank" title="site officiel de Spacebars" href="https://github.com/meteor/meteor/blob/devel/packages/spacebars/README.md">site officiel de Spacebars</a>;</p></li>
+          <li><p>du <a target="_blank" title="site officiel de Handlebars" href="http://handlebarsjs.com/">site officiel de Handlebars</a>.</p></li>
+        </ul>
+        <p>Spacebars à pour principe syntaxique fondamental l'utilisation des accolades ouvrantes <code class="code">{</code> et fermantes <code class="code">}</code> et d'un balise spéciale <code class="code">&lt;template&gt;</code>. Ainsi, on aura :</p>
+        <ul>
+          <li><p><code class="code">{{variable}}</code> pour une variable, par exemple : <code class="code">{{age}}</code>;</p></li>
+          <li><p><code class="code">{{&gt; template}}</code> pour charger un autre template, par exemple : <code class="code">{{&gt; titre}}</code>;</p></li>
+          <li><p><code class="code">{{#mot-clé variable}} {{/mot-clé}}</code> pour un mot clé du moteur, par exemple : <code class="code">{{#if variable}} {{/if}}</code>.</p></li>
+        </ul>
+        <p>On pourrait avoir le code suivant pour illustrer ces notions :</p>
+        <pre class=" language-markup" data-language="Markup">          <code class=" language-markup">
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>Application Meteor<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+  {{&gt; titre}}
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Toutes choses étant égales par ailleurs ?<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+  {{#if estVraie}}
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span><span class="token punctuation">&gt;</span></span>Ceteris paribus<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+  {{/if}}
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>titre<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">&gt;</span></span>Exemple de syntaxe<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Mon age est : {{age}} ans<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+          </code>
+        </pre>
+        <p>Les variables contenues dans le template sont appelées «<code class="code">helpers</code>» en anglais. Leur valeur doit être définie dans le code JavaScript de Meteor dans la partie spécifique au code pour le <b>client</b>.</p>
+        <p>Pour définir les valeur des «<code class="code">helpers</code>» on doit utiliser l'objet «<code class="code">Template</code>» de l'API de Meteor JS. Les caractéristiques de cet objet sont définies <a target="_blank" title="Template dans l&#39;API de Meteor" href="http://docs.meteor.com/#/full/templates_api">ici</a>.</p>
+        <p>Pour le template présenté précédemment on pourra alors écrire le code client suivant :</p>
+        <pre class=" language-javascript" data-language="JavaScript">          <code class=" language-javascript">
+<span class="token comment" spellcheck="true">/**
+  Section de code pour le client uniquement
+**/</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>Meteor<span class="token punctuation">.</span>isClient<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">/**
+    Template.body est l'objet qui représente la portion de template qui est dans le &lt;body&gt;.
+    Template.body est documenté ici : http://docs.meteor.com/#/full/template_body
+  **/</span>
+  Template<span class="token punctuation">.</span>body<span class="token punctuation">.</span><span class="token function">helpers</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    estVraie<span class="token punctuation">:</span> <span class="token keyword">true</span> <span class="token comment" spellcheck="true">//valeur de {{estVraie}} dans le template</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment" spellcheck="true">/**
+    Template.titre est l'objet qui représente la portion de template qui est dans la balise &lt;template name="titre"&gt;.
+    Template.xyz est documenté ici : http://docs.meteor.com/#/full/templates_api
+  **/</span>
+  Template<span class="token punctuation">.</span>titre<span class="token punctuation">.</span><span class="token function">helpers</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    age<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token number">30</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//methode qui retourne la valeur de {{age}} dans le template</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment" spellcheck="true">/**
+    La méthode .helpers() de ces objets prend en argument un objet dont :
+      - les propriétés définissent les valeurs des variables utilisées dans le template;
+      - ou, les propriétés sont des méthodes qui retournent les valeurs de variables utilisées dans le template;
+    Template.xyz.helpers() est documentée ici : http://docs.meteor.com/#/full/template_helpers
+  **/</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+          </code>   
+        </pre>
+        <p>L'objet «<code class="code">Template</code>» de l'API de Meteor JS fait le lien entre le « moteur événementiel » Blaze et le « moteur de template » Spacebars.</p>
+      </section>
+      <section class="partie partie-3 chapitre-2-partie-3" id="/chapitre-2/partie-3">
+        <h4>2.3. Le « moteur événementiel » Blaze</h4>
+        <p>Blaze est un « moteur événementiel » qui est utilisé de concert avec le « moteur de template » Spacebars pour définir et gérer le comportement des variables. Il permet, entre autres, de répercuter instantanément des modifications de valeurs de variables sur le DOM et donc sur l'affichage.</p>
+        <p>Pour apprendre à utiliser Blaze, vous pouvez vous aider :</p>
+        <ul>
+            <li><p>du <a target="_blank" title="site officiel de Blaze" href="https://meteor.github.io/blaze/">site officiel de Blaze</a> (<b>ATTENTION</b>, certains éléments ne sont pas à jour...)</p></li>
+            <li><p>de l'<a target="_blank" title="API de Meteor JS" href="http://docs.meteor.com/#/full/templates_api">API de Meteor JS</a>;</p></li>
+            <li><p>ou bien de cette page du site <a target="_blank" title="page du site meteorcapture sur Spacebars" href="http://meteorcapture.com/spacebars/">Meteorcapture</a> sur le sujet.</p></li>
+        </ul>
+        <p>Comme nous l'avons vu précédemment Blaze et Spacebars sont intégrés à l'aide de l'API «<code class="code">Template</code>» de Meteor JS.</p>
+        <p>On a pu voir que «<code class="code">Template.<i>[un template]</i>.helpers()</code>» est une méthode qui nous permet de définir les valeurs des variables utilisées dans les templates Spacebars.</p>
+        <p>On dispose également de la méthode «<code class="code">Template.<i>[un template]</i>.events()</code>» qui nous permet de définir des gestionnaires d'évènement pour des éléments appartenant à un template. Cette méthode est définie <a target="_blank" href="http://docs.meteor.com/#/full/template_events">ici</a>.</p>
+        <p>Elle prend en argument un objet qui associe à une propriété qui est un couple événement/sélecteur CSS une valeur qui est une fonction gestionnaire d'événement. Cet objet est définit <a target="_blank" href="http://docs.meteor.com/#/full/eventmaps">ici</a> dans l'API de Meteor JS.</p>
+        <p>Pour le même template Spacebars que précédemment, on pourrait alors écrire :</p>
+        <pre class=" language-javascript" data-language="JavaScript">          <code class=" language-javascript">
+<span class="token comment" spellcheck="true">/**
+  Section de code pour le client uniquement
+**/</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>Meteor<span class="token punctuation">.</span>isClient<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+  <span class="token comment" spellcheck="true">/**
+    Ici on associe un gestionnaire d'évènement au click 
+    sur n'importe quel titre h1 du template nommé titre.
+  **/</span>
+  Template<span class="token punctuation">.</span>titre<span class="token punctuation">.</span><span class="token function">events</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token string">'click h1'</span><span class="token punctuation">:</span><span class="token keyword">function</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span><span class="token punctuation">{</span>
+      <span class="token comment" spellcheck="true">// Ce message devrait s'afficher dans la console en cas de click sur le titre</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Vous avez cliqué sur le titre de la page.'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment" spellcheck="true">/**
+    La méthode .events() de ces objets prend en argument un objet dont :
+      - les propriétés ont pour noms un couple évènement/sélecteur CSS (voir http://docs.meteor.com/#/full/eventmaps);
+      - les valeurs associées sont des gestionnaires d'évènements;
+    Template.xyz.events() est documentée ici : http://docs.meteor.com/#/full/template_events
+  **/</span>
+
+  Template<span class="token punctuation">.</span>body<span class="token punctuation">.</span><span class="token function">helpers</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    estVraie<span class="token punctuation">:</span> <span class="token keyword">true</span> <span class="token comment" spellcheck="true">//valeur de {{estVraie}} dans le template</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+  Template<span class="token punctuation">.</span>titre<span class="token punctuation">.</span><span class="token function">helpers</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    age<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token number">30</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//methode qui retourne la valeur de {{age}} dans le template</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+          </code>   
+        </pre>
+        <p>Blaze nous offre également la possibilité de créer des variables « réactives ». C'est à dire des variables dont le changement de valeur sera immédiatement répercuté sur l'affichage sans avoir à effectuer d'opération sur le DOM.</p>
+        <p>Ces variables peuvent être créés à l'aide de l'API <code class="code">ReactiveVar</code> de Meteor JS documentée <a target="_blank" title="API ReactiveVar sur le site officiel de Meteor JS" href="http://docs.meteor.com/#/full/reactivevar">ici</a>.</p>
+        <p><b>ATTENTION</b>, vous devez installer la package « reactive-var » avant de pouvoir utiliser les variables réactives en tapant dans la console, à la racine du projet :</p>
+        <pre class=" language-bash" data-language="Bash">          <code class=" language-bash">
+            <span class="token comment" spellcheck="true"># Installer le package reactive-var</span>
+            meteor add reactive<span class="token operator">-</span>var
+            <span class="token comment" spellcheck="true"># Documenté ici : https://atmospherejs.com/meteor/reactive-var</span>
+          </code>
+        </pre>
+        <p>A titre d'exemple, on peut proposer un application où le fait de cliquer sur un élément du DOM produit l'incrémentation de cet élément.</p>
+        <p>Avec le template Spacebars suivant :</p>
+        <pre class=" language-markup" data-language="Markup">          <code class=" language-markup">
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>Application Meteor<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>elementCliquable<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Incrémentation : {{nombre}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+           </code>   
+        </pre>
+        <p>Et le code JavaScript client associé suivant :</p>
+        <pre class=" language-javascript" data-language="JavaScript">          <code class=" language-javascript">
+          
+<span class="token comment" spellcheck="true">/**
+  Section de code pour le client uniquement
+**/</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>Meteor<span class="token punctuation">.</span>isClient<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+  <span class="token comment" spellcheck="true">/**
+    On crée une variable réactive initialisée à 0
+    ATTENTION vous devez installer le package reactive-var
+    pour pouvoir utiliser les variables réactives :
+      meteor add reactive-var
+  **/</span>
+  <span class="token keyword">var</span> variableReactive <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ReactiveVar</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  
+  Template<span class="token punctuation">.</span>body<span class="token punctuation">.</span><span class="token function">helpers</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    nombre<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+      <span class="token comment" spellcheck="true">// Cette fonction retourne la valeur qui correspond à {{nombre}}.</span>
+      <span class="token keyword">var</span> valeurDeLaVariableReactive <span class="token operator">=</span> variableReactive<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment" spellcheck="true">// La méthode .get() permet de récupérer la valeur de la variable réactive.</span>
+      <span class="token keyword">return</span> valeurDeLaVariableReactive<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment" spellcheck="true">/**
+    Ici on associe un gestionnaire d'évènement qui sera associé 
+    au click sur l'élément du body dont l'id est elementCliquable.
+  **/</span>
+  Template<span class="token punctuation">.</span>body<span class="token punctuation">.</span><span class="token function">events</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token string">'click #elementCliquable'</span><span class="token punctuation">:</span><span class="token keyword">function</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span><span class="token punctuation">{</span>
+      <span class="token comment" spellcheck="true">// Cette fonction gestionnaire d'évènement modifie la valeur de la variable réactive.</span>
+      <span class="token keyword">var</span> valeurDeLaVariableReactive <span class="token operator">=</span> variableReactive<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment" spellcheck="true">// La méthode .set() permet de modifier la valeur de la variable réactive.</span>
+      variableReactive<span class="token punctuation">.</span><span class="token keyword">set</span><span class="token punctuation">(</span>valeurDeLaVariableReactive <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+          </code>   
+        </pre>
+      </section>
+      <section class="partie partie-4 chapitre-2-partie-4" id="/chapitre-2/partie-4">
+        <h4>2.4. Gérer la persistance des données avec MongoDB et Minimongo</h4>
+        <p>Un des idées de base de Meteor JS est de proposer une base de données coté client qui peut être synchronisée entièrement ou en partie avec la base de données coté serveur. On a donc deux bases de données; à tout moment. Une coté serveur (sous MongoDB) et une coté client (dans le cookie, gérée à l'aide du « framework » client Minimongo).</p>
+        <p>Pour le développeur, cela signifie qu'il peut écrire tout ou une partie du code qui accède à la base de données de façon isomorphe, c'est à dire en ne se préoccupant pas de la couche (client ou serveur) sur laquelle s'exécute son code.</p>
+        <p>Pour manipuler des collections, Meteor JS propose une API <code class="code">Mongo.Collection</code> documentée <a target="_blank" title="API Mongo.Collection sur le site officiel de MongoDB" href="http://docs.meteor.com/#/full/mongo_collection">ici</a>.</p>
+        <p>L'application ci-après créé des voitures dans une collection coté client et coté serveur à chaque click sur un élément du document HTML affiché :</p>
+        <p>Avec le template Spacebars suivant :</p>
+        <pre class=" language-markup" data-language="Markup">          <code class=" language-markup">
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>Application Meteor<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>elementCliquable<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Créer une nouvelle voiture<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+          </code>   
+        </pre>
+        <p>Et le code JavaScript client/serveur associé suivant :</p>
+        <pre class=" language-javascript" data-language="JavaScript">          <code class=" language-javascript">
+<span class="token comment" spellcheck="true">/**
+  Section de code pour le client et le serveur
+  Ici je crée une collection voitures qui sera
+  synchronisée coté client avec le coté serveur.
+**/</span>
+Voitures <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Mongo<span class="token punctuation">.</span>Collection</span><span class="token punctuation">(</span><span class="token string">'voitures'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+Voitures<span class="token punctuation">.</span><span class="token function">allow</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token string">'insert'</span><span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">true</span><span class="token punctuation">;</span> 
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/**
+  Section de code pour le client uniquement
+**/</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>Meteor<span class="token punctuation">.</span>isClient<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+  <span class="token comment" spellcheck="true">/**
+    Ici on associe un gestionnaire d'évènement qui sera associé 
+    au click sur l'élément du body dont l'id est elementCliquable.
+  **/</span>
+  Template<span class="token punctuation">.</span>body<span class="token punctuation">.</span><span class="token function">events</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token string">'click #elementCliquable'</span><span class="token punctuation">:</span><span class="token keyword">function</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span><span class="token punctuation">{</span>
+      <span class="token comment" spellcheck="true">//Insertion d'une nouvelle voiture dans la collection Voitures</span>
+      Voitures<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        marque<span class="token punctuation">:</span><span class="token string">'Renault'</span><span class="token punctuation">,</span>
+        modele<span class="token punctuation">:</span><span class="token string">'Espace'</span><span class="token punctuation">,</span>
+        portes<span class="token punctuation">:</span><span class="token number">5</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+          </code>   
+        </pre>
+        <p>Après un click sur l'élément cliquable, on peut vérifier coté <b>client</b> qu'une voiture a bien été ajoutée à la collection locale <code class="code">Voitures</code> en écrivant dans la <b>console</b> :</p>
+        <pre class=" language-bash" data-language="Bash">          <code class=" language-bash">
+            console<span class="token punctuation">.</span>table<span class="token punctuation">(</span>Voitures<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>fetch<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          </code>   
+        </pre>
+        <p>Et coté <b>serveur</b>, sur un nouveau <b>terminal</b>, on peut ouvrir le client Mongo à partir du dossier du projet en tapant :</p>
+        <pre class=" language-bash" data-language="Bash">          <code class=" language-bash">
+            <span class="token comment" spellcheck="true"># Démarrage d'un nouveau client Mongo pour accéder à la base MongoDB du projet</span>
+            meteor mongo
+          </code>   
+        </pre>
+        <p>Puis vérifier que la même voiture a bien été créée coté serveur :</p>
+        <pre class=" language-bash" data-language="Bash">          <code class=" language-bash">
+            <span class="token comment" spellcheck="true"># A partir du terminal ouvert par le client MongoDB avec meteor mongo</span>
+            use meteor<span class="token punctuation">;</span>
+            db<span class="token punctuation">.</span>voitures<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span>pretty<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          </code>   
+        </pre>
+        <p>Par défaut, toutes les données créées dans le base de données MongoDB du serveur sont également envoyées au client et créées dans la base de données locale de chaque client et inversement. Ceci est une <b>vulnérabilité</b> évidente du système. Pour que le système soit un minimum sécurisé, il faut pouvoir :</p>
+        <ul>
+          <li><p>Décider coté serveur des données qui sont envoyées et synchronisées pour chaque client;</p></li>
+          <li><p>Gérer coté serveur toutes les opérations de création, mise à jour et suppression pour pouvoir effectuer des contrôles sur la probité de ces opérations.</p></li>
+        </ul>
+        <p>Les packages qui sont responsables de la synchronisation automatique des données sont les packages <code class="code">insecure</code> et <code class="code">autopublish</code>. La <b>bonne pratique est donc de supprimer ces packages</b> lorsqu'on termine la phase de développement en écrivant dans le terminal :</p>
+        <pre class=" language-bash" data-language="Bash">          <code class=" language-bash">
+            <span class="token comment" spellcheck="true"># On supprime le package insecure</span>
+            meteor remove insecure
+            <span class="token comment" spellcheck="true"># On supprime le package autopublish</span>
+            meteor remove autopublish
+          </code>   
+        </pre>
+        <p>Pour définir les données qui pourront être publiées coté client, on utilisera l'API <code class="code">Meteor.publish</code> de Meteor documentée <a target="_blank" title="API Meteor.publish sur le site officiel de Meteor" href="http://docs.meteor.com/#/full/meteor_publish">ici</a> et pour accepter des données qui proviennent du serveur coté client, on utilisera l'API <code class="code">Meteor.subscribe</code> de Meteor documentée <a target="_blank" title="API Meteor.publish sur le site officiel de Meteor" href="http://docs.meteor.com/#/full/meteor_subscribe">ici</a>.</p>
+        <p>En respectant les bonnes pratiques client et serveur, l'exemple précédent donne pour la synchronisation des données concernant les voitures :</p>
+        <pre class=" language-javascript" data-language="JavaScript">          <code class=" language-javascript">
+<span class="token comment" spellcheck="true">/**
+  Section de code pour le client et le serveur
+  Ici on créé une collection coté client et serveur.
+  Elle n'est pas automatiquement synchronisée.
+**/</span>
+Voitures <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Mongo<span class="token punctuation">.</span>Collection</span><span class="token punctuation">(</span><span class="token string">'voitures'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/**
+  Section de code pour le client uniquement
+**/</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>Meteor<span class="token punctuation">.</span>isClient<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">//Ici on utilise Meteor.subscribe() pour déclarer la source de données</span>
+  Meteor<span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span><span class="token string">'lesVoitures'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/**
+  Section de code pour le serveur uniquement
+**/</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>Meteor<span class="token punctuation">.</span>isServer<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">//Ici on utilise Meteor.publish() pour déclarer des données à publier</span>
+  Meteor<span class="token punctuation">.</span><span class="token function">publish</span><span class="token punctuation">(</span><span class="token string">'lesVoitures'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> Voitures<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+          </code>   
+        </pre>
+        <p>Pour créer des méthodes coté serveur qui prendront en charge la création, mise à jour et suppression de données, on utilisera l'API <code class="code">Meteor.methods</code> documentée <a title="API Meteor.methods" href="http://docs.meteor.com/#/full/meteor_methods">ici</a>. Et, coté client, pour appeler les méthodes coté serveur, on utilisera l'API <code class="code">Meteor.call</code> documentée <a title="API Meteor.methods" href="http://docs.meteor.com/#/full/meteor_call">ici</a>.</p>
+        <p>Toujours en respectant les bonnes pratiques client et serveur, l'exemple précédent donne pour la création des données concernant les voitures :</p>
+        <pre class=" language-javascript" data-language="JavaScript">          <code class=" language-javascript">
+<span class="token comment" spellcheck="true">/**
+  Section de code pour le client et le serveur
+  Ici on créé une collection coté client et serveur.
+  Elle n'est pas automatiquement synchronisée.
+**/</span>
+Voitures <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Mongo<span class="token punctuation">.</span>Collection</span><span class="token punctuation">(</span><span class="token string">'voitures'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/**
+  Section de code pour le client uniquement
+**/</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>Meteor<span class="token punctuation">.</span>isClient<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+  <span class="token comment" spellcheck="true">//Ici on utilise Meteor.subscribe() pour déclarer la source de données</span>
+  Meteor<span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span><span class="token string">'lesVoitures'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment" spellcheck="true">/**
+    Ici on associe un gestionnaire d'évènement qui sera associé 
+    au click sur l'élément du body dont l'id est elementCliquable.
+  **/</span>
+  Template<span class="token punctuation">.</span>body<span class="token punctuation">.</span><span class="token function">events</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token string">'click #elementCliquable'</span><span class="token punctuation">:</span><span class="token keyword">function</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span><span class="token punctuation">{</span>
+      <span class="token comment" spellcheck="true">// Appel de la méthode ajouterVoiture coté serveur.</span>
+      Meteor<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token string">'ajouterVoiture'</span><span class="token punctuation">,</span> <span class="token string">'Citroën'</span><span class="token punctuation">,</span> <span class="token string">'C5'</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+
+<span class="token comment" spellcheck="true">/**
+  Section de code pour le serveur uniquement
+**/</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>Meteor<span class="token punctuation">.</span>isServer<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+  <span class="token comment" spellcheck="true">// On déclare des méthodes qui pourront être appelées par le client.</span>
+  Meteor<span class="token punctuation">.</span><span class="token function">methods</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    ajouterVoiture<span class="token punctuation">:</span><span class="token keyword">function</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c<span class="token punctuation">)</span><span class="token punctuation">{</span>
+      Voitures<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        marque<span class="token punctuation">:</span> a<span class="token punctuation">,</span>
+        modele<span class="token punctuation">:</span> b<span class="token punctuation">,</span>
+        portes<span class="token punctuation">:</span> c
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment" spellcheck="true">//Ici on utilise Meteor.publish() pour déclarer des données à publier.</span>
+  Meteor<span class="token punctuation">.</span><span class="token function">publish</span><span class="token punctuation">(</span><span class="token string">'lesVoitures'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> Voitures<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+          </code>   
+        </pre>
+        <p>Pour pouvoir envoyer à travers le réseau tous types de données lorsqu'on utilise l'API <code class="code">Meteor.call</code> sans risque d'erreur inopinée, il est recommandé d'installer le package <b>ejson</b> :</p>
+        <pre class=" language-bash" data-language="Bash">          <code class=" language-bash">
+            <span class="token comment" spellcheck="true"># On ajoute le package ejson</span>
+            meteor add ejson
+          </code>   
+        </pre>
+      </section>
+      <section class="partie partie-5 chapitre-2-partie-5" id="/chapitre-2/partie-5">
+        <h4>2.5. Créer et gérer des « routes » avec iron:router</h4>
+        <p>En dépit du fait que notre application ne soit construite que sur une seule page, il est possible de construire des routes en utilisant les ancres. L'idée est la suivante : selon l'ancre située dans l'URL, un script récupère de façon asynchrone un template et met à jour l'affichage.</p>
+        <p>On pourrait développer ce système mais il existe un package pour cela : « iron:router ». Il est documenté <a title="le site officiel du package iron:router" href="http://iron-meteor.github.io/iron-router/">ici</a>. Pour installer iron:router :</p>
+        <pre class=" language-bash" data-language="Bash">          <code class=" language-bash">
+            <span class="token comment" spellcheck="true"># On ajoute le package ejson</span>
+            meteor add iron<span class="token punctuation">:</span>router
+          </code>   
+        </pre>
+        <p>L'application que nous proposons posséde 2 routes :</p>
+        <ul>
+          <li><p><code class="code">/</code> qui contient un message de bienvenue.</p></li>
+          <li><p><code class="code">/a-propos</code> qui contient des informations sur l'application.</p></li>
+        </ul>
+        <p>Pour réaliser cette application à l'aide d'« iron:router » nous allons avoir besoin de 4 fichiers :</p>
+        <ul>
+          <li><p>Un fichier qui sera le template commun au deux «affichages» contenant les méta-données du document, le &lt;body&gt; et les liens pour la navigation;</p></li>
+          <li><p>Un fichier qui sera le template correspondant à l'affichage de l'écran «Acceuil»;</p></li>
+          <li><p>Un fichier qui sera le template correspondant à l'affichage de l'écran «A Propos»;</p></li>
+          <li><p>Le code JavaScript client/serveur de paramétrage d'« iron:router ».</p></li>
+        </ul>
+        <p>Le template commun :</p>
+        <pre class=" language-markup" data-language="Markup">          <code class=" language-markup">
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>commun<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>Application Meteor<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">&gt;</span></span>Application Meteor<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Accueil<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/a-propos<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>A Propos<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+    <span class="token comment" spellcheck="true">&lt;!-- Le mot-clé yield est spécifique à iron:router --&gt;</span>
+    <span class="token comment" spellcheck="true">&lt;!-- Il indique l'emplacement que devront prendre les templates chargés à l'aide des routes --&gt;</span>
+    {{&gt; yield }}
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+          </code>   
+        </pre>
+        <p>Le template pour l'écran Accueil :</p>
+        <pre class=" language-markup" data-language="Markup">          <code class=" language-markup">
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>accueil<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span><span class="token punctuation">&gt;</span></span>Accueil<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h2</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Bienvenue sur mon application Web nouvelle génération.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+          </code>   
+        </pre>
+        <p>Le template pour l'écran A Propos :</p>
+        <pre class=" language-markup" data-language="Markup">          <code class=" language-markup">
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>a-propos<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span><span class="token punctuation">&gt;</span></span>A Propos<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h2</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Je suis un étudiant assidu en développement Web.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+          </code>   
+        </pre>
+        <p>Le code client/serveur :</p>
+        <pre class=" language-javascript" data-language="JavaScript">          <code class=" language-javascript">
+<span class="token comment" spellcheck="true">/**
+  Section de code pour le client et le serveur
+**/</span>
+
+<span class="token comment" spellcheck="true">// Ici on indique quel est le template principal de l'application.</span>
+Router<span class="token punctuation">.</span><span class="token function">configure</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  layoutTemplate<span class="token punctuation">:</span> <span class="token string">'commun'</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// Ici la route / doit entraîner l'affichage du template accueil.</span>
+Router<span class="token punctuation">.</span><span class="token function">route</span><span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token string">'accueil'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// Ici la route /a-propos doit entraîner l'affichage du template a-propos.</span>
+Router<span class="token punctuation">.</span><span class="token function">route</span><span class="token punctuation">(</span><span class="token string">'/a-propos'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token string">'a-propos'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          </code>   
+        </pre>
+        <p>Les routes peuvent être plus élaborées, contenir des paramètres variables, etc...</p>
+      </section>
+    </section>
+    <footer>
+      <p>MeteorJS : Introduction à la plate-forme - Sami Radi - <a target="_blank" href="http://www.virtuoworks.com/" title="VirtuoWorks">VirtuoWorks®</a> - tous droits réservés©</p>
+    </footer>
+  
+</body></html>

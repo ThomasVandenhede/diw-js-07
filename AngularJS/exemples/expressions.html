@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+  <p>{{ 2 + 2 }}</p>
+
+  <span>{{ 10 > 5 }}</span>
+
+  <p>{{ 'Hello ' + 'World!' }}</p>
+  <p>{{ 'Hello World!' }}</p>
+  <p>Hello World!</p>
+
+  <p>{{ somme = 3 + 6 }}</p>
+
+  <p>{{ somme * 2 }}</p>
+
+  <p ng-init="monTableau = ['croissant', 'chocolatine']">{{ monTableau[1] }}</p>
+
+  <p ng-init="nom = 'Guillaume'">Bonjour {{ nom }}</p>
+
+  <p>{{ 10 % 2 }}</p>
+
+  <p>{{ true && false }}</p>
+
+  <p>{{ true || false }}</p>
+
+  <p ng-init="eleve = {prenom: 'Élodie'}">{{ eleve.prenom }}</p>
+
+  <p ng-init="autreSomme = 2 + 5; produit = 3 * 9">
+    {{ autreSomme }}<br>
+    {{ produit }}
+  </p>
+
+  <ul ng-init="classe = [{prenom: 'Guillaume'}, {prenom: 'Élodie'}, {prenom: 'Cyprien'}]">
+    <li>{{ classe[0].prenom }}</li>
+    <li>{{ classe[1].prenom }}</li>
+    <li>{{ classe[2].prenom }}</li>
+  </ul>
+
+
+  <script src="./lib/angular.min.js"></script>
+  <script>
+    angular.module('monPremierModule', []); // Deux arguments : le nom du module à créer, puis un t
+    angular.bootstrap(window.document, ['monPremierModule'], {strictDi: true});
+  </script>
+</body>
+</html>

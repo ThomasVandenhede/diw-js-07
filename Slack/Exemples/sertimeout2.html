@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+
+        var maFonction = function() {
+            alert('timeoutId2 - Time up!')
+        };
+
+        var timeoutId2 = setTimeout(maFonction, 6000);
+        console.log(timeoutId2);
+
+        var timeoutId = setTimeout(function() {
+            alert('Time up!')
+        }, 4000);
+        console.log(timeoutId);
+
+        var annulerTimeout = function() {
+           clearTimeout(1) ;
+        };
+    </script>
+</head>
+<body>
+    <p onclick="annulerTimeout();">STOP</p>
+</body>
+</html>

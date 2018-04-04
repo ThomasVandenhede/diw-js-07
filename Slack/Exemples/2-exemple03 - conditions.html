@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        if (100 == 100) {
+            alert('1 - La condition est vraie');
+        }
+
+        if (100 == '100') {
+            alert('2 - La condition est vraie');
+        }
+
+        if (100 === '100') {
+            alert('3 - La condition est vraie');
+        } else {
+            alert('3 - La condition est fausse');
+        }
+
+        var variableSansValeur; // une variable initialisée sans valeur vaut undefined
+        // undefined est interprêté par JavaScript comme false
+        if (variableSansValeur) {
+            alert('variableSansValeur est vrai');
+        } else {
+            alert('variableSansValeur est faux');
+        }
+
+        if (1) {
+            alert('1 est considéré comme vrai');
+        } else {
+            alert('1 est considéré comme faux ???'); // ne sera jamais exécuté
+        }
+
+        if (0) {
+            alert('0 est considéré comme vrai ???'); // ne sera jamais exécuté
+        } else {
+            alert('0 est considéré comme faux');
+        }
+
+</script>
+</head>
+<body>
+    
+</body>
+</html>

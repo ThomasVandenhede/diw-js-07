@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        // Une fonction peut retourner une valeur
+        var fonctionSimple = function() {
+            var maVariable = 'Coucou';
+            maVariable += ' les amis';
+            return maVariable;
+        };
+
+        var texteObtenu = fonctionSimple();
+        alert('La fonction a produit le texte : '+ texteObtenu);
+        
+        // alert(fonctionSimple());
+
+        var fonctionAvecArgument = function(nom) {
+            var salutation = 'Bonjour ' + nom;
+            return salutation;
+        };
+
+        var bonjourAlAmine = fonctionAvecArgument('Al Amine');
+        var bonjourNicolas = fonctionAvecArgument('Nicolas');
+        // var bonjourMatthieu = fonctionAvecArgument('Matthieu');
+        alert(bonjourAlAmine);
+
+        alert(fonctionAvecArgument('Matthieu'));
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

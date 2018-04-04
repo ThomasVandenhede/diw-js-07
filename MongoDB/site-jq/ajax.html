@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Test Ajax</title>
+  <script src="./lib/jquery-3.3.1.min.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      console.log('jQuery is ready');
+
+      $.ajax({
+        url: 'http://ip.jsontest.com/'
+      }).done(function(data) {
+        console.log( "Ajax Success: ", data );
+        $('body').prepend('<h1>Votre adresse IP : ' + data.ip + '</h1>')
+      })
+      /*.fail(function(data) {
+        console.log( "Ajax Error: ", data );
+      })*/
+
+    }); // jQuery ready
+  </script>
+
+</head>
+
+<body>
+
+</body>
+
+</html>

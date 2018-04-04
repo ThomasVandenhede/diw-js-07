@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+
+        var maFonction = function() {
+            alert('Un autre timeout est déclenché');
+        };
+
+        setTimeout(maFonction, 10000);
+
+        var timeout1 = setTimeout(function() {
+            alert(2 + 2);
+        }, 3000);
+
+/*        var maFonction = function() {
+            alert(5 + 1);
+        }
+
+        // maFonction();
+
+        setTimeout(maFonction, 5000);
+
+        setTimeout(function() {
+            alert('fonction exécutée');
+        }, 5000);
+  */      
+    </script>
+</head>
+<body>
+        <h1 onclick="clearTimeout(timeout1)">ghjkghjkl</h1>
+</body>
+</html>

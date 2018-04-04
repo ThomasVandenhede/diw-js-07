@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <title>AngularJS : Les Évènements : Exercice 4</title>
+    <script>
+      // Énoncé
+      /* Les évènements*/
+      /**************************************************************************************************
+       A partir d'un objet scope, on peut "émettre" un "message" avec la méthode .$emit(). On peut, à partir du même objet scope ou d'un autre objet scope PARENT utiliser la méthode .$on() pour déclencher une fonction si le "message" paramétré à été émis. A partir d'un objet scope on a accès à une référence vers l'objet scope de base dans la propriété $root (monObjetScope.$root est une référence à l'objet scope à la base de la chaîne de prototypes des objets de type scope.)
+
+       La documentation officielle concernant l'objet scope est disponible ici dans la documentation : https://docs.angularjs.org/api/ng/type/$rootScope.Scope
+      **************************************************************************************************/
+      /*
+        1. Chargez AngularJS dans ce document. Le contexte applicatif d'AngularJS doit englober tout le document. Votre application s'appellera angularjsExercice4. Un tutoriel officiel sur le chargement d'AngularJS est disponible ici : https://docs.angularjs.org/tutorial/step_00
+      */
+
+      /*
+        2. Créez 2 formulaires dans les 2 div du document affiché. Les deux div sont chacune gérées par un contrôleur. Les 2 formulaires sont configurés comme dans les exercices précédent (1 champ de saisie qui associe sa valeur à une propriété du contrôleur). En revanche, le titre du premier formulaire est statique (pas d'expressions) alors que le titre du second est créé à l'aide d'une expression.
+        
+        L'objectif est de faire en sorte qu'en saisissant un texte de votre choix dans le premier formulaire, le titre du second appartenant au scope de l'autre contrôleur soit modifié.
+      */
+
+      /*
+        Vous devez donc créer 2 directives. Un directive émet un "message" quand la propriété associée au champ de saisie change. L'autre directive change la propriété de titre lorsqu'un le "message" émis est détecté. Vous devez positionner une directive sur la div contenant le titre statique et l'autre directive sur la div contenant le titre dynamique. 
+        
+        Point d'attention : les scopes des deux contrôleurs sont au même niveau hiérarchique. Vous ne pourrez donc pas utiliser la méthode .$on() directement à partir du scope du deuxième contrôleur pour récupérer la valeur du titre émise par la méthode .$emit() utilisée à partir du scope du premier contrôleur.
+      */
+    </script>
+  </head>
+  <body>
+    <div ma-directive1 ng-controller="monControleur1 as monCtrl1">
+      <h4>Titre du premier formulaire (statique)</h4>
+      <form name="monFormulaire">
+        <input type="text" ng-model="monCtrl1.valeurDuChamp" />
+      </form>
+    </div>
+    <div ma-directive2 ng-controller="monControleur2 as monCtrl2">
+      <h4>{{ monCtrl2.titre }}</h4>
+      <form name="monFormulaire">
+        <input type="text" ng-model="monCtrl2.valeurDuChamp" />
+      </form>
+    </div>
+    <!-- On charge le framework AngularJS dans le document -->
+    <script src="../lib/angular-1.6.1.min.js"></script>
+
+    <!-- On on écrit ou on charge son script JavaScript utilisant AngularJS -->
+    <script>
+      //Bonne pratique : programmer en mode strict JavaScript (voir : https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Strict_mode)
+      'use strict';
+
+      //Bonne pratique : écrire son code dans une fonction anonyme auto-exécutable pour contrôler l'exposition des variables à l'objet global Window. 
+      (function() {
+
+        /*
+          On créé un module AngularJS à l'aide de la méthode angular.module().
+          angular.module() est utilisée ici comme un "setter".
+          Voir : https://docs.angularjs.org/api/ng/function/angular.module
+        */
+        angular.module('angularjsExercice4', []);
+
+        /*
+          angular.module() est utilisée ici comme un "getter". La méthode nous retourne une référence à l'objet de type angular.Module créé (voir : https://docs.angularjs.org/api/ng/type/angular.Module).
+        */
+ 
+        /*
+        Nous utilisons la méthode .controller() de cet objet pour créer les contrôleurs appropriés.
+        */
+        angular.module('angularjsExercice4').controller('monControleur1', [function() {
+          
+        }]);
+
+        angular.module('angularjsExercice4').controller('monControleur2', [function() {
+          this.titre = 'Titre du second formulaire (dynamique)';
+        }]);
+
+        /*
+          Nous utilisons la méthode .directive() de cet objet pour créer les directives.
+        */
+        angular.module('angularjsExercice4').directive('maDirective1', [function() {
+          var objetDeDefinitionDeDirective = {
+            link: function(objetScope, objetjQlite, objetAttributes){
+              objetScope.$watch('monCtrl1.valeurDuChamp', function(nouvelleValeur, ancienneValeur){
+                objetScope.$emit('changementDeValeurDuChamp', nouvelleValeur);
+                //Entraîne l'exécution de toutes les fonction définies à l'aide de .$on() dans tous les scopes parents jusqu'au scope à la base de la chaîne de prototypes
+              });
+            }
+          };
+
+          return objetDeDefinitionDeDirective;
+        }]);
+
+        angular.module('angularjsExercice4').directive('maDirective2', [function() {
+          var objetDeDefinitionDeDirective = {
+            link: function(objetScope, objetjQlite, objetAttributes){
+              /*
+                Ici notre directive concerne un contrôleur dont le scope est au même niveau que celui de l'autre contrôleur.
+                Si on écrit objetScope.on('changementDeValeurDuChamp', function(... ) , la fonction définie ici ne sera pas
+                exécutée parceque ce scope n'est pas un parent du scope à partir du quel le message à été émis. On utilise
+                donc la référence à l'objet scope à la base de la chaine de prototypage (objetScope.$root) qui est le scope
+                parent de tous les scope et donc du scope à partir du quel le message à été émis.
+              */
+              objetScope.$root.$on('changementDeValeurDuChamp', function(evenement, nouvelleValeur){
+                if(nouvelleValeur != undefined){
+                  objetScope.monCtrl2.titre = nouvelleValeur;
+                };
+              });
+            }
+          };
+
+          return objetDeDefinitionDeDirective;
+        }]);
+
+        /*
+          On utilise le module AngularJS créé pour interpréter les expressions et directives AngularJS présentes dans le DOM à l'aide de la méthode angular.bootstrap().
+          Voir : https://docs.angularjs.org/api/ng/function/angular.bootstrap
+        */
+        angular.bootstrap(window.document, ['angularjsExercice4'], {strictDi:true});
+        /**
+          window.document : portion de DOM à interpréter.
+          ['angularjsExercice4'] : tableau des modules à utiliser pour interpréter la portion de DOM
+          {strictDi:true} : Objet contenant une propriété qui indique à AngularJS de fonctionner à l'aide d'injections de dépendances strictes (notion que nous détaillerons plus tard).
+        **/
+
+      })();
+      //Fin de la fonction anonyme auto-exécutable
+    </script>
+  </body>
+</html>

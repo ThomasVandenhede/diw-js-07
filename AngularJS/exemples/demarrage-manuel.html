@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+</head>
+<body>
+
+
+  <script src="./lib/angular.min.js"></script>
+  <script>
+    // var leModuleNommeUnModule = angular.module('unModule'); // getter : retourne le module nommé "unModule";
+    // angular.module('unModule'); // getter : retourne le module nommé "unModule";
+    angular.module('exercice1Partie1', []); // setter Deux arguments : le nom du module à créer, puis un tableau de dépendances (autres modules dont notre module a besoin)
+    angular.bootstrap(window.document, ['exercice1Partie1'], {strictDi: true});
+  </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <script src="jquery.js"></script>
+  <script>
+    $(function() {
+      var texte = '';
+      $('p').each(function(index,element) {
+        console.log(index);
+        texte += $(element).html();
+      });
+    $('h2:last-child').after('<div>' + texte + '</>');
+    });
+  </script>
+  <title>Exemple 6</title>
+</head>
+<body>
+  <h1>Exemple 6</h1>
+  <h2>Source</h2>
+  <p>Un premier <strong>paragraphe</strong> avec un peu de texte</p>
+  <p> et un second avec également un peu de texte</p>
+  <p> et enfin un peu de <em>texte</em> dans un dernier.</p>
+  <h2>Résultat</h2>
+</body>
+</html>

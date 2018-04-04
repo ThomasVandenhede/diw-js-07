@@ -1,0 +1,21 @@
+{
+  "name": "exemples",
+  "version": "1.0.0",
+  "description": "Super exemple de projets sur Node JS",
+  "main": "exemple01.js",
+  "dependencies": {
+    "colors": "^1.1.2",
+    "mongodb": "^3.0.2",
+    "winston": "^2.4.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chalk": "^2.3.0"
+  },
+  "scripts": {
+    "toto": "node exemple05.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

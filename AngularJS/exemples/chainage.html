@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+
+  <script src="./lib/angular.min.js"></script>
+  <script>
+    angular.module('monModuleApp', [])
+    .controller('autreController', ['$scope', function(contexte) {
+      contexte.autreController = {};
+      contexte.autreController.somme = 3 + 10;
+    }])
+    .directive('maDirective', function() {
+
+    });
+
+
+    angular.bootstrap(window.document, ['monModuleApp'], {strictDi: true});
+  </script>
+</body>
+</html>

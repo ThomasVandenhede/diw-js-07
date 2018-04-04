@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<!-- saved from url=(0085)https://learning.virtuoworks.com/pluginfile.php/450/mod_resource/content/4/cours.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>Le Protocole WebSocket et Socket.io : Fondamentaux et Avancé</title>
+    <link rel="stylesheet" href="./prism.css" type="text/css">
+    <link rel="stylesheet" href="./style.css" type="text/css">
+    <link type="image/x-icon" rel="icon" href="https://learning.virtuoworks.com/pluginfile.php/450/mod_resource/content/4/img/favicon.png">
+    <link type="image/x-icon" rel="shortcut icon" href="https://learning.virtuoworks.com/pluginfile.php/450/mod_resource/content/4/img/favicon.png">
+    <script src="./prism.js.téléchargement"></script>
+  </head>
+  <body>
+    <header>
+      <h1>Le Protocole WebSocket et Socket.io : Fondamentaux et Avancé</h1>
+      <div class="copyright">
+        <p>Le Protocole WebSocket et Socket.io : Fondamentaux et Avancé - Sami Radi - <a href="http://www.virtuoworks.com/" title="VirtuoWorks">VirtuoWorks®</a> - tous droits réservés©</p>
+      </div>
+      <div class="page-break"></div>
+      <h2>Sommaire</h2>
+      <nav>
+        <ol>
+          <li><p><a href="https://learning.virtuoworks.com/pluginfile.php/450/mod_resource/content/4/cours.html#/chapitre-1">WebSocket</a></p>
+            <ol>
+              <li><p><a href="https://learning.virtuoworks.com/pluginfile.php/450/mod_resource/content/4/cours.html#/chapitre-1/partie-1">Notion de WebSocket</a></p></li>
+              <li><p><a href="https://learning.virtuoworks.com/pluginfile.php/450/mod_resource/content/4/cours.html#/chapitre-1/partie-2">Le protocole WebSocket</a></p></li>
+              <li><p><a href="https://learning.virtuoworks.com/pluginfile.php/450/mod_resource/content/4/cours.html#/chapitre-1/partie-3">Client WebSocket en HTML5/JS &amp; serveur WebSocket sur Node JS</a></p></li>
+            </ol>
+          </li>
+          <li><p><a href="https://learning.virtuoworks.com/pluginfile.php/450/mod_resource/content/4/cours.html#/chapitre-2">Extensions</a></p>
+            <ol>
+              <li><p><a href="https://learning.virtuoworks.com/pluginfile.php/450/mod_resource/content/4/cours.html#/chapitre-2/partie-1">L'extension WebSocket</a></p></li>
+              <li><p><a href="https://learning.virtuoworks.com/pluginfile.php/450/mod_resource/content/4/cours.html#/chapitre-2/partie-2">L'extension Socket.io</a></p></li>
+            </ol>
+          </li>
+        </ol>
+      </nav>
+    </header>
+    <section class="chapitre chapitre-1" id="/chapitre-1">
+      <header>
+        <h3>1. WebSocket</h3>
+        <nav>
+          <ol>
+            <li><p><a href="https://learning.virtuoworks.com/pluginfile.php/450/mod_resource/content/4/cours.html#/chapitre-1/partie-1">Notion de WebSocket</a></p></li>
+            <li><p><a href="https://learning.virtuoworks.com/pluginfile.php/450/mod_resource/content/4/cours.html#/chapitre-1/partie-2">Le protocole WebSocket</a></p></li>
+            <li><p><a href="https://learning.virtuoworks.com/pluginfile.php/450/mod_resource/content/4/cours.html#/chapitre-1/partie-3">Client WebSocket en HTML5/JS &amp; serveur WebSocket sur Node JS</a></p></li>
+          </ol>
+        </nav>
+      </header>
+      <section class="partie partie-1 chapitre-1-partie-1" id="/chapitre-1/partie-1">
+        <h4>1.1. Notion de WebSocket</h4>
+        <p>Le protocole HTTP propose d'échanger des données à l'initiative du client HTTP. C'est toujours le client HTTP qui initie une requête HTTP et qui reçoit une réponse HTTP en retour de la part du serveur HTTP. Le serveur HTTP est <b>passif</b>, il est perpétuellement en attente d'une nouvelle requête HTTP. A aucun moment le serveur HTTP n'est à l'origine d'un échange de données. Entre chaque échange HTTP, la connexion entre client et serveur est coupée.</p>
+        <p>Le mécanisme du HTTP pourrait se schématiser comme suit :</p>
+        <div class="resource">
+          <object type="image/svg+xml" data="./HTTP.svg" width="800" height="350" border="0">Votre navigateur Internet ne supporte pas le format SVG</object>
+        </div>
+        <p>Contrairement au HTTP, le <b>WebSocket</b> est un protocole réseau <b>en cours</b> de standardisation et proposé par la <a href="http://datatracker.ietf.org/doc/rfc6455/?include_text=1" target="_blank" title="La RFC du protocole WebSocket">RFC 6455</a> de l'IETF.</p>
+        <p>Le protocole WebSocket vise à normaliser les échanges bidirectionnels de données entre les clients WebSocket et le serveur WebSocket. Il propose d'établir un canal de communication persistant entre des clients WebSocket et un serveur WebSocket. A tout moment un client WebSocket peut envoyer des données au serveur WebSocket et surtout, à tout moment, <b>un serveur WebSocket peut envoyer des données à ses clients</b>. Les données sont transmises de façon fragmentée sous la forme de pages de données (en anglais, « <b>data frames</b> »)</p>
+        <p>Le mécanisme du WebSocket pourrait se schématiser comme suit :</p>
+        <div class="resource">
+          <object type="image/svg+xml" data="./WebSocket.svg" width="800" height="350" border="0">Votre navigateur Internet ne supporte pas le format SVG</object>
+        </div>
+        <p>Cette connexion (persistante) est appelée «<b>socket</b>» en anglais.</p>
+      </section>
+      <section class="partie partie-2 chapitre-1-partie-2" id="/chapitre-1/partie-2">
+        <h4>1.2. Le protocole WebSocket</h4>
+        <p>Le protocole WebSocket ressemble au protocole HTTP, au moins lors de la connexion initiale, de telle sorte qu'il soit plus facile de créer un serveur WebSocket à partir d'un serveur HTTP. On notera cependant que les URLs destinés à communiquer en utilisant le protocole WebSocket commencent par le préfixe <code class="code">ws</code> pour les échanges non sécurisés et <code class="code">wss</code> pour les échanges sécurisés. Par exemple :</p>
+        <ul>
+          <li><p>Pour initier un échange en HTTP, on écrirait un URL sous la forme : <code class="code">http://[hôte][:port][/ressource]</code> ou <code class="code">https://[hôte][:port][/ressource]</code></p></li>
+          <li><p>Alors que pour initier un échange en WebSocket on écrirait un URL sous la forme : <code class="code">ws://[hôte][:port][/ressource]</code> ou <code class="code">wss://[hôte][:port][/ressource]</code></p></li>
+        </ul>
+        <p>Intéressons nous maintenant aux étapes nécessaires à l'échange de données en utilisant le protocole WebSocket.</p>
+        <h5>Etape 1 : Établissement de la connexion</h5>
+        <p>Pour établir une connexion basée sur le protocole WebSocket, le client WebSocket doit envoyer une requête de connexion WebSocket (en anglais, « <b>request handshake</b> »). En retour, le serveur WebSocket envoie une réponse de connexion WebSocket (en anglais, « <b>response handshake</b> »).</p>
+        <ul>
+          <li>
+            <p>Exemple de requête de connexion WebSocket émise par un client WebSocket :</p>
+            <code class="code code-block">
+              GET / HTTP/1.1<br>
+              Connection: keep-alive, Upgrade<br>
+              Sec-WebSocket-Extensions : permessage-deflate<br>
+              Sec-WebSocket-Key: fs2lqKN4CTkP75Otb9EqXA==<br>
+              Sec-WebSocket-Version: 13<br>
+              Upgrade: websocket<br>
+            </code>
+          </li>
+          <li>
+            <p>Exemple de réponse de connexion WebSocket retournée par un serveur WebSocket:</p>
+            <code class="code code-block">
+              HTTP/1.1 101 Switching Protocols<br>
+              Upgrade: websocket<br>
+              Connection: Upgrade<br>
+              Sec-WebSocket-Accept: zSxqr2CKwpodKyPq4qnuJV5hWeE=<br>
+            </code>
+          </li>
+        </ul>
+        <p>L'en-tête de requête « <code class="code">Sec-WebSocket-Key</code> » produite par le client WebSocket et l'en-tête de réponse « <code class="code">Sec-WebSocket-Accept</code> » produite par le serveur WebSocket sont intéressantes puisque leur rôle est de permettre aux deux interlocuteurs de s'assurer qu'ils sont bien en mesure de dialoguer en utilisant le protocole WebSocket.</p>
+        <p>Coté client WebSocket, l'en-tête de requête « <code class="code">Sec-WebSocket-Key</code> » est l'encodage, en utilisant l'algorithme Base64, de 16 octets aléatoires.</p>
+        <p>On pourrait proposer la formule suivante : <code class="code">Sec-WebSocket-Key</code> = <code class="code">Base64</code>(16 Octets Aléatoires).</p>
+        <p>Coté serveur WebSocket, l'en-tête de réponse « <code class="code">Sec-WebSocket-Accept</code> » doit être généré comme suit :</p>
+        <ul>
+          <li><p>On concatène la valeur de l'en-tête de requête « <code class="code">Sec-WebSocket-Key</code> » avec le GUID (<b>G</b>lobally <b>U</b>nique <b>I</b>dentifier - Identifiant globalement unique) « <code class="code">258EAFA5-E914-47DA-95CA-C5AB0DC85B11</code> »;</p></li>
+          <li><p>La chaîne de caractère obtenue doit être ensuite encodée en utilisant l'algorithme de cryptage SHA-1;</p></li>
+          <li><p>Et enfin, la chaîne de caractère cryptée obtenue doit être encodée en utilisant l'algorithme d'encodage Base64.</p></li>
+        </ul>
+        <p>On pourrait proposer la formule suivante : <code class="code">Sec-WebSocket-Accept</code> = <code class="code">Base64</code>(<code class="code">SHA1</code>(<code class="code">Sec-WebSocket-Key</code> + <code class="code">258EAFA5-E914-47DA-95CA-C5AB0DC85B11</code>)).</p>
+        <h5>Etape 2 : Échanger des messages</h5>
+        <p>Un fois l'échange initial effectué, le client WebSocket et le serveur WebSocket peuvent échanger à tout moment des messages. Ces messages sont composés de pages de données (en anglais, « <b>data frames</b> »). Les pages de données sont des fragments du message. Toutes les pages de données doivent être obtenues par le destinataire pour pouvoir reconstituer le message entier.</p>
+        <p>Les pages de données sont codées au minimum sur 2 octets (16 bits) et au maximum sur 2<sup>63</sup> octets (9223372036854776000 bits). Cependant, du point de vue du protocole un message peut être de taille infinie puisqu'il peut être constitué de 1 ou plusieurs pages de données. Le détails des bits correspondant à une page de données et leur signification est expliquée dans la RFC 6455 <a href="http://tools.ietf.org/html/rfc6455#section-5.2" target="_blank" title="Détails des bits d&#39;une page de données">ici</a>.</p>
+        <p>Lorsqu'un client WebSocket envoi des page de données à un serveur WebSocket celles-ci sont obligatoirement (pour des raison de sécurité) masquées et doivent être décodées par le serveur WebSocket.</p>
+        <p>En résumé, pour qu'un destinataire puisse recevoir et exploiter un message se conformant au protocole WebSocket, il doit :</p>
+        <ul>
+          <li>Recevoir toutes les pages de données;</li>
+          <li>Décoder toutes les pages de données;</li>
+          <li>Reconstituer le message.</li>
+        </ul>
+        <p>Ces dernières étapes de l'implémentation du protocole WebSocket sont assez complexe à réaliser lors de la création d'un serveur WebSocket. C'est pourquoi nous ne développerons pas directement un serveur WebSocket mais nous utiliserons des serveurs WebSocket fournis sous la forme de modules complémentaires de la plateforme Node JS. Cependant, nous étudierons quand même une implémentation basique de l'établissement d'une connexion WebSocket entre un client WebSocket simple et un serveur WebSocket simple sur Node JS.</p>
+      </section>
+      <section class="partie partie-3 chapitre-1-partie-3" id="/chapitre-1/partie-3">
+        <h4>1.3. client WebSocket en HTML5/JS &amp; serveur WebSocket sur Node JS</h4>
+        <p>Les navigateurs Internet sont programmés, par défaut, pour échanger en respectant le protocole HTTP. Cependant, l'API de JavaScript nous propose d'utiliser l'objet <code class="code">WebSocket</code>. Cet objet est disponible et respecte le protocole RFC6455 du WebSocket à partir de :</p>
+        <ul>
+          <li><p>Internet Explorer 10 et supérieur;</p></li>
+          <li><p>Mozilla Firefox 11 et supérieur;</p></li>
+          <li><p>Google Chrome 16 et supérieur;</p></li>
+          <li><p>Safari 6 et supérieur;</p></li>
+          <li><p>Opera 12 et supérieur.</p></li>
+        </ul>
+        <p>La documentation officielle de cet objet est disponible <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API" title="API de l&#39;objet WebSocket en JavaScript" target="_blank">ici</a> sur le MDN.</p>
+        <p>Il s'agira donc, pour créer un client WebSocket, de créer un document HTML qui sera téléchargé selon le protocole HTTP par le navigateur Internet et, au sein de ce document HTML, d'utiliser l'objet WebSocket fourni par l'API de JavaScript pour ouvrir un canal de communication vers un serveur WebSocket. On pourrait schématiser cela en 3 temps comme suit :</p>
+        <div class="resource">
+          <object type="image/svg+xml" data="./WebSocket-Upgrade.svg" width="800" height="1125" border="0">Votre navigateur Internet ne supporte pas le format SVG</object>
+        </div>
+        <p>Le code ci-après est celui d'un serveur HTTP et WebSocket fonctionnant à l'aide de Node JS. La partie HTTP produit une réponse qui est un fichier HTML détaillé plus loin. Le serveur WebSocket présenté ici en exemple est rudimentaire :</p>
+        <ul>
+          <li>Il n'envoie aucune données au(x) client(s) WebSocket connectés;</li>
+          <li>II ne fonctionne que si il est sollicité depuis l'API JavaScript de Mozilla Firefox;</li>
+          <li>Il fonctionne uniquement lorsque les messages envoyés via le protocole WebSocket sont fragmentés en 1 seule page de données.</li>
+        </ul>
+        <pre class=" language-javascript" data-language="JavaScript">          <code class=" language-javascript">
+<span class="token comment" spellcheck="true">/**
+  Le Serveur HTTP.
+  URL : http://[adresse IP/nom de domaine]:8888/
+
+  Ce serveur produit une réponse HTTP contenant un document
+  HTML suite à une requête HTTP provenant d'un client HTTP.
+**/</span>
+
+<span class="token comment" spellcheck="true">// Chargement du module HTTP.</span>
+<span class="token keyword">const</span> http <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'http'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// Création du serveur HTTP.</span>
+<span class="token keyword">var</span> httpServer <span class="token operator">=</span> http<span class="token punctuation">.</span><span class="token function">createServer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// Fonction qui produit la réponse HTTP.</span>
+<span class="token keyword">var</span> writeResponse <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token function">writeHTTPResponse</span><span class="token punctuation">(</span>HTTPResponse<span class="token punctuation">,</span> responseCode<span class="token punctuation">,</span> responseBody<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    HTTPResponse<span class="token punctuation">.</span><span class="token function">writeHead</span><span class="token punctuation">(</span>responseCode<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+      <span class="token string">'Content-type'</span><span class="token punctuation">:</span><span class="token string">'text/html; charset=UTF-8'</span><span class="token punctuation">,</span>
+      <span class="token string">'Content-length'</span><span class="token punctuation">:</span>responseBody<span class="token punctuation">.</span>length
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    HTTPResponse<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>responseBody<span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+      HTTPResponse<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// Fonction qui produit une réponse HTTP contenant un message d'erreur 404 si le document HTML n'est pas trouvé.</span>
+<span class="token keyword">var</span> send404NotFound <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>HTTPResponse<span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token function">writeResponse</span><span class="token punctuation">(</span>HTTPResponse<span class="token punctuation">,</span> <span class="token number">404</span><span class="token punctuation">,</span> <span class="token string">'&lt;doctype html!&gt;&lt;html&gt;&lt;head&gt;Page Not Found&lt;/head&gt;&lt;body&gt;&lt;h1&gt;404: Page Not Found&lt;/h1&gt;&lt;p&gt;The requested URL could not be found&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/**
+  Gestion de l'évènement 'request' : correspond à la gestion
+  de la requête HTTP initiale permettant d'obtenir le fichier
+  HTML contenant le code JavaScript utilisant l'API WebSocket.
+**/</span>
+httpServer<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'request'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>HTTPRequest<span class="token punctuation">,</span> HTTPResponse<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Événement HTTP \'request\'.'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> fs <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'fs'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//le fichier HTML que nous utiliserons dans tous les cas.</span>
+    <span class="token keyword">var</span> filename <span class="token operator">=</span> <span class="token string">'websocket-client.html'</span><span class="token punctuation">;</span>
+    fs<span class="token punctuation">.</span><span class="token function">access</span><span class="token punctuation">(</span>filename<span class="token punctuation">,</span> fs<span class="token punctuation">.</span>R_OK<span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">{</span>
+      <span class="token keyword">if</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token function">send404NotFound</span><span class="token punctuation">(</span>HTTPResponse<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+        fs<span class="token punctuation">.</span><span class="token function">readFile</span><span class="token punctuation">(</span>filename<span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>error<span class="token punctuation">,</span> fileData<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">{</span>
+              <span class="token function">send404NotFound</span><span class="token punctuation">(</span>HTTPResponse<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+              <span class="token function">writeResponse</span><span class="token punctuation">(</span>HTTPResponse<span class="token punctuation">,</span> <span class="token number">200</span><span class="token punctuation">,</span> fileData<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/**
+  Le Serveur WebSocket associé au serveur HTTP.
+  URL : ws://[adresse IP/nom de domaine]:8888/
+
+  Ce serveur accepte une requête HTTP upgrade et établit
+  une connexion persistante basée sur WebSocket.
+**/</span>
+
+<span class="token comment" spellcheck="true">/**
+  Gestion de l'évènement 'upgrade' : correspond à une demande
+  d'établissement de connexion basée sur WebSocket.
+**/</span>
+httpServer<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'upgrade'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>WebSocketRequest<span class="token punctuation">,</span> socket<span class="token punctuation">,</span> head<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Événement WebSocket \'upgrade\'.'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">/**
+      Création de la 'response handshake' : signale au client 
+      que le passage au protocole WebSocket est accepté.
+    **/</span>
+    <span class="token keyword">var</span> secWebsocketKey <span class="token operator">=</span> WebSocketRequest<span class="token punctuation">.</span>headers<span class="token punctuation">[</span><span class="token string">'sec-websocket-key'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> webSocketProtocolGUID <span class="token operator">=</span> <span class="token string">'258EAFA5-E914-47DA-95CA-C5AB0DC85B11'</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">var</span> crypto <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'crypto'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> hash <span class="token operator">=</span> crypto<span class="token punctuation">.</span><span class="token function">createHash</span><span class="token punctuation">(</span><span class="token string">'sha1'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    hash<span class="token punctuation">.</span><span class="token function">update</span><span class="token punctuation">(</span>secWebsocketKey <span class="token operator">+</span> webSocketProtocolGUID<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> secWebSocketAccept <span class="token operator">=</span> hash<span class="token punctuation">.</span><span class="token function">digest</span><span class="token punctuation">(</span><span class="token string">'base64'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">var</span> webSocketServerHeaders <span class="token operator">=</span> <span class="token punctuation">[</span>
+      <span class="token string">'HTTP/1.1 101 Switching Protocols'</span><span class="token punctuation">,</span>
+      <span class="token string">'Upgrade: websocket'</span><span class="token punctuation">,</span>
+      <span class="token string">'Connection: Upgrade'</span><span class="token punctuation">,</span>
+      <span class="token string">'Sec-WebSocket-Protocol: diwjs'</span><span class="token punctuation">,</span>
+      <span class="token string">'Sec-WebSocket-Accept: '</span> <span class="token operator">+</span> secWebSocketAccept
+    <span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">concat</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">'\r\n'</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">'\r\n'</span><span class="token punctuation">;</span>
+
+    socket<span class="token punctuation">.</span><span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    socket<span class="token punctuation">.</span><span class="token function">setNoDelay</span><span class="token punctuation">(</span><span class="token keyword">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    socket<span class="token punctuation">.</span><span class="token function">setKeepAlive</span><span class="token punctuation">(</span><span class="token keyword">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">// Envoi de la 'response handshake' au client.</span>
+    socket<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>webSocketServerHeaders<span class="token punctuation">,</span> <span class="token string">'ascii'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">/**
+     Gestion l'évènement 'data' : Cet évènement survient lorsque le serveur
+     WebSocket reçoit des données en provenance du client WebSocket.
+    **/</span>
+    socket<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'data'</span><span class="token punctuation">,</span><span class="token keyword">function</span><span class="token punctuation">(</span>chunk<span class="token punctuation">)</span><span class="token punctuation">{</span>
+      <span class="token comment" spellcheck="true">//chunk : Variable qui contient 1 "data frame" (page de données). </span>
+      
+      <span class="token comment" spellcheck="true">/**
+        Décodage d'une page de données reçue.
+
+        ATTENTION : ceci ne fonctionne pas si la
+        donnée est fragmentée en plusieurs pages.
+      **/</span>
+
+      <span class="token comment" spellcheck="true">// Position par défaut du masque binaire.</span>
+      <span class="token keyword">var</span> maskLocation <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+      <span class="token comment" spellcheck="true">// Position par défaut du masque binaire.</span>
+      <span class="token keyword">var</span> maskingKey <span class="token operator">=</span> chunk<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span>maskLocation<span class="token punctuation">,</span> maskLocation <span class="token operator">+</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment" spellcheck="true">// Position par défaut des données.</span>
+      <span class="token keyword">var</span> dataLocation <span class="token operator">=</span> maskLocation <span class="token operator">+</span> <span class="token number">4</span><span class="token punctuation">;</span>
+      <span class="token comment" spellcheck="true">// Tableau pour le stockage des données décodées</span>
+      <span class="token keyword">var</span> decodedData <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+      <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> dataLocation <span class="token operator">&lt;</span> chunk<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// Décodage octet par octet</span>
+        decodedData<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>chunk<span class="token punctuation">[</span>dataLocation<span class="token punctuation">]</span> <span class="token operator">^</span> maskingKey<span class="token punctuation">[</span>i <span class="token operator">%</span> <span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        dataLocation<span class="token operator">++</span>
+      <span class="token punctuation">}</span><span class="token punctuation">;</span>
+      <span class="token comment" spellcheck="true">// Création d'un buffer (suite d'octets) à partir du tableau d'octets décodés</span>
+      <span class="token keyword">var</span> buffer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Buffer</span><span class="token punctuation">(</span>decodedData<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment" spellcheck="true">// Conversion du buffer en chaîne de caractères</span>
+      <span class="token keyword">var</span> message <span class="token operator">=</span> buffer<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment" spellcheck="true">// Affichage du message dans la console.</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+httpServer<span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span><span class="token number">8888</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          </code>
+        </pre>
+        <p>Le code ci-après est celui du fichier HTML contenant le code JavaScript faisant appel à l'API WebSocket du navigateur Internet. Ce fichier est celui fourni en HTTP par le serveur présenté au dessus (<i>Attention, si vous souhaitez tester ces programmes, pensez à modifier l'adresse IP par la votre</i>). La documentation officielle de l'API WebSocket de JavaScript pour les navigateurs Internet est disponible <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API/Writing_WebSocket_client_applications" title="L&#39;API WebSocket sur le MDN">ici.</a></p>
+        <pre class=" language-markup" data-language="Markup">          <code class=" language-markup">
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>doctype</span> <span class="token attr-name">html!</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>HTML5/JS &amp; Websockets<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+  <span class="token script language-javascript"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text/javascript<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>window<span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+      <span class="token comment" spellcheck="true">// Au chargement du document.</span>
+      window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'DOMContentLoaded'</span><span class="token punctuation">,</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+          <span class="token comment" spellcheck="true">// Établissement d'une nouvelle connexion WebSocket vers le serveur WebSocket.</span>
+          <span class="token keyword">var</span> webSocketClient <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">WebSocket</span><span class="token punctuation">(</span><span class="token string">'ws://127.0.0.1:8888/'</span><span class="token punctuation">,</span> <span class="token string">'diwjs'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token comment" spellcheck="true">/**
+            Le premier argument est l'URL du serveur WebSocket.
+            Le second argument est le "protocole". Cette chaîne de caractère peut
+            être utilisée coté serveur pour déterminer le traitement à effectuer.
+          **/</span>
+
+          <span class="token comment" spellcheck="true">/**
+            On attache un gestionnaire d'évènement à l'évènement 'open' qui correspond 
+            à la fin de l'échange request handshake / response handshake.
+          **/</span>
+          webSocketClient<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'open'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+            <span class="token keyword">var</span> HTMLpElement <span class="token operator">=</span> window<span class="token punctuation">.</span>document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'clickable-element'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            HTMLpElement<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+              <span class="token comment" spellcheck="true">/**
+                A chaque clic de souris sur l'élément HTML considéré
+                on envoi un message à travers la connexion WebSocket.
+              **/</span>
+              webSocketClient<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token string">'Hello !'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token comment" spellcheck="true">/**
+              On attache un gestionnaire d'évènement à l'évènement 'message' qui correspond  à
+              l'événement déclenché lorsqu'un message à été reçu en provenance du serveur WebSocket.
+            **/</span>
+            webSocketClient<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'message'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+              <span class="token comment" spellcheck="true">/**
+                A chaque message reçu, on affiche les données
+                obtenues dans la console du navigateur Internet.
+              **/</span>
+              console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+          <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span>window<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">&gt;</span></span>HTML5/JS &amp; WebSocket<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>clickable-element<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Envoyer un message à l'aide de WebSocket<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span>
+          </code>
+        </pre>
+        <p>Le serveur HTTP/WebSocket doit être démarré. Lorsque le fichier HTML est chargé par le navigateur Internet, le script JavaScript tente d'établir une connexion WebSocket avec le serveur. Lorsque ce dernier l'accepte, il est alors possible de cliquer sur un élément du document HTML affiché pour envoyer un message sous la forme d'une page de donnée au serveur. Lorsque le serveur reçoit une page de données, il la décode et l'affiche dans sa console. Si le serveur était également en mesure d'envoyer des données au client, ce dernier les afficherait alors dans la console du navigateur Internet.</p>
+        <p>L'implémentation d'un serveur Websocket complet est très laborieuse. Elle nécessite de gérer les données qui sont transmises selon une ou plusieurs pages de données et de gérer les divergences qui existent entre l'implémentation du protocole par le différents navigateurs Internet (la forme des messages reçus et envoyés à l'aide du protocole peut varier selon les navigateurs Internet et leurs versions). C'est pourquoi nous allons nous intéresser à des extensions de Node JS qui facilitent le développement d'un serveur basé sur le protocole WebSocket.</p>
+      </section>
+    </section>
+    <section class="chapitre chapitre-2" id="/chapitre-2">
+      <header>
+        <h3>2. Extensions</h3>
+        <nav>
+          <ol>
+            <li><p><a href="https://learning.virtuoworks.com/pluginfile.php/450/mod_resource/content/4/cours.html#/chapitre-2/partie-1">L'extension WebSocket</a></p></li>
+            <li><p><a href="https://learning.virtuoworks.com/pluginfile.php/450/mod_resource/content/4/cours.html#/chapitre-2/partie-3">L'extension Socket.io</a></p></li>
+          </ol>
+        </nav>
+      </header>
+      <section class="partie partie-1 chapitre-2-partie-1" id="/chapitre-2/partie-1">
+        <h4>2.1. L'extension WebSocket</h4>
+        <p>L'extension WebSocket de Node JS est disponible <a href="https://www.npmjs.com/package/websocket" title="extension WebSocket sur npm">ici</a> sur npm. Cette extension permet de créer un serveur WebSocket à partir d'un serveur HTTP existant. Elle s'utilise coté serveur comme n'importe quelle extension de Node JS.</p>
+        <p>Voici un exemple de serveur WebSocket utilisant l'extension WebSocket :</p>
+        <pre class=" language-javascript" data-language="JavaScript">          <code class=" language-javascript">
+<span class="token comment" spellcheck="true">/**
+  Le Serveur HTTP.
+  URL : http://[adresse IP/nom de domaine]:8888/
+
+  Ce serveur produit une réponse HTTP contenant un document
+  HTML suite à une requête HTTP provenant d'un client HTTP.
+**/</span>
+
+<span class="token comment" spellcheck="true">// Chargement du module HTTP.</span>
+<span class="token keyword">const</span> http <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'http'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// Création du serveur HTTP.</span>
+<span class="token keyword">var</span> httpServer <span class="token operator">=</span> http<span class="token punctuation">.</span><span class="token function">createServer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// Fonction qui produit la réponse HTTP.</span>
+<span class="token keyword">var</span> writeResponse <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token function">writeHTTPResponse</span><span class="token punctuation">(</span>HTTPResponse<span class="token punctuation">,</span> responseCode<span class="token punctuation">,</span> responseBody<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    HTTPResponse<span class="token punctuation">.</span><span class="token function">writeHead</span><span class="token punctuation">(</span>responseCode<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+      <span class="token string">'Content-type'</span><span class="token punctuation">:</span><span class="token string">'text/html; charset=UTF-8'</span><span class="token punctuation">,</span>
+      <span class="token string">'Content-length'</span><span class="token punctuation">:</span>responseBody<span class="token punctuation">.</span>length
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    HTTPResponse<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>responseBody<span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+      HTTPResponse<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// Fonction qui produit une réponse HTTP contenant un message d'erreur 404 si le document HTML n'est pas trouvé.</span>
+<span class="token keyword">var</span> send404NotFound <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>HTTPResponse<span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token function">writeResponse</span><span class="token punctuation">(</span>HTTPResponse<span class="token punctuation">,</span> <span class="token number">404</span><span class="token punctuation">,</span> <span class="token string">'Page Not Found404: Page Not FoundThe requested URL could not be found'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/**
+  Gestion de l'évènement 'request' : correspond à la gestion
+  de la requête HTTP initiale permettant d'obtenir le fichier
+  HTML contenant le code JavaScript utilisant l'API WebSocket.
+**/</span>
+httpServer<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'request'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>HTTPRequest<span class="token punctuation">,</span> HTTPResponse<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Événement HTTP \'request\'.'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> fs <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'fs'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//le fichier HTML que nous utiliserons dans tous les cas.</span>
+    <span class="token keyword">var</span> filename <span class="token operator">=</span> <span class="token string">'websocket-client.html'</span><span class="token punctuation">;</span>
+    fs<span class="token punctuation">.</span><span class="token function">access</span><span class="token punctuation">(</span>filename<span class="token punctuation">,</span> fs<span class="token punctuation">.</span>R_OK<span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">{</span>
+      <span class="token keyword">if</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token function">send404NotFound</span><span class="token punctuation">(</span>HTTPResponse<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+        fs<span class="token punctuation">.</span><span class="token function">readFile</span><span class="token punctuation">(</span>filename<span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>error<span class="token punctuation">,</span> fileData<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">{</span>
+              <span class="token function">send404NotFound</span><span class="token punctuation">(</span>HTTPResponse<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+              <span class="token function">writeResponse</span><span class="token punctuation">(</span>HTTPResponse<span class="token punctuation">,</span> <span class="token number">200</span><span class="token punctuation">,</span> fileData<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/**
+  Le Serveur WebSocket associé au serveur HTTP.
+  URL : ws://[adresse IP/nom de domaine]:8888/
+
+  Ce serveur accepte une requête HTTP upgrade et établit
+  une connexion persistante basée sur WebSocket.
+**/</span>
+
+<span class="token comment" spellcheck="true">/**
+  On installe et on utilise le package websocket.
+  La documentation est ici : https://www.npmjs.com/package/websocket
+**/</span>
+<span class="token keyword">var</span> webSocket <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'websocket'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// On récupére une référence à la classe WebSocketServer.</span>
+<span class="token keyword">var</span> WebSocketServer <span class="token operator">=</span> webSocket<span class="token punctuation">.</span>server<span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">/**
+  La classe WebSocketServer est documentée ici : 
+  https://github.com/theturtle32/WebSocket-Node/blob/master/docs/WebSocketServer.md
+**/</span>
+
+<span class="token comment" spellcheck="true">// On instancie la classe avec pour argument un référence à notre serveur HTTP.</span>
+<span class="token keyword">var</span> webSocketServer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">WebSocketServer</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  httpServer<span class="token punctuation">:</span> httpServer
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/**
+  Gestion de l'évènement 'request' : correspond à la gestion
+  d'une requête WebSocket provenant d'un client WebSocket.
+**/</span>
+webSocketServer<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'request'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>webSocketRequest<span class="token punctuation">)</span><span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Événement WebSocket \'request\'.'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  webSocketRequest<span class="token punctuation">;</span> 
+  <span class="token comment" spellcheck="true">/**
+    Objet de type WebSocketRequest documenté ici : 
+    https://github.com/theturtle32/WebSocket-Node/blob/master/docs/WebSocketRequest.md
+  **/</span>
+
+  <span class="token keyword">var</span> acceptedProtocol <span class="token operator">=</span> <span class="token string">'diwjs'</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> allowedOrigin <span class="token operator">=</span> webSocketRequest<span class="token punctuation">.</span>origin<span class="token punctuation">;</span>
+   
+  <span class="token comment" spellcheck="true">/**
+    La méthode .accept() prend en argument :
+      - le nom du protocole autorisé pour les clients du serveur WebSocket ;
+      - l'origine autorisée des requêtes.
+    La méthode .accept() retourne un objet de type WebSocketConnection documenté ici : https://github.com/theturtle32/WebSocket-Node/blob/master/docs/WebSocketConnection.md
+  **/</span>
+  
+  <span class="token keyword">var</span> webSocketConnection <span class="token operator">=</span> webSocketRequest<span class="token punctuation">.</span><span class="token function">accept</span><span class="token punctuation">(</span>acceptedProtocol<span class="token punctuation">,</span> allowedOrigin<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment" spellcheck="true">/**
+    A titre indicatif, coté client, l'utilisation de l'API WebSocket
+    devra être utilisée de la façon suivante :
+    var webSocketClient = new WebSocket('ws://[adresse IP/nom de domaine]:8888/', 'diwjs');
+  **/</span>
+
+  <span class="token comment" spellcheck="true">/**
+    Gestion de l'évènement 'message' : correspond à la gestion des messages
+    reçus par le serveur WebSocket en provenance du client WebSocket.
+  **/</span>
+  webSocketConnection<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'message'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">/**
+      La variable message est un objet de la forme :
+        - Si le message est en UTF-8 : {type:'utf8', utf8Data:'le message reçu'}
+        - Si le message est en binaire :  {type:'binary', utf8Data: bufferDeDonneesBinaires}
+    **/</span>
+
+    <span class="token comment" spellcheck="true">// Affichage du message reçu dans la console.</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">// Envoi d'un message au client WebSocket.</span>
+    webSocketConnection<span class="token punctuation">.</span><span class="token function">sendUTF</span><span class="token punctuation">(</span><span class="token string">'Message bien reçu !'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+httpServer<span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span><span class="token number">8888</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          </code>
+        </pre>
+        <p>Et le fichier HTML contenant le code JavaScript du client WebSocket (il s'agit du même fichier HTML que celui présenté précédemment) :</p>
+        <pre class=" language-markup" data-language="Markup">          <code class=" language-markup">
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>doctype</span> <span class="token attr-name">html!</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>HTML5/JS &amp; Websockets<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+  <span class="token script language-javascript"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text/javascript<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>window<span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+      <span class="token comment" spellcheck="true">//Au chargement du document</span>
+      window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'DOMContentLoaded'</span><span class="token punctuation">,</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+          <span class="token comment" spellcheck="true">// Établissement d'une nouvelle connexion WebSocket vers le serveur WebSocket.</span>
+          <span class="token keyword">var</span> webSocketClient <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">WebSocket</span><span class="token punctuation">(</span><span class="token string">'ws://[adresse IP/nom de domaine]:8888/'</span><span class="token punctuation">,</span> <span class="token string">'diwjs'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token comment" spellcheck="true">/**
+            Le premier argument est l'URL du serveur WebSocket.
+            Le second argument est le "protocole". Cette chaîne de caractère peut
+            être utilisée coté serveur pour déterminer le traitement à effectuer.
+          **/</span>
+
+          <span class="token comment" spellcheck="true">/**
+            On attache un gestionnaire d'évènement à l'évènement 'open' qui correspond 
+            à la fin de l'échange request handshake / response handshake.
+          **/</span>
+          webSocketClient<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'open'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+            <span class="token keyword">var</span> HTMLpElement <span class="token operator">=</span> window<span class="token punctuation">.</span>document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'clickable-element'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            HTMLpElement<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+              <span class="token comment" spellcheck="true">/**
+                A chaque clic de souris sur l'élément HTML considéré
+                on envoi un message à travers la connexion WebSocket.
+              **/</span>
+              webSocketClient<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token string">'Hello !'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token comment" spellcheck="true">/**
+              On attache un gestionnaire d'évènement à l'évènement 'message' qui correspond  à
+              l'événement déclenché lorsqu'un message à été reçu en provenance du serveur WebSocket.
+            **/</span>
+            webSocketClient<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'message'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+              <span class="token comment" spellcheck="true">/**
+                A chaque message reçu, on affiche les données
+                obtenues dans la console du navigateur Internet.
+              **/</span>
+              console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+          <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span>window<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">&gt;</span></span>HTML5/JS &amp; WebSocket<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>clickable-element<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Envoyer un message à l'aide de WebSocket<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span>
+          </code>
+        </pre>
+      </section>
+      <section class="partie partie-2 chapitre-2-partie-2" id="/chapitre-2/partie-2">
+        <h4>2.2. L'extension Socket.io</h4>
+        <p>L'extension Socket.io de Node JS est disponible <a href="https://www.npmjs.com/package/socket.io" title="extension Socket.io sur npm">ici</a> sur npm. La documentation officielle du module est accessible <a href="http://socket.io/" title="Site officiel de Socket.io">ici</a>. Cette extension peut être utilisée pour :</p>
+        <ul>
+          <li>Créer un serveur WebSocket à partir d'un serveur HTTP;</li>
+          <li>Créer un serveur WebSocket à partir d'un serveur HTTP basé sur l'extension Express JS;</li>
+          <li>Créer un serveur WebSocket pur.</li>
+        </ul>
+        <p>Des exemples d'utilisation de Socket.io pour créer ces 3 types de serveurs sont disponibles <a href="http://socket.io/docs/" title="exemples d&#39;utilisation de Socket.io">ici</a>.
+        </p><p>La particularité de Socket.io réside dans le fait que ce « framework » propose une couche d'abstraction pour le serveur sous la forme d'un module Node JS et d'une couche d'abstraction pour le client sous la forme d'un fichier .js à utiliser avec son script JavaScript coté client. En d'autres termes, Socket.io se compose d'un :</p>
+        <ul>
+          <li>Module coté serveur à utiliser avec Node JS documenté <a href="http://socket.io/docs/server-api/" title="Documentation officielle du module Socket.io">ici</a>;</li>
+          <li>Framework coté client à utiliser avec son script JavaScript au sein du navigateur Internet documenté <a href="http://socket.io/docs/client-api/" title="Documentation officielle du framework Socket.io">ici</a>.</li>
+        </ul>
+        <p>Voici un exemple de serveur WebSocket utilisant l'extension Socket.io :</p>
+        <pre class=" language-javascript" data-language="JavaScript">          <code class=" language-javascript">
+<span class="token comment" spellcheck="true">/**
+  Le Serveur HTTP.
+  URL : http://[adresse IP/nom de domaine]:8888/
+
+  Ce serveur produit une réponse HTTP contenant un document
+  HTML suite à une requête HTTP provenant d'un client HTTP.
+**/</span>
+
+<span class="token comment" spellcheck="true">// Chargement du module HTTP.</span>
+<span class="token keyword">const</span> http <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'http'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// Création du serveur HTTP.</span>
+<span class="token keyword">var</span> httpServer <span class="token operator">=</span> http<span class="token punctuation">.</span><span class="token function">createServer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// Fonction qui produit la réponse HTTP.</span>
+<span class="token keyword">var</span> writeResponse <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token function">writeHTTPResponse</span><span class="token punctuation">(</span>HTTPResponse<span class="token punctuation">,</span> responseCode<span class="token punctuation">,</span> responseBody<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    HTTPResponse<span class="token punctuation">.</span><span class="token function">writeHead</span><span class="token punctuation">(</span>responseCode<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+      <span class="token string">'Content-type'</span><span class="token punctuation">:</span><span class="token string">'text/html; charset=UTF-8'</span><span class="token punctuation">,</span>
+      <span class="token string">'Content-length'</span><span class="token punctuation">:</span>responseBody<span class="token punctuation">.</span>length
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    HTTPResponse<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>responseBody<span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+      HTTPResponse<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// Fonction qui produit une réponse HTTP contenant un message d'erreur 404 si le document HTML n'est pas trouvé.</span>
+<span class="token keyword">var</span> send404NotFound <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>HTTPResponse<span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token function">writeResponse</span><span class="token punctuation">(</span>HTTPResponse<span class="token punctuation">,</span> <span class="token number">404</span><span class="token punctuation">,</span> <span class="token string">'Page Not Found404: Page Not FoundThe requested URL could not be found'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/**
+  Gestion de l'évènement 'request' : correspond à la gestion
+  de la requête HTTP initiale permettant d'obtenir le fichier
+  HTML contenant le code JavaScript utilisant l'API WebSocket.
+**/</span>
+httpServer<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'request'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>HTTPRequest<span class="token punctuation">,</span> HTTPResponse<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Événement HTTP \'request\'.'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> fs <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'fs'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//le fichier HTML que nous utiliserons dans tous les cas.</span>
+    <span class="token keyword">var</span> filename <span class="token operator">=</span> <span class="token string">'websocket-client.html'</span><span class="token punctuation">;</span>
+    fs<span class="token punctuation">.</span><span class="token function">access</span><span class="token punctuation">(</span>filename<span class="token punctuation">,</span> fs<span class="token punctuation">.</span>R_OK<span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">{</span>
+      <span class="token keyword">if</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token function">send404NotFound</span><span class="token punctuation">(</span>HTTPResponse<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+        fs<span class="token punctuation">.</span><span class="token function">readFile</span><span class="token punctuation">(</span>filename<span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>error<span class="token punctuation">,</span> fileData<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">{</span>
+              <span class="token function">send404NotFound</span><span class="token punctuation">(</span>HTTPResponse<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+              <span class="token function">writeResponse</span><span class="token punctuation">(</span>HTTPResponse<span class="token punctuation">,</span> <span class="token number">200</span><span class="token punctuation">,</span> fileData<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/**
+  Le Serveur WebSocket associé au serveur HTTP.
+  URL : ws://[adresse IP/nom de domaine]:8888/
+
+  Ce serveur accepte une requête HTTP upgrade et établit
+  une connexion persistante basée sur WebSocket.
+**/</span>
+
+<span class="token comment" spellcheck="true">/**
+  On installe et on utilise le package socket.io.
+  La documentation est ici : 
+  - https://www.npmjs.com/package/socket.io
+  - https://github.com/socketio/socket.io
+  - http://socket.io/
+**/</span>
+<span class="token keyword">var</span> socketIO <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'socket.io'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//  On utilise utilise la fonction obtenue avec notre serveur HTTP.</span>
+<span class="token keyword">var</span> socketIOWebSocketServer <span class="token operator">=</span> <span class="token function">socketIO</span><span class="token punctuation">(</span>httpServer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/**
+  Gestion de l'évènement 'connection' : correspond à la gestion
+  d'une requête WebSocket provenant d'un client WebSocket.
+**/</span>
+socketIOWebSocketServer<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'connection'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>socket<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+  <span class="token comment" spellcheck="true">// socket : Est un objet qui représente la connexion WebSocket établie entre le client WebSocket et le serveur WebSocket. </span>
+
+  <span class="token comment" spellcheck="true">/**
+    On attache un gestionnaire d'évènement à un évènement personnalisé 'unEvenement'
+    qui correspond à un événement déclaré coté client qui est déclenché lorsqu'un message
+    a été reçu en provenance du client WebSocket.
+  **/</span>
+  socket<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'unEvenement'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>message<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    <span class="token comment" spellcheck="true">// Affichage du message reçu dans la console.</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">// Envoi d'un message au client WebSocket.</span>
+    socket<span class="token punctuation">.</span><span class="token function">emit</span><span class="token punctuation">(</span><span class="token string">'unAutreEvenement'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>texte<span class="token punctuation">:</span> <span class="token string">'Message bien reçu !'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">/**
+      On déclare un évènement personnalisé 'unAutreEvenement'
+      dont la réception sera gérée coté client.
+    **/</span>
+    
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+httpServer<span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span><span class="token number">8888</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          </code>
+        </pre>
+        <p>Et le fichier HTML contenant le code JavaScript du client WebSocket utilisant le « framework » socket.io :</p>
+        <pre class=" language-markup" data-language="Markup">          <code class=" language-markup">
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>doctype</span> <span class="token attr-name">html!</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>HTML5/JS &amp; Websockets<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+  <span class="token comment" spellcheck="true">&lt;!-- Chargement du "framework" client socket.io --&gt;</span>
+  <span class="token script language-javascript"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text/javascript<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/socket.io/socket.io.js<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span></span>
+  <span class="token comment" spellcheck="true">&lt;!--
+    Coté serveur, si on utilise le module socket.io, le serveur se voit automatiquement attribué un
+    gestionnaire d'événement pour la route : /socket.io/socket.io.js ( le fichier étant réellement
+    situé coté serveur dans le dossier : \node_modules\socket.io\node_modules\socket.io-client )
+  --&gt;</span>
+  <span class="token script language-javascript"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text/javascript<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>window<span class="token punctuation">,</span> io<span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+      <span class="token comment" spellcheck="true">//Au chargement du document</span>
+      window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'DOMContentLoaded'</span><span class="token punctuation">,</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+        <span class="token comment" spellcheck="true">/**
+          Établissement d'une nouvelle connexion WebSocket vers le serveur
+          WebSocket à l'aide de la fonction io fournie par le "framework"
+          client socket.io.
+        **/</span>
+        <span class="token keyword">var</span> socket <span class="token operator">=</span> <span class="token function">io</span><span class="token punctuation">(</span><span class="token string">'http://127.0.0.1:8888/'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">// socket : Est un objet qui représente la connexion WebSocket établie entre le client WebSocket et le serveur WebSocket. </span>
+
+        <span class="token keyword">var</span> HTMLpElement <span class="token operator">=</span> window<span class="token punctuation">.</span>document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'clickable-element'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        HTMLpElement<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+          <span class="token comment" spellcheck="true">/**
+            A chaque clic de souris sur l'élément HTML considéré
+            on envoi un message à travers la connexion WebSocket.
+          **/</span>
+          socket<span class="token punctuation">.</span><span class="token function">emit</span><span class="token punctuation">(</span><span class="token string">'unEvenement'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> texte<span class="token punctuation">:</span> <span class="token string">'Hello !'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token comment" spellcheck="true">/**
+            On déclare un évènement personnalisé 'unEvenement' dont
+            la réception sera gérée coté serveur.
+          **/</span>
+
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">/**
+          On attache un gestionnaire d'évènement à un évènement personnalisé 'unAutreEvenement'
+          qui correspond à un événement déclaré coté serveur qui est déclenché lorsqu'un message
+          a été reçu en provenance du serveur WebSocket.
+        **/</span>
+        socket<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'unAutreEvenement'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>data<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+          <span class="token comment" spellcheck="true">/**
+            A chaque message reçu, on affiche les données
+            obtenues dans la console du navigateur Internet.
+          **/</span>
+          console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span>window<span class="token punctuation">,</span> io<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">&gt;</span></span>HTML5/JS &amp; WebSocket<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>clickable-element<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Envoyer un message à l'aide de WebSocket<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span>
+          </code>
+        </pre>
+      </section>
+    </section>
+    <footer>
+      <p>Le Protocole WebSocket et Socket.io : Fondamentaux et Avancé - Sami Radi - <a href="http://www.virtuoworks.com/" title="VirtuoWorks">VirtuoWorks®</a> - tous droits réservés©</p>
+    </footer>
+  
+</body></html>

@@ -1,0 +1,33 @@
+body{
+  font-size: 0.8em;
+}
+
+h1{
+  font-size: 4em;
+}
+
+h2{
+  font-size: 2em;
+}
+
+footer{
+  font-size: 0.9em;
+}
+
+@media screen and (min-width:600px){
+  body{
+    font-size: 0.9em;
+  }
+}
+
+@media screen and (min-width:960px){
+  body{
+    font-size: 1em;
+  }
+}
+
+@media screen and (min-width:1200px){
+  body{
+    font-size: 1.1em;
+  }
+}

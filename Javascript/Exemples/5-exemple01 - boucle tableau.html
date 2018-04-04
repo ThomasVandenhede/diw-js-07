@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        'use strict';
+
+        var tableau = ['un', 'deux', 'trois'];
+        var i = 0;
+        alert(tableau[i]);
+        i = 1;
+        alert(tableau[i]);
+        i = 2;
+        alert(tableau[i]);
+        i = 3;
+        alert(tableau[i]);
+        var valeurInexistante = tableau[i]; // au delà des indces définis on obtient undefined
+        alert('Valeur qui déborde : ' + valeurInexistante);
+
+        // Comportement de la valeur undefined dans une condition : équivalent à false
+        if (valeurInexistante) {
+            alert('On entre dans le if');
+        } else {
+            alert('Pas dans le if');
+        }
+
+        // Quand l'indice (ici j) dépasse les indices définis dans le tableau, on obtient undefined. La valeur undefined dans une condition équivaut à false, donc la condition n'est pas validée, on n'entre pas dans la boucle.
+        for (var j = 0; tableau[j]; j++) {
+            alert(tableau[j]);
+        }
+
+</script>
+</head>
+<body>
+    
+</body>
+</html>

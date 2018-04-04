@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+  <head>
+    <title>HTML5/JS & Websockets</title>
+  </head>
+  <!-- Chargement du "framework" client socket.io -->
+  <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+  <!--
+    Coté serveur, si on utilise le module socket.io, le serveur se voit automatiquement attribué un
+    gestionnaire d'événement pour la route : /socket.io/socket.io.js ( le fichier étant réellement
+    situé coté serveur dans le dossier : \node_modules\socket.io\node_modules\socket.io-client )
+  -->
+  <script type="text/javascript">
+    (function(window, io){
+
+      //Au chargement du document
+      window.addEventListener('DOMContentLoaded',function(){
+
+        /**
+          Établissement d'une nouvelle connexion WebSocket vers le serveur
+          WebSocket à l'aide de la fonction io fournie par le "framework"
+          client socket.io.
+        **/
+        var socket = io('http://0.0.0.0:8888/');
+
+        // socket : Est un objet qui représente la connexion WebSocket établie entre le client WebSocket et le serveur WebSocket. 
+
+        var HTMLpElement = window.document.getElementById('clickable-element');
+        HTMLpElement.addEventListener('click', function(event){
+
+          /**
+            A chaque clic de souris sur l'élément HTML considéré
+            on envoi un message à travers la connexion WebSocket.
+          **/
+          socket.emit('unEvenement', { texte: 'Hello !' });
+          /**
+            On déclare un évènement personnalisé 'unEvenement' dont
+            la réception sera gérée coté serveur.
+          **/
+
+        });
+
+        /**
+          On attache un gestionnaire d'évènement à un évènement personnalisé 'unAutreEvenement'
+          qui correspond à un événement déclaré coté serveur qui est déclenché lorsqu'un message
+          a été reçu en provenance du serveur WebSocket.
+        **/
+        socket.on('unAutreEvenement', function (data) {
+
+          /**
+            A chaque message reçu, on affiche les données
+            obtenues dans la console du navigateur Internet.
+          **/
+          console.log(data);
+        });
+
+      });
+
+    })(window, io);
+  </script>
+  <body>
+    <h1>HTML5/JS & WebSocket</h1>
+    <p id="clickable-element">Envoyer un message à l'aide de WebSocket</p>
+  </body>
+</html>

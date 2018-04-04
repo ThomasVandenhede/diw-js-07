@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>AngularJS</title>
+  </head>
+  <body>
+    <h1>AngularJS</h1>
+
+    <h2>Liste de taches</h2>
+
+    <div ng-controller="monControleur as monCtrl">
+      <form ng-submit="monCtrl.ajouterTache()">
+        <input type="text" name="tache" ng-model="monCtrl.tache" />
+        <input type="submit" value="Ajouter"/>
+      </form>
+
+      <p ng-repeat="uneTache in monCtrl.maListeDeTaches track by $index">
+        {{ uneTache }}
+        <a href="#" ng-click="monCtrl.supprimerTache($index)">[x]</a>
+      </p>
+
+    </div>
+    <script src="./lib/angular.min.js"></script>
+    <script>
+      angular.module('monModule', [])
+      .controller('monControleur', [function() {
+        this.tache;
+        this.maListeDeTaches = [];
+        this.ajouterTache = function() {
+          alert(1);
+          if (this.tache) {
+            this.maListeDeTaches.push(this.tache);
+            this.tache = '';
+          };
+        };
+        this.supprimerTache = function(index) {
+          if (index < this.maListeDeTaches.length) {
+            this.maListeDeTaches.splice(index, 1);
+          };
+        }
+      }]);
+      angular.bootstrap(window.document, ['monModule'], {strictDi:true});
+    </script>
+  </body>
+</html>

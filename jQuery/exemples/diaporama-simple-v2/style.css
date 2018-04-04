@@ -1,0 +1,35 @@
+.diaporama{
+  position: relative;
+  overflow: hidden;
+}
+
+.diaporama ul{
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+.diaporama li{
+  position: absolute;
+  list-style-type: none;
+  text-align: center;
+  width: 100%;
+}
+
+.diaporama img{
+  width: 100%;
+}
+
+.diaporama .spans{
+  position: absolute; bottom: 0;
+  width: 100%; text-align: center;
+}
+
+.diaporama .spans span{
+  display: inline-block;
+  width: 1em; height: 1em; border-radius: 50%; margin: 0 2%;
+  background-color: rgb(105,105,105);
+}
+
+.diaporama .spans .diapoVisible{
+  background-color: rgb(235,235,235);
+}

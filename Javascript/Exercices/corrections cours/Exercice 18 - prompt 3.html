@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8"/>
+    <title>JavaScript : Exercice 18 - prompt 3</title>
+    <script type="text/javascript">
+      /*********************************
+      ************ EXERCICE ************
+      **********************************
+        Réalisez le programme (algorithme) suivant :
+        Quand je CLIQUE sur un paragraphe, j'affiche une boîte de dialogue avec un champ de saisie à l'utilisateur.
+        Tant que l'utilisateur clique sur Annuler ou clique sur OK sans rien saisir, j'affiche une boîte de dialogue avec un champ de saisie.
+        Puis, j'affiche la saisie de l'utilisateur dans une boîte de dialogue
+
+        Utilisez l'attribut d'évènement onclick, la fonction prompt(), la fonction alert() et une boucle while.
+      */
+      var exigerSaisie = function() {
+        var reponse = prompt('Veuillez saisir votre prenom');
+
+        while (reponse == null || reponse == '') {
+          // La première partie de la condition (à gauche du OU) vérifie que la valeur retournée par la fonction prompt est égale à null. Si oui, la condition est validée
+          // La seconde partie de la condition (à droite du OU) vérifie que la valer retournée par la fonction prompt est égale à chapine vide (''). Si oui, la condition est vérifiée
+          // La condition du while est TRUE si l'une ou l'autre des exrpessions autour du OU est vraie.
+          // Si aucune des expressions autour du OU n'est vraie, la boucle n'est pas exécutée : on passe à la suite du code.
+          reponse = prompt('Veuillez saisir votre prenom');
+        }
+
+        alert(reponse);
+
+      };
+    </script>
+  </head>
+  <body>
+    <h1>JavaScript : Exercice 18 - prompt 3</h1>
+    <p onclick="exigerSaisie()">Premier paragraphe</p>
+    <p>Deuxième paragraphe</p>
+    <noscript>
+      <p>Veuillez activer JavaScript</p>
+    </noscript>
+  </body>
+</html>

@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <title>AngularJS : Les Directives : Exercice 2</title>
+    <script>
+      // Énoncé
+      /* Un peu de modularisation */
+      /**************************************************************************************************
+        Quand crée un module avec AngularJS, on utilise la méthode .module() d'AngularJS. Cette méthode prend en argument une chaîne de caractère qui est le nom du module et un second argument qui est un tableau des dépendances, c'est-à-dire des modules dont notre module à besoin. La méthode est documentée ici : https://docs.angularjs.org/api/ng/function/angular.module
+
+        L'objectif de cet exercice est de créer un module pour gérer cette page qui va utiliser le module créé lors de l'exercice précédent pour qu'on puisse y utiliser les directives créées précédemment.
+      **************************************************************************************************/
+      /*
+        1. Chargez AngularJS dans ce document. Le contexte applicatif d'AngularJS doit englober tout le document. Votre application s'appellera angularjsExercice2. Un tutoriel officiel sur le chargement d'AngularJS est disponible ici : https://docs.angularjs.org/tutorial/step_00
+      */
+
+      /*
+        2. Dans l'exercice précédent vous avez créé des directives pour un module appelé angularjsExercice1. Mettez tout le code js du module créé lors de l'exercice précédent dans un fichier que vous appellerez directives.js. Chargez ce fichier dans ce document.
+      */
+
+      /*
+        3. Pour pouvoir utiliser les directives du module angularjsExercice1 dans ce document, vous devez charger le module angularjsExercice2 en ajoutant dans le tableau des dépendances le module angularjsExercice1.
+      */
+
+      /*
+        4. Utilisez chacune des directives du module angularjsExercice1 dans ce document.
+      */
+    </script>
+  </head>
+  <body>
+    <div>
+      <h1>De la modularisation pour pouvoir réutiliser des directives !</h1>
+      <!-- on remarque que la directive définie dans AngularJS sous le nom maPremiereDirective doit être utilisée dans le code HTML sous le nom ma-premiere-directive -->
+      <h2>Première directive</h2>
+      <div ma-premiere-directive></div>
+      <!-- on remarque que la directive définie dans AngularJS sous le nom maDeuxiemeDirective doit être utilisée dans le code HTML sous le nom ma-deuxieme-directive -->
+      <h2>Deuxième directive</h2>
+      <div ma-deuxieme-directive></div>
+       <!-- on remarque que la directive définie dans AngularJS sous le nom maTroisiemeDirective doit être utilisée dans le code HTML sous le nom ma-troisieme-directive -->
+      <h2>Troisième directive</h2>
+      <div ma-troisieme-directive></div>
+    </div>
+    <!-- On charge le framework AngularJS dans le document -->
+    <script src="../lib/angular-1.6.1.min.js"></script>
+
+    <!-- On charge le fichier contenant les directives du module angularjsExercice1 dans ce document -->
+    <script src="./directives.js"></script>
+
+    <!-- On on écrit ou on charge son script JavaScript utilisant AngularJS -->
+    <script>
+      //Bonne pratique : programmer en mode strict JavaScript (voir : https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Strict_mode)
+      'use strict';
+
+      //Bonne pratique : écrire son code dans une fonction anonyme auto-exécutable pour contrôler l'exposition des variables à l'objet global Window.
+      (function(){
+
+        /*
+          On créé un module AngularJS à l'aide de la méthode angular.module() en indiquant le module angularjsExercice1 dans la liste des dépendances.
+          angular.module() est utilisée ici comme un "setter". Voir : https://docs.angularjs.org/api/ng/function/angular.module
+        */
+        angular.module('angularjsExercice2', ['angularjsExercice1']);
+
+        /*
+          On utilise le module AngularJS créé pour interpréter les expressions et directives AngularJS présentes dans le DOM à l'aide de la méthode angular.bootstrap().
+          Voir : https://docs.angularjs.org/api/ng/function/angular.bootstrap
+        */
+        angular.bootstrap(window.document, ['angularjsExercice2'], {strictDi:true});
+        /**
+          window.document : portion de DOM à interpréter.
+          ['angularjsExercice2'] : tableau des modules à utiliser pour interpréter la portion de DOM
+          {strictDi:true} : Objet contenant une propriété qui indique à AngularJS de fonctionner à l'aide d'injections de dépendances strictes (notion que nous détaillerons plus tard).
+        **/
+
+      })();
+      //Fin de la fonction anonyme auto-exécutable
+    </script>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+<head>
+  <title>demo-account</title>
+</head>
+
+<body>
+  <h1>Welcome to Meteor!</h1>
+
+  {{#if currentUser}}
+    <p>Bienvenue {{currentUser.username}}</p>
+    <p><a href="#" id="logout">déconnexion</a></p>
+  {{else}}
+    {{>connect}}
+  {{/if}}
+
+</body>

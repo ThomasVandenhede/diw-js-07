@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8"/>
+    <title>JavaScript : Exercice 47 - digits</title>
+    <script type="text/javascript">
+      /*********************************
+      ************ EXERCICE ************
+      **********************************
+        Créez une fonction qui renvoie le nombre de digits d’un nombre passé en argument.
+
+        Un « digit » est un des chiffres qui composent le nombre.
+
+        Exemple : pour 101, les digits sont 1, 0, 1, il y a donc 3 digits.
+      */
+      var digit = function () {
+        var nombre = '';
+
+        while (isNaN(nombre) || nombre=='') {
+          nombre = prompt('Veuillez saisir un nombre');
+        }
+
+        var digit = 1;
+
+        for (var i = 10; nombre > i; i = i * 10 ) {
+          digit++;
+        }
+        var message = 'Le nombre ' + nombre + ' comporte ' + digit + ' chiffres';
+        if (digit > 1) {
+          message = message + 's';
+        }
+
+        alert(message + '.');
+      };
+    </script>
+  </head>
+  <body>
+    <h1 onclick="digit();">JavaScript : Exercice 47 - digits</h1>
+    <p>Premier paragraphe</p>
+    <p>Deuxième paragraphe</p>
+    <noscript>
+      <p>Veuillez activer JavaScript</p>
+    </noscript>
+  </body>
+</html>

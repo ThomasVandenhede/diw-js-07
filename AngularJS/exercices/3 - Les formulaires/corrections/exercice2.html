@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <title>AngularJS : Les Formulaires : Exercice 2</title>
+    <script>
+      // Énoncé
+      /* Les directives ng-controller et ng-model*/
+      /**************************************************************************************************
+        Désormais, vous devez utiliser au maximum les contrôleurs et de préférence en utilisant la notation "controler as" c'est à dire en utilisant une instance nommée du contrôleur et en utilisant les propriétés ou méthodes de cette instance.
+
+        Comme on l'a vu lors des exercices sur les expressions, si on dote le formulaire d'un attribut name, celui-ci devient accessible sous forme d'une propriété de contexte portant le nom spécifié. Cette propriété proposée par AngularJS est un objet qui possède des propriétés contenant des informations relatives au formulaire.
+
+        Dans cet exercice nous allons créer un formulaire d'enregistrement utilisateur. Ce formulaire devra être valide (champs requis fournis, dates correctes, adresses e-mail, etc...) pour qu'il puisse être ajouté à la liste des utilisateurs. La liste des utilisateurs sera matérialisée par un tableau d'objets correspondant chacun à un utilisateur.
+      **************************************************************************************************/
+
+      /*
+        1. Chargez AngularJS dans ce document. Le contexte applicatif d'AngularJS doit englober tout le document. Votre application s'appellera angularjsExercice2. Un tutoriel officiel sur le chargement d'AngularJS est disponible ici : https://docs.angularjs.org/tutorial/step_00
+      */
+
+      /*
+        2. Vous devez ajouter l'attribut novalidate sur la balise form pour désactiver la validation native des formulaires proposée par certain navigateur Internet et lui attribuer un nom à l'aide de l'attribut name.
+      */
+
+      /*
+        3. Créez les champs suivant :
+        - Nom qui est un texte de au moins 2 caractères et au maximum 128 caractères et qui est requis;
+        - Prenom qui est un texte de au moins 2 caractères et au maximum 128 caractères et qui est requis;
+        - Date de naissance qui est une date valide;
+        - Adresse e-mail qui est une adresse valide.
+
+        N'oubliez pas de spécifier un attribut name pour chacune des champs.
+
+        Les attributs proposés par AngularJS pour la gestion de la validation des champs est documentée ici : https://docs.angularjs.org/api/ng/directive/input
+      */
+
+      /*
+        4. Créez un contrôleur pour gérer la div qui contient le formulaire et la liste des utilisateurs. Ce contrôleur possède 2 propriétés et une méthode :
+        - Une propriété qui contiendra un utilisateur : un objet vide.
+        - Une propriété qui contiendra des utilisateurs : un tableau vide.
+        - Un méthode qui prend en argument un booléen qui indique si le formulaire est valide ou non et qui en fonction de ce booléen ajoute l'utilisateur au tableau des utilisateurs.
+      */
+
+      /*
+        5. Utilisez la directive ng-model pour associer chaque champ du formulaire à une propriété de l'objet dans la propriété du contrôleur correspondant à un utilisateur.
+      */
+
+      /*
+        6. Utilisez la directive ng-bind affichez en temps réel sous le formulaire la liste des informations saisies par l'utilisateur sous la forme d'une liste.
+      */
+
+      /*
+        7. Lorsqu'on utilise la directive form, on a accès à une propriété de contexte nommée selon la valeur de l'attribut name du formulaire. Cette propriété de contexte est un objet qui contient des informations relatives au comportement et au contenu du formulaire.
+        - Utilisez une expression pour afficher cette propriété de contexte sous le formulaire. Vous pouvez constater qu'elle contient une propriété concernant l'état de validation de formulaire.
+        - Utilisez la directive ng-submit pour exécuter la méthode du contrôleur en lui fournissant en argument l'état de validation du formulaire.
+      */
+
+      /*
+        8. Un peu de mise en forme : utilisez firebug pour observer les modification de l'attribut class des balise input lorsque vous saisissez un texte. Vous remarquez qu'AngularJS en fonction de l'état de la balise (pas encore modifiée, valide, non valide) attribue différentes classes CSS aux éléments. Utilisez ces classes CSS pour afficher à l'aide d'un code couleur (rouge = champ pas valide / vert = champ valide) l'état de validation des champs.
+      */
+
+      /*
+        9. Utilisez la directive ng-repeat pour afficher en temps réel la liste des utilisateurs sauvegardés à l'aide du contrôleur.
+      */
+    </script>
+    <style type="text/css">
+      form .ng-valid {
+        border-bottom:2px solid #0f9;
+      }
+      form .ng-invalid {
+        border-bottom:2px solid #f00;
+      }
+    </style>
+  </head>
+  <body>
+    <div ng-controller="monControleur as monCtrl">
+      <form name="monFormulaire" ng-submit="monCtrl.ajoutUtilisateur(monFormulaire.$valid)" novalidate>
+        <p>Nom <br><input type="text" ng-maxlength="128" ng-minlength="2" ng-required="true" name="champ_nom" ng-model="monCtrl.utilisateur.nom" /></p>
+        <p>Prénom <br><input type="text" ng-maxlength="128" ng-minlength="2" ng-required="true" name="champ_prenom" ng-model="monCtrl.utilisateur.prenom"/></p>
+        <p>E-mail <br><input type="email" ng-required="true" name="champ_adresse_email" ng-model="monCtrl.utilisateur.adresseEmail"/></p>
+        <p>Date de naissance <br><input type="date" ng-required="true" name="champ_date_de_naissance" ng-model="monCtrl.utilisateur.dateDeNaissance"/></p>
+        <p><input type="submit" value="Enregistrer"/></p>
+      </form>
+      <p>Formulaire valide ? {{ monFormulaire.$valid }}</p>
+      <h4>Récapitulatif des informations saisies</h4>
+      <ul>
+        <li ng-bind="monCtrl.utilisateur.nom"></li>
+        <li ng-bind="monCtrl.utilisateur.prenom"></li>
+        <li ng-bind="monCtrl.utilisateur.adresseEmail"></li>
+        <li ng-bind="monCtrl.utilisateur.dateDeNaissance"></li>
+      </ul>
+      <h4>Liste des utilisateurs</h4>
+      <div ng-repeat="utilisateur in monCtrl.listeUtilisateurs">
+        <p>{{ utilisateur.nom }} {{ utilisateur.prenom }} {{ utilisateur.adresseEmail }} {{ utilisateur.dateDeNaissance }}</p>
+      </div>
+    </div>
+    <div>{{monFormulaire}}</div>
+    <!-- On charge le framework AngularJS dans le document -->
+    <script src="../lib/angular-1.6.5.min.js"></script>
+
+    <!-- On on écrit ou on charge son script JavaScript utilisant AngularJS -->
+    <script>
+      //Bonne pratique : programmer en mode strict JavaScript (voir : https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Strict_mode)
+      'use strict';
+
+      //Bonne pratique : écrire son code dans une fonction anonyme auto-exécutable pour contrôler l'exposition des variables à l'objet global Window.
+      (function() {
+
+        /*
+          On créé un module AngularJS à l'aide de la méthode angular.module().
+          angular.module() est utilisée ici comme un "setter".
+          Voir : https://docs.angularjs.org/api/ng/function/angular.module
+        */
+        angular.module('angularjsExercice2', []);
+
+        /*
+          angular.module() est utilisée ici comme un "getter".
+          La méthode nous retourne une référence à l'objet de type angular.Module créé (voir : https://docs.angularjs.org/api/ng/type/angular.Module).
+          Nous utilisons la méthode .controller() de cet objet pour créer le contrôleur approprié.
+        */
+        angular.module('angularjsExercice2').controller('monControleur', [function() {
+          this.utilisateur = {};
+          this.listeUtilisateurs = [];
+          this.ajoutUtilisateur = function(estValide){
+            if(estValide){
+              //ajout de l'utilisateur à la liste d'utilisateurs
+              this.listeUtilisateurs.push(this.utilisateur);
+              //on réinitialise l'utilisateur en affectant un nouvel objet à la propriété
+              this.utilisateur = {};
+              //cette étape est très importante. Sans elle, on n'aura de cesse de modifier le même objet et donc les informations liées au même utilisateur.
+            };
+          };
+        }]);
+
+        /*
+          On utilise le module AngularJS créé pour interpréter les expressions et directives AngularJS présentes dans le DOM à l'aide de la méthode angular.bootstrap().
+          Voir : https://docs.angularjs.org/api/ng/function/angular.bootstrap
+        */
+        angular.bootstrap(window.document, ['angularjsExercice2'], {strictDi:true});
+        /**
+          window.document : portion de DOM à interpréter.
+          ['angularjsExercice2'] : tableau des modules à utiliser pour interpréter la portion de DOM
+          {strictDi:true} : Objet contenant une propriété qui indique à AngularJS de fonctionner à l'aide d'injections de dépendances strictes (notion que nous détaillerons plus tard).
+        **/
+
+      })();
+      //Fin de la fonction anonyme auto-exécutable
+    </script>
+  </body>
+</html>
